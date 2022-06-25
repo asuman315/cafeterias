@@ -12,9 +12,16 @@ const Carousel = () => {
 
   const images = [ imageOne, imageTwo, imageThree ];
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide(currentSlide => currentSlide < images.length - 1 ? currentSlide + 1 : 0);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [currentSlide]);
+
   return (
     <section className='border-2 overflow-hidden'>
-      <article className={`whitespace-nowrap translate-x-[${-currentSlide * 100}%]`}>
+      <article className={`duration-1000 ease-in-out whitespace-nowrap translate-x-[${-currentSlide * 100}%]`}>
         {images.map((image, index) => {
           return (
             <div key={index} className='inline-block w-full'>
