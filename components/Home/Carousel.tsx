@@ -6,22 +6,22 @@ import imageThree from '../../images/image-seven.jpg';
 console.log(imageOne);
 
 const Carousel = () => {
-  const imageStyles = ``;
+  const imageStyles = {
+
+  };
+
+  const images = [ imageOne, imageTwo, imageThree ];
 
   return (
-    <section className='overflow-hidde border-2'>
-      <article className='flex'>
-        <img
-          className={`${imageStyles}`}
-          src={imageOne.src}
-          alt='image one'
-        />
-        <img className={`${imageStyles}`} src={imageTwo.src} alt='image two' />
-        <img
-          className={`${imageStyles}`}
-          src={imageThree.src}
-          alt='image three'
-        />
+    <section className='border-2 overflow-hidden'>
+      <article className='whitespace-nowrap'>
+        {images.map((image, index) => {
+          return (
+            <div key={index} className='inline-block w-full'>
+              <img src={image.src} style={imageStyles} />
+            </div>
+          );
+        })}
       </article>
     </section>
   );
