@@ -13,7 +13,11 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,  //catch functions that return undefined or when we forget to use a return statement in a function
+    "noUnusedLocals": true, //catch variables that are declared but not used
+    "strictNullChecks": true, //catch nulls assigned to other varaibles like strings or numbers
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
