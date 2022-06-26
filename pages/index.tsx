@@ -12,10 +12,13 @@ const Home = ({ teamsData }: any) => {
     <div className=''>
       <Head>
         <title>Cafeterias</title>
-        <meta name='description' content='Order for the best coffee, drinks and eats in town' />
+        <meta
+          name='description'
+          content='Order for the best coffee, drinks and eats in town'
+        />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main className='relative'>
+      <main className='relativ'>
         <Carousel />
         <Text />
       </main>
@@ -24,12 +27,12 @@ const Home = ({ teamsData }: any) => {
 };
 
 //export const getStaticProps: GetStaticProps = async () => {
-  // const response = await fetch(
-  //   'https://api-strapi-one.herokuapp.com/api/teams?populate=*'
-  // );
-  // const teamsData = await response.json();
-  // const teams = teamsData.data;
-  // //console.log(teams);
+// const response = await fetch(
+//   'https://api-strapi-one.herokuapp.com/api/teams?populate=*'
+// );
+// const teamsData = await response.json();
+// const teams = teamsData.data;
+// //console.log(teams);
 
 //   const client = new ApolloClient({
 //     uri: 'https://api-strapi-one.herokuapp.com/graphql',
