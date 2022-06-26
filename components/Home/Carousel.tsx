@@ -1,11 +1,7 @@
-import imageOne from '../../images/image-two.jpg';
+import imageOne from '../../images/image-one.jpg';
 import imageTwo from '../../images/image-six.jpg';
 import imageThree from '../../images/image-seven.jpg';
 import { useState, useEffect } from 'react';
-
-//import imageFour from '../../images/image-four.jpg'
-
-console.log(imageOne);
 
 const Carousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -15,12 +11,13 @@ const Carousel = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide(currentSlide => currentSlide < images.length - 1 ? currentSlide + 1 : 0);
+      //console.log('currentSlide', currentSlide);
     }, 3000);
     return () => clearInterval(interval);
   }, [currentSlide]);
 
   return (
-    <section className='border-2 overflow-hidden'>
+    <section className='overflow-hidden'>
       <article className={`duration-1000 ease-in-out whitespace-nowrap translate-x-[${-currentSlide * 100}%]`}>
         {images.map((image, index) => {
           return (
