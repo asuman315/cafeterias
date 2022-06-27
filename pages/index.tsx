@@ -11,7 +11,7 @@ const Home = ({ teamsData }: any) => {
   return (
     <div className=''>
       <Head>
-        <title>Cafeterias</title>
+        <title>Cafeteriase</title>
         <meta
           name='description'
           content='Order for the best coffee, drinks and eats in town'
