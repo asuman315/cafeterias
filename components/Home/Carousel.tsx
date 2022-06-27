@@ -31,7 +31,7 @@ const Carousel = () => {
       >
         {images.map((image, index) => {
           return (
-            <div key={index} className="inline-block">
+            <div key={index} className="inline-block w-full">
               <img src={image.src} className="w-screen h-screen object-cover" />
             </div>
           );
