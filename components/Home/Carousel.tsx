@@ -37,9 +37,6 @@ const Carousel = () => {
           );
         })}
       </article>
-      {/* overlay under text so it looks cleaner */}
-      <div className="absolute w-screen h-screen top-0 left-0 bg-gradient-to-l from-primary-9 opacity-80 z-10"></div>
-      <Text />
     </section>
   );
 };
