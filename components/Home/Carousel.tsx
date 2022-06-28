@@ -1,14 +1,11 @@
 import imageOne from "../../public/images/image-one.jpg";
-import imageTwo from "../../public/images/image-six.jpg";
-import imageThree from "../../public/images/image-seven.jpg";
-// import imageOne from '../../images/image-one.jpg';
-// import imageTwo from '../../images/image-six.jpg';
-// import imageThree from '../../images/image-seven.jpg';
+import imageTwo from "../../public/images/image-two.jpg";
+import imageThree from "../../public/images/image-six.jpg";
+
 import { useState, useEffect } from "react";
-import Text from "./Text";
 
 const Carousel = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(1);
 
   const images = [imageOne, imageTwo, imageThree];
 
@@ -22,20 +19,34 @@ const Carousel = () => {
     return () => clearInterval(interval);
   }, [currentSlide]);
 
+  const xTranslate = `translate-x-[-${currentSlide * 100}%]`;
+ // console.log(xTranslate);
+  
+
   return (
-    <section className="overflow-hidden relative">
-      <article
-        className={`duration-1000 ease-in-out whitespace-nowrap translate-x-[${
+    <section className='overflow-hidden relative'>
+      {/* <article
+        className={`
+         whitespace-nowrap translate-x-[${
           -currentSlide * 100
-        }%]`}
-      >
+        }%]`}>
         {images.map((image, index) => {
           return (
-            <div key={index} className="inline-block w-full">
-              <img src={image.src} className="w-screen h-screen object-cover" />
+            <div key={index} className='inline-block bg-primary-6 w-full'>
+              <img src={image.src} className='w-screen h-screen object-cover mix-blend-overlay' />
             </div>
           );
         })}
+      </article> */}
+      <article className={`whitespace-nowrap ${xTranslate}`}>
+        {images.map((image, index) => {
+          return (
+            <div key={index} className='inline-block bg-primary-6'>
+              <img src={image.src} className='w-screen h-screen object-cover mix-blend-overlay' />
+            </div>
+          );
+        }
+        )}
       </article>
     </section>
   );

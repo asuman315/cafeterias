@@ -13,8 +13,8 @@ const Text = () => {
     { text: 'About Us', icon: <SiCodechef /> },
   ];
   return (
-    <section className='w-screen h-screen absolute top-0 left-0 z-20'>
-      <div className='w-full h-full flex flex-col md:flex-row-reverse items-center justify-around'>
+    <section className='w-full h-full absolute top-0 left-0 z-20'>
+      <div className='w-full h-full flex flex-col md:flex-row-reverse items-center justify-around '>
         <ul className='text-primary-1 text-xl lg:text-2xl xl:text-3xl w-[250px] xl:w-[300px] uppercase font-bold tracking-wider'>
           <h1 className='py-5 xl:py-14 border-b text-4xl lg:text-3xl lg:5xl xl:text-6xl capitalize font-["Arima_Madurai"]'>
             Cafeteriase
