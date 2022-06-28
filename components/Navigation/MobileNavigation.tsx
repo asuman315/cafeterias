@@ -1,4 +1,6 @@
-import React from 'react'
+
+
+// this component is used to render the mobile navigation
 
 const MobileNavigation = () => {
   return (

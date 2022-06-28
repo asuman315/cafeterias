@@ -1,4 +1,6 @@
-import React from 'react'
+
+
+//This component displays the menu screee
 
 const Menu = () => {
   return (

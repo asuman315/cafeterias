@@ -1,4 +1,6 @@
-import React from 'react'
+
+
+// this component is used to render the desktop navigation
 
 const DesktopNavigation = () => {
   return (
