@@ -19,7 +19,7 @@ const Carousel = () => {
     return () => clearInterval(interval);
   }, [currentSlide]);
 
-  const xTranslate = `translate-x-[-${currentSlide * 100}%]`;
+  const xTranslate = `-${currentSlide * 100}%`;
  // console.log(xTranslate);
   
 
@@ -38,10 +38,10 @@ const Carousel = () => {
           );
         })}
       </article> */}
-      <article className={`whitespace-nowrap ${xTranslate}`}>
+      <article className='whitespace-nowrap duration-1000 ease-out' style={{ transform: `translateX(${-currentSlide * 100}%)` }}>
         {images.map((image, index) => {
           return (
-            <div key={index} className='inline-block bg-primary-6'>
+            <div key={index} className='inline-block bg-primary-8'>
               <img src={image.src} className='w-screen h-screen object-cover mix-blend-overlay' />
             </div>
           );
