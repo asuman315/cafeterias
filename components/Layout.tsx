@@ -15,7 +15,10 @@ const Layout = (props: any) => {
    if (isHome) {
      setShowNavigation(false);
      setShowFooter(false);
-   }
+   } else {
+      setShowNavigation(true);
+      setShowFooter(true);
+    }
   }, [pathname]);
 
   return (

@@ -6,11 +6,11 @@ import Link from 'next/link';
 
 const Text = () => {
   const navigationTextAndIcons = [
-    { text: 'Menu', icon: <SiCodechef /> },
-    { text: 'Locations', icon: <MdOutlineAddLocationAlt /> },
-    { text: 'Careers', icon: <ImBubbles /> },
-    { text: 'Feedback', icon: <IoIosRestaurant /> },
-    { text: 'About Us', icon: <SiCodechef /> },
+    { text: 'Menu', icon: <SiCodechef />, path: '/menu' },
+    { text: 'Locations', icon: <MdOutlineAddLocationAlt />, path: '/locations' },
+    { text: 'Careers', icon: <ImBubbles />, path: '/careers' },
+    { text: 'Feedback', icon: <IoIosRestaurant />, path: '/feedback' },
+    { text: 'About Us', icon: <SiCodechef />, path: '/about' },
   ];
   return (
     <section className='w-full h-full absolute top-0 left-0 z-20'>
@@ -20,9 +20,9 @@ const Text = () => {
             Cafeteriase
           </h1>
           {navigationTextAndIcons.map((listItem, index) => {
-            const { text, icon } = listItem;
+            const { text, icon, path } = listItem;
             return (
-              <Link href='/' key={index}>
+              <Link href={path} key={index}>
                 <li className='flex items-center gap-4 py-4 xl:py-10 cursor-pointer border-b'>
                   {icon}
                   {text}
@@ -31,7 +31,7 @@ const Text = () => {
             );
           })}
         </ul>
-        <Link href='/'>
+        <Link href='/menu'>
           <a className='font-bold text-4xl xl:text-6xl text-primary-1 bg-secondary-8 px-10 py-3 rounded-md duration-150 ease-in tracking-wider'>
             Start Order
           </a>
