@@ -16,7 +16,7 @@ const MobileNavigation = () => {
     setIsNavOpen((prevNavValue) => !prevNavValue);
   };
   return (
-    <header className="bg-secondary-2  flex md:hidden items-center justify-center w-full h-20 px-5 md:px-10 lg:px-16 xl:px-20 mx-auto duration-150 ease-in shadow-xl">
+    <header className="bg-secondary-1 flex md:hidden items-center justify-center w-full h-20 px-5 md:px-10 lg:px-16 xl:px-20 mx-auto duration-150 ease-in shadow-xl">
       <nav className="w-full max-w-[1400px] flex items-center justify-between h-full">
         <Link href="/">
           <h1 className="text-2xl cursor-pointer">Cafeterias</h1>
@@ -28,7 +28,7 @@ const MobileNavigation = () => {
               : "fixed bg-primary-10/60 z-10 top-0 -right-[110%] w-full h-full flex flex-col items-end duration-300 ease-in"
           }
         >
-          <div className="bg-secondary-2 w-[60%] h-full flex flex-col items-end justify-between py-10">
+          <div className="bg-secondary-1 w-[60%] h-full flex flex-col items-end justify-between py-10">
             <div
               onClick={handleNav}
               className="w-10 h-10 bg-primary-8 text-xl text-primary-1 rounded-full flex items-center justify-center group cursor-pointer mr-10"
@@ -83,8 +83,11 @@ const MobileNavigation = () => {
                 </li>
               </Link>
             </ul>
-            <div className="group">
-              <button className="bg-secondary-5 text-lg group-hover:bg-primary-10">
+            <div className="w-full px-10 flex flex-col items-center gap-4">
+              <button className="w-full bg-secondary-5 text-lg hover:bg-primary-10">
+                Sign In
+              </button>
+              <button className="w-full border-2 border-secondary-5 text-secondary-5 text-lg hover:border-primary-10 hover:text-primary-10">
                 Sign Out
               </button>
             </div>

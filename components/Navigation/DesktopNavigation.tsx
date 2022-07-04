@@ -11,14 +11,14 @@ const DesktopNavigation = () => {
   return (
     // Check the header width.
     // I am not sure how you decided so I left it like this
-    <header className="bg-secondary-2 hidden md:flex items-center justify-center w-full h-20 px-5 md:px-10 lg:px-16 xl:px-20 mx-auto duration-150 ease-in shadow-xl">
+    <header className="bg-secondary-1 hidden md:flex items-center justify-center w-full h-20 px-5 md:px-10 lg:px-16 xl:px-20 mx-auto duration-150 ease-in shadow-xl">
       <nav className="w-full max-w-[1400px] flex items-center justify-between h-full">
         <Link href="/">
           <h1 className="text-3xl cursor-pointer">Cafeterias</h1>
         </Link>
         <ul className="flex items-center text-xl font-bold h-full">
           <Link href="/">
-            <li className="bg-transparent h-full flex items-center justify-center px-5 cursor-pointer hover:text-secondary-5">
+            <li className="bg-transparent h-full flex items-center justify-center xl:px-10 md:px-6 cursor-pointer hover:text-secondary-5">
               Home
             </li>
           </Link>
@@ -28,20 +28,32 @@ const DesktopNavigation = () => {
             <li
               className={
                 pathname === "/menu"
-                  ? "bg bg-secondary-5 text-primary-1 h-full flex items-center justify-center px-5 cursor-pointer"
-                  : "bg-transparent h-full flex items-center justify-center px-5 cursor-pointer hover:text-secondary-5"
+                  ? "bg bg-secondary-5 text-primary-1 h-full flex items-center justify-center xl:px-10 md:px-6 cursor-pointer"
+                  : "bg-transparent h-full flex items-center justify-center xl:px-10 md:px-6 cursor-pointer hover:text-secondary-5"
               }
             >
               Menu
             </li>
           </Link>
           <Link href="/">
-            <li className="bg-transparent h-full flex items-center justify-center px-5 cursor-pointer hover:text-secondary-5">
+            <li
+              className={
+                pathname === "/"
+                  ? "bg bg-secondary-5 text-primary-1 h-full flex items-center justify-center xl:px-10 md:px-6 cursor-pointer"
+                  : "bg-transparent h-full flex items-center justify-center xl:px-10 md:px-6 cursor-pointer hover:text-secondary-5"
+              }
+            >
               Featured Products
             </li>
           </Link>
-          <Link href="/">
-            <li className="bg-transparent h-full flex items-center justify-center px-5 cursor-pointer hover:text-secondary-5">
+          <Link href="/deals">
+            <li
+              className={
+                pathname === "/deals"
+                  ? "bg bg-secondary-5 text-primary-1 h-full flex items-center justify-center xl:px-10 md:px-6 cursor-pointer"
+                  : "bg-transparent h-full flex items-center justify-center xl:px-10 md:px-6 cursor-pointer hover:text-secondary-5"
+              }
+            >
               Deals
             </li>
           </Link>
