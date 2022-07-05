@@ -27,7 +27,7 @@ const Footer = () => {
     { name: 'Blog' },
   ];
   return (
-    <footer className='bg-primary-3 text-primary-2 flex flex-col items-center justify-center gap-10 w-full px-5 py-10 md:px-10 lg:px-16 xl:px-20 duration-150 ease-in'>
+    <footer className='md:absolute bg-primary-3 text-primary-2 flex flex-col items-center justify-center gap-10 w-full px-5 py-10 md:px-10 lg:px-16 xl:px-20 duration-150 ease-in bottom-0'>
       <div className='w-full max-w-[1400px] flex flex-col md:flex-row flex-wrap items-start justify-between gap-10'>
         <div className='space-y-3'>
           <h2 className='uppercase'>Locations</h2>

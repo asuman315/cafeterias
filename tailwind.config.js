@@ -11,9 +11,11 @@ module.exports = {
       xl: '1440px',
     },
     colors: {
-      'primary-1': 'hsl(196, 100%, 50%)',
-      'primary-2': 'hsl(196, 100%, 90%)',
+      'primary-1': 'hsl(196, 80%, 50%)',
+      'primary-2': 'hsl(196, 100%, 97%)',
       'primary-3': 'hsl(196, 54%, 14%)',
+      'primary-4': 'hsl(196, 74%, 84%)',
+      'white': '#fff',
       'dark-red': '#7f1d1d',
       'light-red': '#fef2f2',
       'dark-green': '#14532d',

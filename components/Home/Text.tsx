@@ -36,7 +36,7 @@ const Text = () => {
           })}
         </ul>
         <Link href="/menu">
-          <a className="font-bold text-4xl xl:text-6xl text-primary-1 bg-secondary-8 px-10 py-3 rounded-md duration-150 ease-in tracking-wider lg:hover:bg-secondary-2 lg:hover:text-secondary-8">
+          <a className="font-bold text-4xl xl:text-6xl hover:text-primary-3 hover:bg-primary-4 px-10 py-3 rounded-md duration-150 ease-in tracking-wider bg-primary-3 text-primary-4">
             Start Order
           </a>
         </Link>

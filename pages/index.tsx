@@ -4,6 +4,7 @@ import Carousel from '../components/Home/Carousel';
 import Text from '../components/Home/Text';
 import { GetStaticProps /*, GetStaticPaths, GetServerSideProps*/ } from 'next';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
+import Favorites from '../components/Home/Favorites';
 
 const Home = ({ myData: myData }: any) => {
   console.log('myData', myData);
@@ -21,6 +22,7 @@ const Home = ({ myData: myData }: any) => {
       <main className='relativ'>
         <Carousel />
         <Text />
+        <Favorites />
       </main>
     </div>
   );
