@@ -27,7 +27,7 @@ const Footer = () => {
     { name: 'Blog' },
   ];
   return (
-    <footer className='bg-secondary-1 flex flex-col items-center justify-center gap-10 w-full px-5 py-10 md:px-10 lg:px-16 xl:px-20 duration-150 ease-in'>
+    <footer className='bg-primary-3 text-primary-2 flex flex-col items-center justify-center gap-10 w-full px-5 py-10 md:px-10 lg:px-16 xl:px-20 duration-150 ease-in'>
       <div className='w-full max-w-[1400px] flex flex-col md:flex-row flex-wrap items-start justify-between gap-10'>
         <div className='space-y-3'>
           <h2 className='uppercase'>Locations</h2>
@@ -37,7 +37,7 @@ const Footer = () => {
               const { name } = branch;
               return (
                 <Link href='/'>
-                  <li className='hover:text-secondary-5 cursor-pointer'>
+                  <li className='hover:text-primary-1 cursor-pointer duration-300 ease-in'>
                     {name}
                   </li>
                 </Link>
@@ -48,7 +48,7 @@ const Footer = () => {
             <h3 className='uppercase'>Entebbe</h3>
             <ul className='flex flex-col items-start gap-1'>
               <Link href='/'>
-                <li className='hover:text-secondary-5 cursor-pointer'>
+                <li className='hover:text-primary-1 cursor-pointer duration-300 ease-in'>
                   Victoria Mall
                 </li>
               </Link>
@@ -58,7 +58,7 @@ const Footer = () => {
         <div className='space-y-3'>
           <h2 className='uppercase'>Contact Us</h2>
           <div className='flex flex-col items-start gap-2 font-medium'>
-            <a className='hover:text-secondary-5 cursor-pointer' href='/'>
+            <a className='hover:text-primary-1 cursor-pointer duration-300 ease-in' href='/'>
               info@cafeterias.com
             </a>
             <span>+256 313 72 00 00</span>
@@ -72,7 +72,7 @@ const Footer = () => {
               const { name } = item;
               return (
                 <Link href='/'>
-                  <li className='hover:text-secondary-5 cursor-pointer'>
+                  <li className='hover:text-primary-1 cursor-pointer duration-300 ease-in'>
                     {name}
                   </li>
                 </Link>
@@ -88,7 +88,7 @@ const Footer = () => {
       </p>
       <ul className='w-full flex items-center justify-center gap-2 flex-wrap text-md font-bold'>
         <Link href='/'>
-          <li className='hover:text-secondary-5 cursor-pointer'>
+          <li className='hover:text-primary-1 cursor-pointer duration-300 ease-in'>
             Privacy Policy
           </li>
         </Link>
@@ -96,7 +96,7 @@ const Footer = () => {
           const { name } = item;
           return (
             <Link href='/'>
-              <li className='hover:text-secondary-5 cursor-pointer'>
+              <li className='hover:text-primary-1 cursor-pointer duration-300 ease-in'>
                 | {name}
               </li>
             </Link>

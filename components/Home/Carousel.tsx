@@ -1,13 +1,14 @@
 import imageOne from "../../public/images/image-one.jpg";
 import imageTwo from "../../public/images/image-two.jpg";
-import imageThree from "../../public/images/image-six.jpg";
+import imageSix from "../../public/images/image-six.jpg";
+import imageSeven from "../../public/images/image-seven.jpg";
 
 import { useState, useEffect } from "react";
 
 const Carousel = () => {
   const [currentSlide, setCurrentSlide] = useState(1);
 
-  const images = [imageOne, imageTwo, imageThree];
+  const images = [imageOne, imageTwo, imageSix, imageSeven];
 
   useEffect(() => {
     const interval = setInterval(() => {
