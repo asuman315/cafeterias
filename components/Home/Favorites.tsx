@@ -38,7 +38,7 @@ const Favorites = () => {
           {favoriteItemsInfo.map((favoriteItemInfo, index) => {
             const { name, price, image } = favoriteItemInfo;
             return (
-              <div key={index} className='flex flex-co items-center bg-white w-[450px] border- relative mt-4 rounded-md p-3'>
+              <div key={index} className='flex flex-col items-center bg-white w-[450px] border- relative mt-4 rounded-md p-3'>
                 <img src={image.src} alt={`image of ${name}`} className='border- w-1/2' />
                 <div className='absolut right-6 flex flex-col'>
                   <p className='font-medium'>{name}</p>
