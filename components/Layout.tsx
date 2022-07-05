@@ -13,11 +13,11 @@ const Layout = (props: any) => {
   const isHome = pathname === '/';
 
   useEffect(() => {
-   //hide navigation and footer on home page
-   if (isHome) {
-     setShowNavigation(false);
-     setShowFooter(false);
-   } else {
+    //hide navigation and footer on home page
+    if (isHome) {
+      setShowNavigation(false);
+      setShowFooter(false);
+    } else {
       setShowNavigation(true);
       setShowFooter(true);
     }

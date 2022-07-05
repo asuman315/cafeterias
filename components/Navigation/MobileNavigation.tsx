@@ -1,5 +1,5 @@
 // this component is used to render the mobile navigation
-import { BiUserPlus, BiUser } from "react-icons/bi";
+import { BiUserPlus } from "react-icons/bi";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { MdOutlineClose, MdOutlineMenu } from "react-icons/md";
 import Link from "next/link";
@@ -19,7 +19,7 @@ const MobileNavigation = () => {
     <header className="bg-secondary-1 flex md:hidden items-center justify-center w-full h-20 px-5 md:px-10 lg:px-16 xl:px-20 mx-auto duration-150 ease-in shadow-xl">
       <nav className="w-full max-w-[1400px] flex items-center justify-between h-full">
         <Link href="/">
-          <h1 className="text-2xl cursor-pointer">Cafeterias</h1>
+          <h1 className='text-2xl cursor-pointer font-["Arima_Madurai"]'>Cafeterias</h1>
         </Link>
         <div
           className={
