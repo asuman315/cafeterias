@@ -15,7 +15,7 @@ import espresso from '../../public/images/espresso.png'
 import chickenPizza from '../../public/images/chicken-pizza.png';
 import vegeterianPizza from '../../public/images/vegeterian-pizza.png';
 import cappuccino from '../../public/images/cappuccino.png';
-import africanTeaPot from '../../public/images/african-tea-pot.jpg';
+import africanTeaPot from '../../public/images/african-tea-pot.png';
 
 const Favorites = () => {
   const favoriteItemsInfo = [
@@ -56,6 +56,11 @@ const Favorites = () => {
     { id: 10, name: 'vanilla muffin', price: '$9.99', image: vanillaMuffin },
     { id: 11, name: 'chicken burger', price: '$9.99', image: chickenBurger },
     { id: 12, name: 'chicken pesto', price: '$9.99', image: chickenPesto },
+    { id: 13, name: 'espresso', price: '$9.99', image: espresso },
+    { id: 14, name: 'chicken pizza', price: '$9.99', image: chickenPizza },
+    { id: 15, name: 'vegeterian pizza', price: '$9.99', image: vegeterianPizza },
+    { id: 16, name: 'cappuccino', price: '$9.99', image: cappuccino },
+    { id: 17, name: 'african tea pot', price: '$9.99', image: africanTeaPot },
   ];
 
   return (
