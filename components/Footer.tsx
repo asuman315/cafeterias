@@ -58,13 +58,13 @@ const Footer = () => {
         <div className='space-y-3'>
           <h2 className='uppercase'>Contact Us</h2>
           <div className='flex flex-col items-start gap-2 font-medium'>
-            <a
+            <Link
               className='hover:text-primary-1 cursor-pointer duration-300 ease-in'
               href='/'>
               info@cafeterias.com
-            </a>
-            <span>+256 313 72 00 00</span>
-            <span>+256 200 78 00 00</span>
+            </Link>
+            <span>+256 313 88 00 00</span>
+            <span>+256 200 99 00 00</span>
           </div>
         </div>
         <div className='space-y-3'>
@@ -84,9 +84,10 @@ const Footer = () => {
         </div>
       </div>
       <p className='font-bold text-center w-full lg:w-3/4 xl:w-2/4'>
-        We're commited to great food, great coffee, great service, an experience
-        that will make your time with us fabulous. All visuals are serving
-        suggestions only. Prices are quoted in US dollars and inclusive of VAT.{' '}
+        We&apos;re commited to great food, great coffee, great service, an
+        experience that will make your time with us fabulous. All visuals are
+        serving suggestions only. Prices are quoted in US dollars and inclusive
+        of VAT.{' '}
       </p>
       <ul className='w-full flex items-center justify-center gap-2 flex-wrap text-md font-bold'>
         <Link href='/'>
