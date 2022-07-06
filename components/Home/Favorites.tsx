@@ -11,6 +11,11 @@ import grilledChickenBreast from '../../public/images/grilled-chicken-breast.jpg
 import omeletteCombo from '../../public/images/omelette-combo.jpg';
 import pepperBeafSteak from '../../public/images/pepper-beaf-steak.jpg';
 import vanillaMuffin from '../../public/images/vanilla-muffin.jpg';
+import espresso from '../../public/images/espresso.png'
+import chickenPizza from '../../public/images/chicken-pizza.png';
+import vegeterianPizza from '../../public/images/vegeterian-pizza.png';
+import cappuccino from '../../public/images/cappuccino.png';
+import africanTeaPot from '../../public/images/african-tea-pot.jpg';
 
 const Favorites = () => {
   const favoriteItemsInfo = [
