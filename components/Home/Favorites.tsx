@@ -32,18 +32,18 @@ const Favorites = () => {
   ]
 
   return (
-    <section className='px-3 py-4'>
+    <section className='px-4 py-8 max-w-6xl mx-auto'>
       <h2>Customer favorites</h2>
-        <div>
+        <div className='pt-4 grid grid-cols-autofill-sm lg:grid-cols-autofill-lg gap-4'>
           {favoriteItemsInfo.map((favoriteItemInfo, index) => {
             const { name, price, image } = favoriteItemInfo;
             return (
-              <div key={index} className='flex flex-col items-center bg-white w-[450px] border- relative mt-4 rounded-md p-3'>
-                <img src={image.src} alt={`image of ${name}`} className='border- w-1/2' />
-                <div className='absolut right-6 flex flex-col'>
-                  <p className='font-medium'>{name}</p>
-                  <p className='font-medium'>{price}</p>
-                  <button className='mt-4'>Add to cart</button>
+              <div key={index} className='flex flex-col items-center bg-white border- relative rounded-md'>
+                <img src={image.src} alt={`image of ${name}`} className='rounded-t-md' />
+                <div className='p-3 right-6 flex flex-col'>
+                  <p className='font-medium text-center'>{name}</p>
+                  <p className='font-medium text-center'>{price}</p>
+                  <button className='mt-4 lg:hidden'>Add to cart</button>
                 </div>
               </div>
             );

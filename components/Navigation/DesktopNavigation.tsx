@@ -1,5 +1,5 @@
 // this component is used to render the desktop navigation
-import { BiUserPlus, BiUser } from "react-icons/bi";
+import { BiUserPlus } from "react-icons/bi";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import Link from "next/link";
 import { useRouter } from "next/router";

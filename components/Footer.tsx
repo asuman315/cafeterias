@@ -68,10 +68,10 @@ const Footer = () => {
         <div className='space-y-3'>
           <h2 className='uppercase'>Our Menu</h2>
           <ul className='flex flex-col items-start gap-2 font-medium'>
-            {menu.map((item) => {
+            {menu.map((item, index) => {
               const { name } = item;
               return (
-                <Link href='/'>
+                <Link href='/' key={index}>
                   <li className='hover:text-primary-1 cursor-pointer duration-300 ease-in'>
                     {name}
                   </li>
