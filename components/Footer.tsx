@@ -33,10 +33,10 @@ const Footer = () => {
           <h2 className='uppercase'>Locations</h2>
           <h3 className='uppercase'>Kampala</h3>
           <ul className='flex flex-col items-start gap-2 font-medium'>
-            {branches.map((branch) => {
+            {branches.map((branch, index) => {
               const { name } = branch;
               return (
-                <Link href='/'>
+                <Link href='/' key={index}>
                   <li className='hover:text-primary-1 cursor-pointer duration-300 ease-in'>
                     {name}
                   </li>
@@ -58,7 +58,9 @@ const Footer = () => {
         <div className='space-y-3'>
           <h2 className='uppercase'>Contact Us</h2>
           <div className='flex flex-col items-start gap-2 font-medium'>
-            <a className='hover:text-primary-1 cursor-pointer duration-300 ease-in' href='/'>
+            <a
+              className='hover:text-primary-1 cursor-pointer duration-300 ease-in'
+              href='/'>
               info@cafeterias.com
             </a>
             <span>+256 313 72 00 00</span>
@@ -92,10 +94,10 @@ const Footer = () => {
             Privacy Policy
           </li>
         </Link>
-        {footerInfo.map((item) => {
+        {footerInfo.map((item, index) => {
           const { name } = item;
           return (
-            <Link href='/'>
+            <Link href='/' key={index}>
               <li className='hover:text-primary-1 cursor-pointer duration-300 ease-in'>
                 | {name}
               </li>

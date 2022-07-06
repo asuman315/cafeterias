@@ -12,7 +12,7 @@ ul {
   @apply list-none
 }
 button {
-  @apply font-bold text-lg xl:text-xl hover:text-primary-3 hover:bg-primary-4 px-10 py-2 rounded-md duration-150 ease-in tracking-wider bg-primary-3 text-primary-4
+  @apply font-bold text-lg xl:text-xl hover:text-primary-3 hover:bg-primary-4 rounded-sm duration-150 ease-in tracking-wider bg-primary-3 text-primary-4
 }
 h1,
 h2,
