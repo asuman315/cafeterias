@@ -34,7 +34,7 @@ const Favorites = () => {
     },
     {
       id: 4,
-      name: 'country steak eggs',
+      name: 'steak eggs',
       price: '$9.99',
       image: countrySteakEggs,
     },
@@ -42,7 +42,7 @@ const Favorites = () => {
     { id: 6, name: 'iced coffee', price: '$9.99', image: icedCoffee },
     {
       id: 7,
-      name: 'grilled chicken breast',
+      name: 'grilled chicken',
       price: '$9.99',
       image: grilledChickenBreast,
     },
@@ -83,7 +83,7 @@ const Favorites = () => {
                 <p className='font-medium text-center'>{name}</p>
                 <p className='font-medium text-center'>{price}</p>
                 <button
-                  className='mt-4 text-sm py-2'>
+                  className='mt-4 text-sm py-3 md:text-base lg:text-lg'>
                   Add to cart
                 </button>
               </div>
