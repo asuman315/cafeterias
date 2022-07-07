@@ -18,7 +18,7 @@ import vegeterianPizza from '../../public/images/vegeterian-pizza.png';
 import cappuccino from '../../public/images/cappuccino.png';
 import africanTeaPot from '../../public/images/african-tea-pot.png';
 
-const Favorites = () => {
+const Favorites = ({ customerFavoritesData }: any) => {
   const favoriteItemsInfo = [
     {
       id: 1,
@@ -63,12 +63,15 @@ const Favorites = () => {
     { id: 16, name: 'cappuccino', price: '$9.99', image: cappuccino },
     { id: 17, name: 'african tea pot', price: '$9.99', image: africanTeaPot },
   ];
+
+  console.log(customerFavoritesData);
+  
   
   const [lastItem, setLastItem] = useState(4);
   const [showLess, setShowLess] = useState(false);
 
   useEffect(() => {
-    // if the button all the items in the array are displayed
+    // if all the items in the array are displayed
     if (lastItem >= favoriteItemsInfo.length) {
       setShowLess(true);
     }
@@ -81,14 +84,11 @@ const Favorites = () => {
   const handleLoadMore = () => {
     // Display the next 4 items each time the load more button is clicked
     setLastItem(lastItem + 4);
-
     // if the button all the items in the array are displayed
     if (showLess) {
       setLastItem(4);
     }
   }
-
-  console.log(showLess);
   
   // Get a given number of the first items from the favoriteItemsInfo array
   const favoriteItems = favoriteItemsInfo.slice(0, lastItem);

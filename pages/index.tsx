@@ -6,8 +6,7 @@ import { GetStaticProps /*, GetStaticPaths, GetServerSideProps*/ } from 'next';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import Favorites from '../components/Home/Favorites';
 
-const Home = ({ myData: myData }: any) => {
-  console.log('myData', myData);
+const Home = ({ myData }: any) => {
 
   return (
     <div className=''>
@@ -22,7 +21,7 @@ const Home = ({ myData: myData }: any) => {
       <main className='relativ'>
         <Carousel />
         <Text />
-        <Favorites />
+        <Favorites customerFavoritesData={myData} />
       </main>
     </div>
   );
@@ -46,27 +45,21 @@ export const getStaticProps: GetStaticProps = async () => {
   const { data } = await client.query({
     query: gql`
       query {
-        mealcategory(id: 1) {
+        customerfavorites {
           data {
             id
             attributes {
-              Name
-              mealsubcategories {
+              name
+              identity
+              price
+              image {
                 data {
                   id
                   attributes {
                     name
-                    meals {
-                      data {
-                        id
-                        attributes {
-                          name
-                          price
-                        }
-                      }
-                    }
+                    url
                   }
-              }
+                }
               }
             }
           }
@@ -75,9 +68,11 @@ export const getStaticProps: GetStaticProps = async () => {
     `,
   });
 
+  const myData = data.customerfavorites.data;
+
   return {
     props: {
-      myData: data.mealcategory.data,
+      myData
     },
   };
 };
