@@ -34,7 +34,6 @@ const Favorites = ({ customerFavoritesData }: any) => {
       <h2>Customer favorites</h2>
       <div className='pt-4 grid grid-cols-autofill-sm md:grid-cols-autofill-md lg:grid-cols-autofill-lg gap-4 w-full'>
         {dispalyedCustomerFavoriteItems.map((favoriteItem: any) => {
-          console.log(favoriteItem);
           const id = favoriteItem.id;
           //const itemId = favoriteItem.attributes.identity;
           const name = favoriteItem.attributes.name;

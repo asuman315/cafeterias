@@ -19,7 +19,7 @@ const Home = ({ myData }: any) => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <main className='relativ'>
-        <Carousel />
+        <Carousel imagesData={myData} />
         <Text />
         <Favorites customerFavoritesData={myData} />
       </main>
@@ -58,6 +58,7 @@ export const getStaticProps: GetStaticProps = async () => {
                   id
                   attributes {
                     name
+                    formats
                     url
                   }
                 }
