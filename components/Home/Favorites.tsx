@@ -63,11 +63,14 @@ const Favorites = () => {
     { id: 17, name: 'african tea pot', price: '$9.99', image: africanTeaPot },
   ];
 
+  // Get a given number of the first items from the favoriteItemsInfo array
+  const favoriteItems = favoriteItemsInfo.slice(0, 4);
+
   return (
-    <section className='px-4 py-8 max-w-6xl mx-auto'>
+    <section className='flex flex-col px-4 py-8 max-w-6xl mx-auto'>
       <h2>Customer favorites</h2>
       <div className='pt-4 grid grid-cols-autofill-sm md:grid-cols-autofill-md lg:grid-cols-autofill-lg gap-4'>
-        {favoriteItemsInfo.map((favoriteItemInfo, index) => {
+        {favoriteItems.map((favoriteItemInfo, index) => {
           const { name, price, image, id } = favoriteItemInfo;
           return (
             <div
@@ -83,7 +86,7 @@ const Favorites = () => {
                 <p className='font-medium text-center'>{name}</p>
                 <p className='font-medium text-center'>{price}</p>
                 <button
-                  className='mt-4 text-sm py-3 md:text-base lg:text-lg'>
+                  className='mt-4 py-3 text-base lg:text-lg'>
                   Add to cart
                 </button>
               </div>
@@ -91,6 +94,7 @@ const Favorites = () => {
           );
         })}
       </div>
+        <button className='rounded-sm bg-primary-1 py-2 w-[30%]'>Load more</button>
     </section>
   );
 };
