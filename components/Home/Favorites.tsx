@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import chickenBurger from '../../public/images/chicken-burger.jpg';
 import chickenPesto from '../../public/images/chicken-pesto.jpg';
@@ -65,20 +65,31 @@ const Favorites = () => {
   ];
   
   const [lastItem, setLastItem] = useState(4);
-  const [loadMore, setLoadMore] = useState(true);
+  const [showLess, setShowLess] = useState(false);
+
+  useEffect(() => {
+    // if the button all the items in the array are displayed
+    if (lastItem >= favoriteItemsInfo.length) {
+      setShowLess(true);
+    }
+    //if more items in the array can be displayed
+    if (lastItem < favoriteItemsInfo.length) {
+      setShowLess(false);
+    }
+  })
 
   const handleLoadMore = () => {
+    // Display the next 4 items each time the load more button is clicked
     setLastItem(lastItem + 4);
-    setLoadMore(true);
 
-    console.log('length: ', favoriteItemsInfo.length);
-    
-
-    if (lastItem >= favoriteItemsInfo.length) {
-      setLoadMore(false);
+    // if the button all the items in the array are displayed
+    if (showLess) {
+      setLastItem(4);
     }
   }
 
+  console.log(showLess);
+  
   // Get a given number of the first items from the favoriteItemsInfo array
   const favoriteItems = favoriteItemsInfo.slice(0, lastItem);
 
@@ -101,8 +112,7 @@ const Favorites = () => {
               <div className='p-3 right-6 flex flex-col w-full h-full'>
                 <p className='font-medium text-center'>{name}</p>
                 <p className='font-medium text-center'>{price}</p>
-                <button
-                  className='mt-4 py-3 text-base lg:text-lg'>
+                <button className='mt-4 py-3 text-base lg:text-lg'>
                   Add to cart
                 </button>
               </div>
@@ -110,7 +120,12 @@ const Favorites = () => {
           );
         })}
       </div>
-        <button className='rounded-sm bg-primary-1 py-2 px-8 mt-6' onClick={handleLoadMore}>Load more</button>
+      <button
+        className='rounded-sm bg-primary-1 py-2 px-8 mt-6 disabled:opacity-50'
+        onClick={handleLoadMore}
+        >
+        { showLess ? 'Show less' : 'Load more' }
+      </button>
     </section>
   );
 };
