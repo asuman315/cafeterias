@@ -3,31 +3,27 @@
 //This component displays the menu screee
 
 const Menu = ({ categoryData }: any) => {
-  console.log(categoryData);
   
   return (
-    <section>
-      <div>
-        { categoryData.map((category: any) => { 
+    <main className='max-w-6xl mx-auto'>
+      <div className="grid grid-cols-2 gap-4 my-8 px-4">
+        {categoryData.map((category: any) => {
           const id = category.id;
-          const name = category.attributes.name;
+          const name = category.attributes.Name;
           const imageUrl = category.attributes.image.data[0].attributes.url;
+          
           return (
             <div
               key={id}
-              className='flex flex-col items-center bg-white shadow-xl relative rounded-md lg:cursor-pointer'>
-              <img
-                src={imageUrl}
-                alt={`image of ${name}`}
-                className='rounded-t-md cursor-zoom-in'
-              />
+              className='shadow-xl lg:cursor-pointer'>
+              <h2 className="pb-2">{name}</h2>
+              <img src={imageUrl} alt={`image of ${name}`} className='rounded-md' />
             </div>
           );
-        }
-        )}
+        })}
       </div>
-    </section>
-  )
+    </main>
+  );
 }
 
 export default Menu

@@ -80,10 +80,10 @@ const MobileNavigation = () => {
               </Link>
             </ul>
             <div className='w-full px-10 flex flex-col items-center gap-4'>
-              <button className='w-full bg-primary-3 text-lg hover:bg-primary-2 hover:border-primary-1 hover:border'>
+              <button className='w-full bg-primary-3 py-2 text-lg hover:bg-primary-2 hover:border-primary-1 hover:border'>
                 Sign In
               </button>
-              <button className='w-full border-2 border-primary-3 text-primary-3 text-lg hover:border-primary-1'>
+              <button className='w-full border-primary-3 text-primary-3 bg-primary-4 py-2 text-lg hover:border-primary-1 hover:bg-primary-2 hover:border'>
                 Sign Out
               </button>
             </div>
@@ -93,7 +93,7 @@ const MobileNavigation = () => {
           <Link href='/'>
             <div className=' hover:text-primary-3 relative'>
               <AiOutlineShoppingCart />
-              <div className='text-sm font-bold w-6 h-5 text-primary-1 bg-primary-3 rounded-full absolute -top-1 -right-3 flex items-center justify-center'>
+              <div className='text-sm font-bold w-5 h-5 text-primary-1 bg-primary-3 rounded-full absolute -top-1 -right-3 flex items-center justify-center'>
                 0
               </div>
             </div>

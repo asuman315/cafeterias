@@ -18,7 +18,7 @@ const Home = ({ myData }: any) => {
         />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main className='relativ'>
+      <main>
         <Carousel imagesData={myData} />
         <Text />
         <Favorites customerFavoritesData={myData} />

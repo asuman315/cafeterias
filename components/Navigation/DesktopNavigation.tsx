@@ -63,7 +63,7 @@ const DesktopNavigation = () => {
           <Link href='/'>
             <div className='cursor-pointer hover:text-primary-1 relative duration-300 ease-in'>
               <AiOutlineShoppingCart />
-              <div className='text-sm font-bold w-6 h-5 text-primary-1 bg-primary-3 rounded-full absolute -top-1 -right-3 flex items-center justify-center'>
+              <div className='text-sm font-bold w-5 h-5 text-primary-1 bg-primary-3 rounded-full absolute -top-1 -right-3 flex items-center justify-center'>
                 0
               </div>
             </div>
