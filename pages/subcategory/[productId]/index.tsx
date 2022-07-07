@@ -7,7 +7,7 @@ export default function SubcategoryPage({ subcategoryData }: any) {
   
   return (
     <div>
-      <h1>Subcategory Page {name} </h1>
+      <h1 className='my-5 text-center'>Subcategory Page {name} </h1>
     </div>
   );
 }
