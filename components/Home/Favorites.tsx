@@ -65,7 +65,7 @@ const Favorites = ({ customerFavoritesData }: any) => {
                 <p className='font-semibold text-center capitalize'>{name}</p>
                 <p className='font-bold text-center'>$ {price}</p>
                 <button className='mt-4 py-3 text-base lg:text-lg capitalize'>
-                  Add to cart
+                  order now
                 </button>
               </div>
             </div>
