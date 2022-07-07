@@ -54,7 +54,7 @@ const Favorites = ({ customerFavoritesData }: any) => {
           return (
             <div
               key={id}
-              className='flex flex-col items-center bg-white border- relative rounded-md lg:cursor-pointer'>
+              className='flex flex-col items-center bg-white shadow-xl relative rounded-md lg:cursor-pointer'>
               <img
                 src={imageUrl}
                 alt={`image of ${name}`}
@@ -64,7 +64,7 @@ const Favorites = ({ customerFavoritesData }: any) => {
               <div className='p-3 right-6 flex flex-col w-full h-full'>
                 <p className='font-semibold text-center capitalize'>{name}</p>
                 <p className='font-bold text-center'>$ {price}</p>
-                <button className='mt-4 py-3 text-base lg:text-lg'>
+                <button className='mt-4 py-3 text-base lg:text-lg capitalize'>
                   Add to cart
                 </button>
               </div>
