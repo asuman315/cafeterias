@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
+import { ImCross } from 'react-icons/im';
 
 const Favorites = ({ customerFavoritesData }: any) => {
- // console.log(customerFavoritesData);
+  // console.log(customerFavoritesData);
 
   const [lastItem, setLastItem] = useState(4);
   const [showLess, setShowLess] = useState(false);
+  const [zoomedImage, setZoomedImage] = useState('');
+  const [showZoomedImage, setShowZoomedImage] = useState(false);
 
   useEffect(() => {
     // if all the items in the array are displayed
@@ -15,7 +18,7 @@ const Favorites = ({ customerFavoritesData }: any) => {
     if (lastItem < customerFavoritesData.length) {
       setShowLess(false);
     }
-  })
+  });
 
   const handleLoadMore = () => {
     // Display the next 4 items each time the load more button is clicked
@@ -24,10 +27,18 @@ const Favorites = ({ customerFavoritesData }: any) => {
     if (showLess) {
       setLastItem(4);
     }
-  }
-  
+  };
+
   // Get a given number of the first items from the customerFavoritesData array
-  const dispalyedCustomerFavoriteItems = customerFavoritesData.slice(0, lastItem);
+  const dispalyedCustomerFavoriteItems = customerFavoritesData.slice(
+    0,
+    lastItem
+  );
+
+  const zoomImage = (imageUrl: string) => {
+    setZoomedImage(imageUrl);
+    setShowZoomedImage(true);
+  }
 
   return (
     <section className='flex flex-col items-center px-4 py-8 max-w-6xl mx-auto'>
@@ -38,16 +49,17 @@ const Favorites = ({ customerFavoritesData }: any) => {
           //const itemId = favoriteItem.attributes.identity;
           const name = favoriteItem.attributes.name;
           const price = favoriteItem.attributes.price;
-          const image = favoriteItem.attributes.image.data[0].attributes.url;
+          const imageUrl = favoriteItem.attributes.image.data[0].attributes.url;
           //console.log(id, name, price, image, itemId);
           return (
             <div
               key={id}
               className='flex flex-col items-center bg-white border- relative rounded-md lg:cursor-pointer'>
               <img
-                src={image}
+                src={imageUrl}
                 alt={`image of ${name}`}
-                className='rounded-t-md'
+                className='rounded-t-md cursor-zoom-in'
+                onClick={() => zoomImage(imageUrl)}
               />
               <div className='p-3 right-6 flex flex-col w-full h-full'>
                 <p className='font-semibold text-center capitalize'>{name}</p>
@@ -62,10 +74,28 @@ const Favorites = ({ customerFavoritesData }: any) => {
       </div>
       <button
         className='rounded-sm bg-primary-1 py-2 px-8 mt-6 disabled:opacity-50'
-        onClick={handleLoadMore}
-        >
-        { showLess ? 'Show less' : 'Load more' }
+        onClick={handleLoadMore}>
+        {showLess ? 'Show less' : 'Load more'}
       </button>
+      <div
+        className={`fixed top-0 z-20 h-screen w-screen bg-primary-3 opacity-90 lg:cursor-pointer  ${
+          showZoomedImage ? 'block' : 'hidden'
+        }`}
+        onClick={() => setShowZoomedImage(false)}></div>
+      <div
+        className={`z-40 fixed top-[30vh] h-[40vh] ${
+          showZoomedImage ? 'block' : 'hidden'
+        }`}>
+        <ImCross
+          className='absolute right-4 top-4 font-bold text-dark-red lg:cursor-pointer'
+          onClick={() => setShowZoomedImage(false)}
+        />
+        <img
+          src={zoomedImage}
+          alt='zoomed image'
+          className='w-full h-full'
+        />
+      </div>
     </section>
   );
 };
