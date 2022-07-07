@@ -19,64 +19,63 @@ import cappuccino from '../../public/images/cappuccino.png';
 import africanTeaPot from '../../public/images/african-tea-pot.png';
 
 const Favorites = ({ customerFavoritesData }: any) => {
-  const favoriteItemsInfo = [
-    {
-      id: 1,
-      name: 'chicken wing meal',
-      price: '$9.99',
-      image: chickenWingMeal,
-    },
-    { id: 2, name: 'chipotle chicken', price: '$9.99', image: chipotleChicken },
-    {
-      id: 3,
-      name: 'chipotle fish bowl',
-      price: '$9.99',
-      image: chipotleFishBowl,
-    },
-    {
-      id: 4,
-      name: 'steak eggs',
-      price: '$9.99',
-      image: countrySteakEggs,
-    },
-    { id: 5, name: 'fried plantain', price: '$9.99', image: friedPlantain },
-    { id: 6, name: 'iced coffee', price: '$9.99', image: icedCoffee },
-    {
-      id: 7,
-      name: 'grilled chicken',
-      price: '$9.99',
-      image: grilledChickenBreast,
-    },
-    { id: 8, name: 'omelette combo', price: '$9.99', image: omeletteCombo },
-    {
-      id: 9,
-      name: 'pepper beef steak',
-      price: '$9.99',
-      image: pepperBeafSteak,
-    },
-    { id: 10, name: 'vanilla muffin', price: '$9.99', image: vanillaMuffin },
-    { id: 11, name: 'chicken burger', price: '$9.99', image: chickenBurger },
-    { id: 12, name: 'chicken pesto', price: '$9.99', image: chickenPesto },
-    { id: 13, name: 'espresso', price: '$9.99', image: espresso },
-    { id: 14, name: 'chicken pizza', price: '$9.99', image: chickenPizza },
-    { id: 15, name: 'vegeterian pizza', price: '$9.99', image: vegeterianPizza },
-    { id: 16, name: 'cappuccino', price: '$9.99', image: cappuccino },
-    { id: 17, name: 'african tea pot', price: '$9.99', image: africanTeaPot },
-  ];
+  // const customerFavoritesData = [
+  //   {
+  //     id: 1,
+  //     name: 'chicken wing meal',
+  //     price: '$9.99',
+  //     image: chickenWingMeal,
+  //   },
+  //   { id: 2, name: 'chipotle chicken', price: '$9.99', image: chipotleChicken },
+  //   {
+  //     id: 3,
+  //     name: 'chipotle fish bowl',
+  //     price: '$9.99',
+  //     image: chipotleFishBowl,
+  //   },
+  //   {
+  //     id: 4,
+  //     name: 'steak eggs',
+  //     price: '$9.99',
+  //     image: countrySteakEggs,
+  //   },
+  //   { id: 5, name: 'fried plantain', price: '$9.99', image: friedPlantain },
+  //   { id: 6, name: 'iced coffee', price: '$9.99', image: icedCoffee },
+  //   {
+  //     id: 7,
+  //     name: 'grilled chicken',
+  //     price: '$9.99',
+  //     image: grilledChickenBreast,
+  //   },
+  //   { id: 8, name: 'omelette combo', price: '$9.99', image: omeletteCombo },
+  //   {
+  //     id: 9,
+  //     name: 'pepper beef steak',
+  //     price: '$9.99',
+  //     image: pepperBeafSteak,
+  //   },
+  //   { id: 10, name: 'vanilla muffin', price: '$9.99', image: vanillaMuffin },
+  //   { id: 11, name: 'chicken burger', price: '$9.99', image: chickenBurger },
+  //   { id: 12, name: 'chicken pesto', price: '$9.99', image: chickenPesto },
+  //   { id: 13, name: 'espresso', price: '$9.99', image: espresso },
+  //   { id: 14, name: 'chicken pizza', price: '$9.99', image: chickenPizza },
+  //   { id: 15, name: 'vegeterian pizza', price: '$9.99', image: vegeterianPizza },
+  //   { id: 16, name: 'cappuccino', price: '$9.99', image: cappuccino },
+  //   { id: 17, name: 'african tea pot', price: '$9.99', image: africanTeaPot },
+  // ];
 
-  console.log(customerFavoritesData);
-  
-  
+ // console.log(customerFavoritesData);
+
   const [lastItem, setLastItem] = useState(4);
   const [showLess, setShowLess] = useState(false);
 
   useEffect(() => {
     // if all the items in the array are displayed
-    if (lastItem >= favoriteItemsInfo.length) {
+    if (lastItem >= customerFavoritesData.length) {
       setShowLess(true);
     }
     //if more items in the array can be displayed
-    if (lastItem < favoriteItemsInfo.length) {
+    if (lastItem < customerFavoritesData.length) {
       setShowLess(false);
     }
   })
@@ -90,28 +89,33 @@ const Favorites = ({ customerFavoritesData }: any) => {
     }
   }
   
-  // Get a given number of the first items from the favoriteItemsInfo array
-  const favoriteItems = favoriteItemsInfo.slice(0, lastItem);
+  // Get a given number of the first items from the customerFavoritesData array
+  const dispalyedCustomerFavoriteItems = customerFavoritesData.slice(0, lastItem);
 
   return (
     <section className='flex flex-col items-center px-4 py-8 max-w-6xl mx-auto'>
       <h2>Customer favorites</h2>
       <div className='pt-4 grid grid-cols-autofill-sm md:grid-cols-autofill-md lg:grid-cols-autofill-lg gap-4'>
-        {favoriteItems.map((favoriteItemInfo, index) => {
-          const { name, price, image, id } = favoriteItemInfo;
+        {dispalyedCustomerFavoriteItems.map((favoriteItem: any) => {
+          console.log(favoriteItem);
+          const id = favoriteItem.id;
+          //const itemId = favoriteItem.attributes.identity;
+          const name = favoriteItem.attributes.name;
+          const price = favoriteItem.attributes.price;
+          const image = favoriteItem.attributes.image.data[0].attributes.url;
+          //console.log(id, name, price, image, itemId);
           return (
             <div
-              key={index}
-              data-id={id}
+              key={id}
               className='flex flex-col items-center bg-white border- relative rounded-md lg:cursor-pointer'>
               <img
-                src={image.src}
-                alt={`image of ${name}`}
+                src={image}
+                alt={`image of`}
                 className='rounded-t-md'
               />
               <div className='p-3 right-6 flex flex-col w-full h-full'>
                 <p className='font-medium text-center'>{name}</p>
-                <p className='font-medium text-center'>{price}</p>
+                <p className='font-medium text-center'>$ {price}</p>
                 <button className='mt-4 py-3 text-base lg:text-lg'>
                   Add to cart
                 </button>

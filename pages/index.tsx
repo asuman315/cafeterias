@@ -40,12 +40,13 @@ export const getStaticProps: GetStaticProps = async () => {
     cache: new InMemoryCache(),
   });
 
-  //pagination: { start: 0, limit: 2 }
+  //pagination: { start: 0, limit: 17 }
+  //(pagination: { start: 0, limit: 17 }, sort: "id")
   //sort: "id"
   const { data } = await client.query({
     query: gql`
       query {
-        customerfavorites {
+        customerfavorites(pagination: { start: 0, limit: 17 }, sort: "id") {
           data {
             id
             attributes {
@@ -72,7 +73,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      myData
+      myData,
     },
   };
 };
