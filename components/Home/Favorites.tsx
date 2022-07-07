@@ -1,3 +1,4 @@
+import { useState } from 'react';
 
 import chickenBurger from '../../public/images/chicken-burger.jpg';
 import chickenPesto from '../../public/images/chicken-pesto.jpg';
@@ -62,12 +63,27 @@ const Favorites = () => {
     { id: 16, name: 'cappuccino', price: '$9.99', image: cappuccino },
     { id: 17, name: 'african tea pot', price: '$9.99', image: africanTeaPot },
   ];
+  
+  const [lastItem, setLastItem] = useState(4);
+  const [loadMore, setLoadMore] = useState(true);
+
+  const handleLoadMore = () => {
+    setLastItem(lastItem + 4);
+    setLoadMore(true);
+
+    console.log('length: ', favoriteItemsInfo.length);
+    
+
+    if (lastItem >= favoriteItemsInfo.length) {
+      setLoadMore(false);
+    }
+  }
 
   // Get a given number of the first items from the favoriteItemsInfo array
-  const favoriteItems = favoriteItemsInfo.slice(0, 4);
+  const favoriteItems = favoriteItemsInfo.slice(0, lastItem);
 
   return (
-    <section className='flex flex-col px-4 py-8 max-w-6xl mx-auto'>
+    <section className='flex flex-col items-center px-4 py-8 max-w-6xl mx-auto'>
       <h2>Customer favorites</h2>
       <div className='pt-4 grid grid-cols-autofill-sm md:grid-cols-autofill-md lg:grid-cols-autofill-lg gap-4'>
         {favoriteItems.map((favoriteItemInfo, index) => {
@@ -94,7 +110,7 @@ const Favorites = () => {
           );
         })}
       </div>
-        <button className='rounded-sm bg-primary-1 py-2 w-[30%]'>Load more</button>
+        <button className='rounded-sm bg-primary-1 py-2 px-8 mt-6' onClick={handleLoadMore}>Load more</button>
     </section>
   );
 };
