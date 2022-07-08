@@ -26,6 +26,8 @@ module.exports = {
       'autofill-md': 'repeat(auto-fill, minmax(190px, 1fr))',
       'autofill-lg': 'repeat(auto-fit, minmax(230px, 1fr))',
       'autofill-details': 'repeat(auto-fit, minmax(250px, 1fr))',
+      '3': 'repeat(3, minmax(0, 1fr))',
+      '4': 'repeat(4, minmax(0, 1fr))',
       'grid-sm': 'repeat(2, 2fr)',
       'grid-thumbs': 'repeat(auto-fill, minmax(80px, 1fr))',
       'grid-checkout-pg': 'repeat(5, 1fr)',
