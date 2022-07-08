@@ -20,7 +20,7 @@ const MobileNavigation = () => {
       <nav className='w-full max-w-[1400px] flex items-center justify-between h-full'>
         <Link href='/'>
           <h1 className='text-2xl cursor-pointer font-["Arima_Madurai"]'>
-            Cafeterias
+            Cafeteriase
           </h1>
         </Link>
         <div

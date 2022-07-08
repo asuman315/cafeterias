@@ -20,6 +20,7 @@ module.exports = {
       'light-red': '#fef2f2',
       'dark-green': '#14532d',
       'light-green': '#f0fdf4',
+      'black': '#000',
     },
     gridTemplateColumns: {
       'autofill-sm': 'repeat(auto-fill, minmax(150px, 1fr))',

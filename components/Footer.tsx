@@ -28,7 +28,7 @@ const Footer = () => {
   ];
   return (
     <footer className='bg-primary-3 text-primary-2 flex flex-col items-center justify-center gap-10 w-full px-5 py-10 md:px-10 lg:px-16 xl:px-20 duration-150 ease-in bottom-0'>
-      <div className='w-full max-w-[1400px] flex flex-col md:flex-row flex-wrap items-start justify-between gap-10'>
+      <div className='w-full max-w-6xl flex flex-col md:flex-row flex-wrap items-start justify-between gap-10'>
         <div className='space-y-3'>
           <h2 className='uppercase'>Locations</h2>
           <h3 className='uppercase'>Kampala</h3>
@@ -83,7 +83,7 @@ const Footer = () => {
           </ul>
         </div>
       </div>
-      <p className='font-bold text-center w-full lg:w-3/4 xl:w-2/4'>
+      <p className='font-bold text-center w-full lg:w-3/4 xl:w-2/4 leading-8 tracking-wide'>
         We&apos;re commited to great food, great coffee, great service, an
         experience that will make your time with us fabulous. All visuals are
         serving suggestions only. Prices are quoted in US dollars and inclusive
