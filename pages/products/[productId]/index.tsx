@@ -32,6 +32,7 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
                 image {
                   data {
                     attributes {
+                      formats
                       url
                     }
                   }    
