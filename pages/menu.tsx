@@ -7,7 +7,6 @@ export default function MenuComponent({ categoryData }: any) {
      <Menu categoryData={categoryData} />
   )
 }
-
  
 export const getStaticProps: GetStaticProps = async () => {
   const client = new ApolloClient({
@@ -18,15 +17,23 @@ export const getStaticProps: GetStaticProps = async () => {
   const { data } = await client.query({
     query: gql`
       query {
-        mealcategories {
+        mealsubcategory(id: 3) {
           data {
-            id
             attributes {
-              Name
-              image {
+              name
+              meals {
                 data {
+                  id
                   attributes {
-                    url
+                    name
+                    price
+                    image {
+                      data {
+                        attributes {
+                          url
+                        }
+                      }
+                    }
                   }
                 }
               }

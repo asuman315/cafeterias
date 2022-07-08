@@ -23,7 +23,7 @@ const Subcategory = ({ subcategoryData }: any) => {
             <div
               key={index}
               className='relative bg-[#374151] lg:cursor-pointer shadow'
-              onClick={() => router.push(`/subcategory/${productId}`)}>
+              onClick={() => router.push(`/products/${productId}`)}>
               <img
                 src={productImage}
                 alt={`Image of ${productName}`}

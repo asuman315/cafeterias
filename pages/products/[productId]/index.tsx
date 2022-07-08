@@ -1,6 +1,6 @@
 import { GetStaticProps, GetStaticPaths /*GetServerSideProps*/ } from 'next';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
-import ProductsList from '../../../../components/ProductsList';
+import ProductsList from '../../../components/ProductsList';
 
 export default function SubcategoryPage({ productsData }: any) {
   return (
@@ -24,23 +24,46 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
   //(id: ${productId})
   const { data } = await client.query({
     query: gql`
-      query {
-        mealsubcategory(id: ${productId}) {
-          data {
-            attributes {
-              name
+        query {
+          mealsubcategory (id: ${productId}) {
+            data {
+              attributes {
+                name
+                image {
+                  data {
+                    attributes {
+                      url
+                    }
+                  }    
+                }
+                meals {
+                  data {
+                    id
+                    attributes {
+                      name
+                      price
+                      image {
+                        data {
+                          attributes {
+                            url
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         }
-      }
     `,
   });
 
-  const subcategoryData = data.mealcategory.data;
+  const productsData = data.mealsubcategory.data;
 
   return {
     props: {
-      subcategoryData,
+      productsData,
     },
   };
 };
@@ -54,7 +77,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const { data } = await client.query({
     query: gql`
       query {
-        mealsubcategories {
+        mealsubcategories(pagination: { start: 0, limit: 50 }) {
           data {
             id
           }
@@ -63,13 +86,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
     `,
   });
 
-  const productsData = data.mealcategories.data;
+  const productsData = data.mealsubcategories.data;
 
   const paths = productsData.map((product: any) => {
     return { params: { productId: product.id } };
   });
-
-  console.log('paths', paths);
 
   return {
     paths,

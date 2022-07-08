@@ -1,6 +1,7 @@
 import { GetStaticProps, GetStaticPaths /*GetServerSideProps*/ } from 'next';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import Subcategory from '../../../components/Subcategory';
+import { log } from 'console';
 
 export default function SubcategoryPage({ subcategoryData }: any) {
   return (
@@ -83,8 +84,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = productsData.map((product: any) => {
     return { params: { productId: product.id } };
   });
-
-  console.log('paths', paths);
 
   return {
     paths,
