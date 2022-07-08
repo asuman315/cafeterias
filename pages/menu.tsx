@@ -17,23 +17,15 @@ export const getStaticProps: GetStaticProps = async () => {
   const { data } = await client.query({
     query: gql`
       query {
-        mealsubcategory(id: 3) {
+        mealcategories {
           data {
+            id
             attributes {
-              name
-              meals {
+              Name
+              image {
                 data {
-                  id
                   attributes {
-                    name
-                    price
-                    image {
-                      data {
-                        attributes {
-                          url
-                        }
-                      }
-                    }
+                    url
                   }
                 }
               }
