@@ -1,20 +1,20 @@
-import { GetStaticProps , GetStaticPaths, /*GetServerSideProps*/ } from 'next';
+import { GetStaticProps, GetStaticPaths /*GetServerSideProps*/ } from 'next';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
+import Subcategory from '../../../components/Subcategory';
 
 export default function SubcategoryPage({ subcategoryData }: any) {
-
-  const name = subcategoryData.attributes.Name;
-  
   return (
-    <div>
-      <h1 className='my-5 text-center'>Subcategory Page {name} </h1>
-    </div>
+    <main>
+      <section>
+        <Subcategory subcategoryData={subcategoryData} />
+      </section>
+    </main>
   );
 }
 
-export  const getStaticProps: GetStaticProps = async (context: any) => {
+export const getStaticProps: GetStaticProps = async (context: any) => {
   //The id of the product displayed on the product/details page.
-  const productId = context.params.productId
+  const productId = context.params.productId;
 
   const client = new ApolloClient({
     uri: 'https://api-strapi-one.herokuapp.com/graphql',
@@ -29,7 +29,7 @@ export  const getStaticProps: GetStaticProps = async (context: any) => {
           data {
             attributes {
               Name
-              mealsubcategories {
+              mealsubcategories(pagination: { start: 0, limit: 30 }) {
                 data {
                   id
                   attributes {
@@ -41,7 +41,7 @@ export  const getStaticProps: GetStaticProps = async (context: any) => {
                         }
                       }
                     }
-                  }    
+                  }
                 }
               }
             }
@@ -58,17 +58,16 @@ export  const getStaticProps: GetStaticProps = async (context: any) => {
       subcategoryData,
     },
   };
-}
+};
 
 export const getStaticPaths: GetStaticPaths = async () => {
-
   const client = new ApolloClient({
     uri: 'https://api-strapi-one.herokuapp.com/graphql',
     cache: new InMemoryCache(),
   });
 
-   const { data } = await client.query({
-     query: gql`
+  const { data } = await client.query({
+    query: gql`
       query {
         mealcategories {
           data {
@@ -77,19 +76,18 @@ export const getStaticPaths: GetStaticPaths = async () => {
         }
       }
     `,
-   });
+  });
 
-   const productsData = data.mealcategories.data;   
+  const productsData = data.mealcategories.data;
 
   const paths = productsData.map((product: any) => {
     return { params: { productId: product.id } };
   });
 
   console.log('paths', paths);
-  
 
   return {
     paths,
     fallback: false,
   };
-}
+};

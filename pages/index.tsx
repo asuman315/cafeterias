@@ -46,7 +46,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const { data } = await client.query({
     query: gql`
       query {
-        customerfavorites(pagination: { start: 0, limit: 17 }, sort: "id") {
+        customerfavorites(pagination: { start: 0, limit: 30 }, sort: "id") {
           data {
             id
             attributes {
