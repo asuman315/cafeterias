@@ -1,13 +1,10 @@
-import React from 'react'
+import { useRouter } from "next/router";
 
 const ProductsList = ({ productsData }: any) => {
  const subcategoryName = productsData.attributes.name;
  const mealsData = productsData.attributes.meals.data;
  const subcategoryImage = productsData.attributes.image.data[0].attributes.url;
- console.log(productsData);
-
- const imageForSmallScreens = productsData.attributes.image.data[0].attributes.formats.small.url; 
- const imageForMediumScreens = productsData.attributes.image.data[0].attributes.formats.medium.url;
+ const router = useRouter();
 
   return (
     <div className=''>
@@ -24,14 +21,19 @@ const ProductsList = ({ productsData }: any) => {
           const mealName = meal.attributes.name;
           const mealImage = meal.attributes.image.data.attributes.url;
           const mealPrice = meal.attributes.price;
-          //const productId = meal.id;
+          const productId = meal.id;
+          console.log('productId', productId);       
 
           return (
             <div key={index}>
               <h3 className='uppercase'>{mealName}</h3>
               <img src={mealImage} alt={mealName} />
               <p className=''>{mealPrice}</p>
-              <button className='uppercase'>order now</button>
+              <button
+                className='uppercase'
+                onClick={() => router.push(`/product/${productId}`)}>
+                order now
+              </button>
             </div>
           );
         })}
