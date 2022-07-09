@@ -26,11 +26,36 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
     query: gql`
       query {
         meal(id: ${productId}) {
-          data {
-            attributes {
-              name
+            data {
+        attributes {
+          name
+          components
+          price
+          accompaniment
+          additionalItems {
+            name
+            price
+          }
+          choiceOfComponents {
+            component
+            options
+          }
+          mealsubcategories {
+            data {
+              attributes {
+                name
+              }
             }
           }
+          image {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+        }
+      }
         }
       }
     `,
