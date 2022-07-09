@@ -13,7 +13,7 @@ export default function SubcategoryPage({ productsData }: any) {
 }
 
 export const getStaticProps: GetStaticProps = async (context: any) => {
-  //The id of the product displayed on the product/details page.
+  //The id of the subcategory clicked by the user
   const productId = context.params.productId;
 
   const client = new ApolloClient({
