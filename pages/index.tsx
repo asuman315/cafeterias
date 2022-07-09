@@ -1,27 +1,28 @@
 //import type { NextPage } from 'next'
-import Head from 'next/head';
-import Carousel from '../components/Home/Carousel';
-import Text from '../components/Home/Text';
-import { GetStaticProps /*, GetStaticPaths, GetServerSideProps*/ } from 'next';
-import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
-import Favorites from '../components/Home/Favorites';
+import Head from "next/head";
+import Carousel from "../components/Home/Carousel";
+import Text from "../components/Home/Text";
+import { GetStaticProps /*, GetStaticPaths, GetServerSideProps*/ } from "next";
+import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
+import Favorites from "../components/Home/Favorites";
+import Recomended from "../components/Home/Recommended";
 
 const Home = ({ myData }: any) => {
-
   return (
-    <div className=''>
+    <div className="">
       <Head>
         <title>Cafeteriase</title>
         <meta
-          name='description'
-          content='Order for the best coffee, drinks and eats in town'
+          name="description"
+          content="Order for the best coffee, drinks and eats in town"
         />
-        <link rel='icon' href='/favicon.ico' />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
         <Carousel imagesData={myData} />
         <Text />
         <Favorites customerFavoritesData={myData} />
+        <Recomended />
       </main>
     </div>
   );
@@ -36,7 +37,7 @@ export const getStaticProps: GetStaticProps = async () => {
   // //console.log(teams);
 
   const client = new ApolloClient({
-    uri: 'https://api-strapi-one.herokuapp.com/graphql',
+    uri: "https://api-strapi-one.herokuapp.com/graphql",
     cache: new InMemoryCache(),
   });
 
