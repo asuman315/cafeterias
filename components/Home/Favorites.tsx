@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { ImCross } from 'react-icons/im';
 
+//This component is used to display the 'customer favorites' section on the home page
+
 const Favorites = ({ customerFavoritesData }: any) => {
   // console.log(customerFavoritesData);
 
-  const [lastItem, setLastItem] = useState(4);
+  const [lastItem, setLastItem] = useState(8);
   const [showLess, setShowLess] = useState(false);
   const [zoomedImage, setZoomedImage] = useState('');
   const [showZoomedImage, setShowZoomedImage] = useState(false);
@@ -25,7 +27,7 @@ const Favorites = ({ customerFavoritesData }: any) => {
     setLastItem(lastItem + 4);
     // if the button all the items in the array are displayed
     if (showLess) {
-      setLastItem(4);
+      setLastItem(8);
     }
   };
 

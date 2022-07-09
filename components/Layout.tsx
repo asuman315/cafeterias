@@ -16,7 +16,7 @@ const Layout = (props: any) => {
     //hide navigation and footer on home page
     if (isHome) {
       setShowNavigation(false);
-      setShowFooter(false);
+      setShowFooter(true);
     } else {
       setShowNavigation(true);
       setShowFooter(true);

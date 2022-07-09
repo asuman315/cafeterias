@@ -11,47 +11,47 @@ import img9 from "../../public/Recomemded_Assets/peach_colada.jpg";
 const recommendedData = [
   {
     image: img1,
-    name: "Oreo Milkshake",
+    name: "Creamy Milkshakes",
     path: "/products/28",
   },
   {
     image: img2,
-    name: "Kiwi Lemonade",
+    name: "Handcrafted Lemonades",
     path: "/products/33",
   },
   {
     image: img9,
-    name: "Peach Colada",
+    name: "Coladas",
     path: "/products/34",
   },
   {
     image: img3,
-    name: "Nyama Feast Pizza",
+    name: "Pizza",
     path: "/products/23",
   },
   {
     image: img4,
-    name: "Hawaiian BBQ Burger",
+    name: "Burgers",
     path: "/products/16",
   },
   {
     image: img5,
-    name: "Chicken Avocado MLT",
+    name: "Sandwiches",
     path: "/products/15",
   },
   {
     image: img6,
-    name: "Chicken Alfredo Pasta",
+    name: "Pasta",
     path: "/products/21",
   },
   {
     image: img7,
-    name: "Strawberry Banana Waffle",
+    name: "Wonderful Waffle",
     path: "/products/3",
   },
   {
     image: img8,
-    name: "Country Steak & Eggs",
+    name: "Breakfast Combos",
     path: "/products/1",
   },
 ];

@@ -14,7 +14,7 @@ const Recomended = () => {
     slider!.scrollLeft = slider!.scrollLeft + 300;
   }
   return (
-    <section className="px-4 py-8 max-w-6xl mx-auto text-center">
+    <section className="px-4 py-8 max-w-6xl mx-auto text-center mb-4">
       <h2 className="py-5">Recommended</h2>
       <div className="relative group">
         <div
