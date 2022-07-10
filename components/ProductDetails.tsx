@@ -32,7 +32,7 @@ const ProductInfo = ({ mealData }: any) => {
 
    return (
     <>
-      <h1 className='text-2xl'>{name}</h1>
+      <h1 className='text-2xl text-primary-1'>{name}</h1>
         <p className='font-medium leading-8 tracking-wide'>{components}</p>
         <p className='font-bold text-primary-1 leading-8 tracking-wider text-3xl py-3'>
           ${price}
@@ -43,19 +43,19 @@ const ProductInfo = ({ mealData }: any) => {
 
 // ChoicesOfComponents component
 const ChoicesOfComponents = ({ choiceOfComponents }: any) => {
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [openedChoice, setOpenedChoice] = useState(null);
   //const [isChoiceSelected, setIsChoiceSelected] = useState(false);
   // const [selectedChoice, setSelectedChoice] = useState(null);
 
-  const handleClick = (optionId: any) => {
+  const handleClick = (openedId: any) => {
     choiceOfComponents.map((option: any, index: any) => {
       option ? console.log('option component', option.component) : console.log('No options provided!');   
       
-      if (optionId === index) {
-        setSelectedOption(optionId);
+      if (openedId === index) {
+        setOpenedChoice(openedId);
       }
-      if (selectedOption === index) {
-        setSelectedOption(null);
+      if (openedChoice === index) {
+        setOpenedChoice(null);
       }
     });
   };
@@ -94,7 +94,7 @@ const ChoicesOfComponents = ({ choiceOfComponents }: any) => {
         const { component, options } = item;
         //turn options into a list
         const optionsList = options.split(',');
-        const optionId: number = index;
+        const openedId: number = index;
 
         return (
           <div className='mt-4' key={index}>
@@ -102,19 +102,19 @@ const ChoicesOfComponents = ({ choiceOfComponents }: any) => {
             <div className='border-2 rounded-md'>
               <div
                 className='flex justify-between items-center cursor-pointer px-2'
-                onClick={() => handleClick(optionId)}>
+                onClick={() => handleClick(openedId)}>
                 <p className='font-medium w-full capitalize tracking-wide text-lg'> 
                   select the option
                 </p>
                 <MdKeyboardArrowUp
                   className={`w-10 h-10 ease-in duration-300 ${
-                    selectedOption === index ? null : 'rotate-[180deg]'
+                    openedChoice === index ? null : 'rotate-[180deg]'
                   }`}
                 />
               </div>
               <ul
                 className={`${
-                  selectedOption === index ? 'h-auto' : 'h-0'
+                  openedChoice === index ? 'h-auto' : 'h-0'
                 } overflow-hidden`}>
                 {optionsList.map((option: any, index: any) => {
                   return (
@@ -154,9 +154,9 @@ const Accompaniment = ({ accompaniment }: any) => {
  return (
    <div className='mt-8'>
      <h3 className='uppercase md:text-xl mb-1'>choose an accompaniment</h3>
-     <div className='border-2 px-2 rounded-md cursor-pointer'>
+     <div className='border-2 rounded-md cursor-pointer'>
        <div className='flex justify-between items-center' onClick={handleClick}>
-         <p className='font-medium capitalize tracking-wide text-lg'>
+         <p className='font-medium capitalize tracking-wide text-lg px-2'>
            { isAccompanimentSelected ? accompanimentState : 'select an accompaniment' }
          </p>
          <MdKeyboardArrowUp
@@ -170,7 +170,8 @@ const Accompaniment = ({ accompaniment }: any) => {
            return (
              <li
                key={index}
-               className='capitalize font-medium text-md lg:cursor-pointer' onClick={() => handleSelectedAccompaniment(option)}>
+               className='capitalize px-2 font-medium text-md cursor-pointer hover:bg-primary-1'
+               onClick={() => handleSelectedAccompaniment(option)}>
                {option}
              </li>
            );
