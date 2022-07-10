@@ -2,7 +2,6 @@ import { MdKeyboardArrowUp } from 'react-icons/md';
 import { useState } from 'react';
 
 const ProductDetails = ({ mealData }: any) => {
-  console.log('mealData', mealData);
 
   const name = mealData.attributes.name;
   const productImage = mealData.attributes.image.data.attributes.url;
@@ -25,6 +24,7 @@ const ProductDetails = ({ mealData }: any) => {
   );
 };
 
+//ProductInfo component
 const ProductInfo = ({ mealData }: any) => {
    const price = mealData.attributes.price;
    const components = mealData.attributes.components;
@@ -41,12 +41,21 @@ const ProductInfo = ({ mealData }: any) => {
    )
 }
 
+// ChoicesOfComponents component
 const ChoicesOfComponents = ({ choiceOfComponents }: any) => {
-  const [showOptions, setShowOptions] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(null);
 
-  const handleClick = (e: any) => {
-    console.log(e.target);
-    setShowOptions(!showOptions);
+  const handleClick = (optionId: any) => {
+    choiceOfComponents.map((option: any, index: any) => {
+      console.log('option', option);
+      
+      if (optionId === index) {
+        setSelectedOption(optionId);
+      }
+      if (selectedOption === index) {
+        setSelectedOption(null);
+      }
+    });
   };
 
   return (
@@ -55,25 +64,26 @@ const ChoicesOfComponents = ({ choiceOfComponents }: any) => {
         const { component, options } = item;
         //turn options into a list
         const optionsList = options.split(',');
+        const optionId = index;
 
         return (
           <div className='mt-4' key={index}>
             <h3 className='uppercase md:text-xl mb-1'>choice of {component}</h3>
-            <div className='border-2 py-1 px-2 rounded-md lg:cursor-pointer'>
+            <div className='border-2 px-2 rounded-md lg:cursor-pointer'>
               <div
                 className='flex justify-between items-center'
-                onClick={handleClick}>
-                <p className='font-medium capitalize tracking-wide text-lg'>
+                onClick={() => handleClick(optionId)}>
+                <p className='font-medium w-full capitalize tracking-wide text-lg'>
                   Select the option
                 </p>
                 <MdKeyboardArrowUp
                   className={`w-10 h-10 ease-in duration-300 ${
-                    showOptions ? null : 'rotate-[180deg]'
+                    selectedOption === index ? null : 'rotate-[180deg]'
                   }`}
                 />
               </div>
               <ul
-                className={`${showOptions ? 'h-auto' : 'h-0'} overflow-hidden`}>
+                className={`${selectedOption === index ? 'h-auto' : 'h-0'} overflow-hidden`}>
                 {optionsList.map((option: any, index: any) => {
                   return (
                     <li
@@ -92,6 +102,7 @@ const ChoicesOfComponents = ({ choiceOfComponents }: any) => {
   );
 }
 
+// Accompaniment component
 const Accompaniment = ({ accompaniment }: any) => {
   const [showOptions, setShowOptions] = useState(false);
   const accompanimentList = accompaniment.split(',');
@@ -102,9 +113,9 @@ const Accompaniment = ({ accompaniment }: any) => {
   };
 
  return (
-   <div>
+   <div className='mt-8'>
      <h3 className='uppercase'>choose an accompaniment</h3>
-     <div className='border-2 py-1 px-2 rounded-md lg:cursor-pointer'>
+     <div className='border-2 px-2 rounded-md lg:cursor-pointer'>
        <div className='flex justify-between items-center' onClick={handleClick}>
          <p className='font-medium capitalize tracking-wide text-lg'>
            Select the option
