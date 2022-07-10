@@ -44,7 +44,7 @@ const ProductInfo = ({ mealData }: any) => {
 // ChoicesOfComponents component
 const ChoicesOfComponents = ({ choiceOfComponents }: any) => {
   const [selectedOption, setSelectedOption] = useState(null);
-  const [isChoiceSelected, setIsChoiceSelected] = useState(false);
+  //const [isChoiceSelected, setIsChoiceSelected] = useState(false);
   // const [selectedChoice, setSelectedChoice] = useState(null);
 
   const handleClick = (optionId: any) => {
@@ -60,34 +60,33 @@ const ChoicesOfComponents = ({ choiceOfComponents }: any) => {
     });
   };
 
-  type SelectedChoice = {
-    option: string,
-    optionId: number,
-  };
+  // type SelectedChoice = {
+  //   option: string,
+  //   optionId: number,
+  // };
 
-  const selectedChoices: SelectedChoice[] = []
+  // const selectedChoices: SelectedChoice[] = []
 
-  const handleSelectedChoice = (option: string, optionId: number) => {
-      const choice: SelectedChoice = { option, optionId };
-      //check if choice is already selected/already in the array
-      const existingChoice = selectedChoices.find((choice: SelectedChoice) => choice.optionId === optionId);
+  // const handleSelectedChoice = (option: string, optionId: number) => {
+  //     const choice: SelectedChoice = { option, optionId };
+  //     //check if choice is already selected/already in the array
+  //     const existingChoice = selectedChoices.find((choice: SelectedChoice) => choice.optionId === optionId);
 
-      if (existingChoice) {
-        //replace existing choice
-        existingChoice.option = option;
-      } else {
-        //add new choice
-        selectedChoices.push(choice);
-      }
-  }
+  //     if (existingChoice) {
+  //       //replace existing choice
+  //       existingChoice.option = option;
+  //     } else {
+  //       //add new choice
+  //       selectedChoices.push(choice);
+  //     }
+  // }
 
-  const selectedChoice = (optionId: number) => {
-      const matchingChoice = selectedChoices.find((choice: SelectedChoice) => choice.optionId === optionId);
-      return matchingChoice?.option;
-  }
+  // const selectedChoice = (optionId: number) => {
+  //     const matchingChoice = selectedChoices.find((choice: SelectedChoice) => choice.optionId === optionId);
+  //     return matchingChoice?.option;
+  // }
 
- console.log('selectedChoices', selectedChoices); 
-  
+ //console.log('selectedChoices', selectedChoices); 
 
   return (
     <div>
@@ -105,8 +104,7 @@ const ChoicesOfComponents = ({ choiceOfComponents }: any) => {
                 className='flex justify-between items-center cursor-pointer px-2'
                 onClick={() => handleClick(optionId)}>
                 <p className='font-medium w-full capitalize tracking-wide text-lg'> 
-                { 'select' }
-                  {isChoiceSelected && selectedOption === index ? selectedChoice(optionId) : ' Select the option'}
+                  select the option
                 </p>
                 <MdKeyboardArrowUp
                   className={`w-10 h-10 ease-in duration-300 ${
@@ -122,8 +120,7 @@ const ChoicesOfComponents = ({ choiceOfComponents }: any) => {
                   return (
                     <li
                       key={index}
-                      className='capitalize px-2 font-medium text-md cursor-pointer hover:bg-primary-1'
-                      onClick={() => handleSelectedChoice(option, optionId)}>
+                      className='capitalize px-2 font-medium text-md cursor-pointer hover:bg-primary-1'>
                       {option}
                     </li>
                   );
@@ -141,10 +138,18 @@ const ChoicesOfComponents = ({ choiceOfComponents }: any) => {
 const Accompaniment = ({ accompaniment }: any) => {
   const [showOptions, setShowOptions] = useState(false);
   const accompanimentList = accompaniment.split(',');
+  const [accompanimentState, setAccompanimentState] = useState(null);
+  const [isAccompanimentSelected, setIsAccompanimentSelected] = useState(false);
   
   const handleClick = () => {
     setShowOptions(!showOptions);
   };
+
+  const handleSelectedAccompaniment = (option: any) => {
+    setAccompanimentState(option);
+    setIsAccompanimentSelected(true);
+    setShowOptions(!showOptions);
+  }
 
  return (
    <div className='mt-8'>
@@ -152,7 +157,7 @@ const Accompaniment = ({ accompaniment }: any) => {
      <div className='border-2 px-2 rounded-md cursor-pointer'>
        <div className='flex justify-between items-center' onClick={handleClick}>
          <p className='font-medium capitalize tracking-wide text-lg'>
-           Select the option
+           { isAccompanimentSelected ? accompanimentState : 'select an accompaniment' }
          </p>
          <MdKeyboardArrowUp
            className={`w-10 h-10 ease-in duration-300 ${
@@ -165,7 +170,7 @@ const Accompaniment = ({ accompaniment }: any) => {
            return (
              <li
                key={index}
-               className='capitalize font-medium text-md lg:cursor-pointer'>
+               className='capitalize font-medium text-md lg:cursor-pointer' onClick={() => handleSelectedAccompaniment(option)}>
                {option}
              </li>
            );
