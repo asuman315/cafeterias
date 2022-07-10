@@ -6,6 +6,7 @@ const ProductDetails = ({ mealData }: any) => {
   const productImage = mealData.attributes.image.data.attributes.url;
   const choiceOfComponents = mealData.attributes.choiceOfComponents;
   const accompaniment = mealData.attributes.accompaniment;
+  const additionalItems = mealData.attributes.additionalItems;
 
   return (
     <div className='max-w-6xl px-4 py-8 mx-auto md:grid grid-cols-2'>
@@ -18,6 +19,7 @@ const ProductDetails = ({ mealData }: any) => {
         <ProductInfo mealData={mealData} />
         <ChoicesOfComponents choiceOfComponents={choiceOfComponents} />
         <Accompaniment accompaniment={accompaniment} />
+        <AdditionalItems additionalItems={additionalItems} />
       </div>
     </div>
   );
@@ -31,7 +33,7 @@ const ProductInfo = ({ mealData }: any) => {
 
   return (
     <>
-      <h1 className='text-2xl text-primary-1'>{name}</h1>
+      <h1 className='text-2xl text-primary-1 tracking-wider'>{name}</h1>
       <p className='font-medium leading-8 tracking-wide'>{components}</p>
       <p className='font-bold text-primary-1 leading-8 tracking-wider text-3xl py-3'>
         ${price}
@@ -93,10 +95,12 @@ const SingleChoiceOfComponent = ({
     setIsChoiceSelected(true);
     setIsChoiceOpened(!isChoiceOpened);
   };
-
+  
   return (
     <div className='mt-4'>
-      <h3 className='uppercase md:text-xl mb-1'>choice of {component}</h3>
+      <h3 className='uppercase md:text-xl mb-1 tracking-wider'>
+        choice of {component}
+      </h3>
       <div className='border-2 rounded-md'>
         <div
           className='flex justify-between items-center cursor-pointer px-2'
@@ -146,7 +150,9 @@ const Accompaniment = ({ accompaniment }: any) => {
 
   return (
     <div className='mt-8'>
-      <h3 className='uppercase md:text-xl mb-1'>choose an accompaniment</h3>
+      <h3 className='uppercase md:text-xl mb-1 tracking-wider'>
+        choose an accompaniment
+      </h3>
       <div className='border-2 rounded-md cursor-pointer'>
         <div
           className='flex justify-between items-center'
@@ -178,5 +184,29 @@ const Accompaniment = ({ accompaniment }: any) => {
     </div>
   );
 };
+
+// AdditionalItems component
+const AdditionalItems = ({ additionalItems }: any) => {
+ console.log('additionalItems: ', additionalItems);
+    return (
+      <div className='mt-8'>
+        <h3 className='uppercase md:text-xl mb-1 tracking-wider'>additional items</h3>
+        { additionalItems.map((item: any, index: any) => {
+          const { name, price } = item;
+           return (
+             <div>
+               <input type='checkbox' id='checkbox' />
+               <label htmlFor='checkbox'>
+                 <div>
+                   <p className='uppercase font-medium'>{name}</p>
+                   <p className='font-medium'>{price}</p>
+                 </div>
+               </label>
+             </div>
+           );
+         })}
+      </div>
+    );
+}
 
 export default ProductDetails;
