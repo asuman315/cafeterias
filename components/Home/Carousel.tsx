@@ -12,7 +12,7 @@ const Carousel = ({ imagesData }: any) => {
       );
     }, 3000);
     return () => clearInterval(interval);
-  }, [currentSlide]);
+  }, [imageUrls.length]);
 
   imagesData.map((image: any) => {
     if (image.id === '1' || image.id === '5' || image.id === '9') {
@@ -30,6 +30,7 @@ const Carousel = ({ imagesData }: any) => {
         {imageUrls.map((imageUrl: string, index: number) => {
           return (
             <div key={index} className='inline-block'>
+              //eslint-disable-next-line
               <img
                 src={imageUrl}
                 className='w-screen h-screen object-cover mix-blend-overla'

@@ -21,6 +21,7 @@ const Layout = (props: any) => {
       setShowNavigation(true);
       setShowFooter(true);
     }
+    //eslint-disable-next-line
   }, [pathname]);
 
   return (

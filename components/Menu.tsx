@@ -4,6 +4,8 @@ import { useRouter } from 'next/router';
 
 const Menu = ({ categoryData }: any) => {
    const router = useRouter();
+   console.log('categoryData', categoryData);
+   
   return (
     <main className='max-w-6xl mx-auto'>
       <h1 className='text-center py-3'>
@@ -26,6 +28,7 @@ const Menu = ({ categoryData }: any) => {
               className='shadow-xl lg:cursor-pointer'
               onClick={() => router.push(`/subcategory/${productId}`)}>
               <h2 className='pb-2'>{name}</h2>
+              //eslint-disable-next-line
               <img
                 src={imageUrl}
                 alt={`image of ${name}`}

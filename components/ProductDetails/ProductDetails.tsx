@@ -14,6 +14,7 @@ const ProductDetails = ({ mealData }: any) => {
 
   return (
     <div className='max-w-6xl px-4 py-8 mx-auto md:grid grid-cols-2'>
+      //eslint-disable-next-line
       <img
         src={productImage}
         alt={name}
@@ -24,7 +25,11 @@ const ProductDetails = ({ mealData }: any) => {
         <ChoicesOfComponents choiceOfComponents={choiceOfComponents} />
         <Accompaniment accompaniment={accompaniment} />
         <AdditionalItems additionalItems={additionalItems} />
-        <button className='uppercase w-full py-3 mt-8' onClick={() => router.push('/')}>add to order</button>
+        <button
+          className='uppercase w-full py-3 mt-8'
+          onClick={() => router.push('/')}>
+          add to order
+        </button>
       </div>
     </div>
   );

@@ -11,9 +11,12 @@ const ProductsList = ({ productsData }: any) => {
     <div className='flex flex-col items-center justify-center'>
       <div className='relative flex w-full h-[35vh] md:h-[40vh] xl:h-[40vh] duration-150 ease-in'>
         <div className='bg-white flex items-center px-4'>
-          <h1 className='text-base sm:text-lg md:text-2xl'>{subcategoryName}</h1>
+          <h1 className='text-base sm:text-lg md:text-2xl'>
+            {subcategoryName}
+          </h1>
         </div>
         <div className='w-full'>
+          //eslint-disable-next-line
           <img
             src={subcategoryImage}
             alt={subcategoryName}
@@ -43,7 +46,9 @@ const ProductsList = ({ productsData }: any) => {
               <div className='flex flex-col h-full justify-between p-5'>
                 <div className=''>
                   <h3 className='text-xl uppercase'>{mealName}</h3>
-                  <p className='font-semibold text-primary-1 text-2xl pt-3'>${mealPrice}</p>
+                  <p className='font-semibold text-primary-1 text-2xl pt-3'>
+                    ${mealPrice}
+                  </p>
                 </div>
                 <div className='mt-[-70px]'>
                   <button

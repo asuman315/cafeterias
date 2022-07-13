@@ -20,7 +20,7 @@ const Favorites = ({ customerFavoritesData }: any) => {
     if (lastItem < customerFavoritesData.length) {
       setShowLess(false);
     }
-  });
+  }, [customerFavoritesData.length, lastItem]);
 
   const handleLoadMore = () => {
     // Display the next 4 items each time the load more button is clicked
@@ -57,6 +57,7 @@ const Favorites = ({ customerFavoritesData }: any) => {
             <div
               key={id}
               className='flex flex-col items-center bg-white shadow-xl relative rounded-md lg:cursor-pointer'>
+              //eslint-disable-next-line
               <img
                 src={imageUrl}
                 alt={`image of ${name}`}
@@ -64,7 +65,9 @@ const Favorites = ({ customerFavoritesData }: any) => {
                 onClick={() => zoomImage(imageUrl)}
               />
               <div className='p-3 right-6 flex flex-col w-full h-full'>
-                <h3 className='font-semibold text-center capitalize text-sm md:text-base lg:text-lg'>{name}</h3>
+                <h3 className='font-semibold text-center capitalize text-sm md:text-base lg:text-lg'>
+                  {name}
+                </h3>
                 <p className='font-bold text-center'>$ {price}</p>
                 <button className='mt-4 py-3 text-base lg:text-lg capitalize'>
                   order now

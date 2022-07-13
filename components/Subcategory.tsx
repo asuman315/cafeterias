@@ -24,6 +24,7 @@ const Subcategory = ({ subcategoryData }: any) => {
               key={index}
               className='relative bg-[#374151] lg:cursor-pointer shadow'
               onClick={() => router.push(`/products/${productId}`)}>
+              //eslint-disable-next-line
               <img
                 src={productImage}
                 alt={`Image of ${productName}`}

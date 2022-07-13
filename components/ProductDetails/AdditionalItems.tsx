@@ -11,7 +11,7 @@ const AdditionalItems = ({ additionalItems }: any) => {
    } else {
     setIsAdditionalItems(true)
    }
-  })
+  }, [additionalItems.length]);
   
   return (
    <div>

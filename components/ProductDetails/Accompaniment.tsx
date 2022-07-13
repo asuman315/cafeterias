@@ -12,6 +12,7 @@ const Accompaniment = ({ accompaniment }: any) => {
    } else {
      setIsAccompanimentPresent(false);
    }
+  //  
   }, []);
 
  //turn accompaniment into a list otherwise set it to an empty array
