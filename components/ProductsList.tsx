@@ -16,7 +16,7 @@ const ProductsList = ({ productsData }: any) => {
           </h1>
         </div>
         <div className='w-full'>
-          //eslint-disable-next-line
+          {/* eslint-disable-next-line */}
           <img
             src={subcategoryImage}
             alt={subcategoryName}

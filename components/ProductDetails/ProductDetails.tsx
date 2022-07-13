@@ -14,7 +14,7 @@ const ProductDetails = ({ mealData }: any) => {
 
   return (
     <div className='max-w-6xl px-4 py-8 mx-auto md:grid grid-cols-2'>
-      //eslint-disable-next-line
+      {/* eslint-disable-next-line */}
       <img
         src={productImage}
         alt={name}

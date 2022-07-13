@@ -6,13 +6,13 @@ const Accompaniment = ({ accompaniment }: any) => {
   const [isAccompanimentPresent, setIsAccompanimentPresent] = useState(false);
 
   useEffect(() => {
-   //show/hide accompaniment container
-   if (accompaniment) {
-     setIsAccompanimentPresent(true);
-   } else {
-     setIsAccompanimentPresent(false);
-   }
-  //  
+    //show/hide accompaniment container
+    if (accompaniment) {
+      setIsAccompanimentPresent(true);
+    } else {
+      setIsAccompanimentPresent(false);
+    }
+    //eslint-disable-next-line
   }, []);
 
  //turn accompaniment into a list otherwise set it to an empty array

@@ -28,7 +28,7 @@ const Menu = ({ categoryData }: any) => {
               className='shadow-xl lg:cursor-pointer'
               onClick={() => router.push(`/subcategory/${productId}`)}>
               <h2 className='pb-2'>{name}</h2>
-              //eslint-disable-next-line
+              {/* eslint-disable-next-line */}
               <img
                 src={imageUrl}
                 alt={`image of ${name}`}

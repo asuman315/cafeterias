@@ -30,10 +30,11 @@ const Carousel = ({ imagesData }: any) => {
         {imageUrls.map((imageUrl: string, index: number) => {
           return (
             <div key={index} className='inline-block'>
-              //eslint-disable-next-line
+              {/* eslint-disable-next-line */}
               <img
                 src={imageUrl}
                 className='w-screen h-screen object-cover mix-blend-overla'
+                alt={`slide ${index + 1}`}
               />
             </div>
           );

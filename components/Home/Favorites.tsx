@@ -57,7 +57,7 @@ const Favorites = ({ customerFavoritesData }: any) => {
             <div
               key={id}
               className='flex flex-col items-center bg-white shadow-xl relative rounded-md lg:cursor-pointer'>
-              //eslint-disable-next-line
+              {/* eslint-disable-next-line */}
               <img
                 src={imageUrl}
                 alt={`image of ${name}`}
