@@ -42,7 +42,7 @@ const ProductsList = ({ productsData }: any) => {
               <div className="flex flex-col h-full justify-between py-10 px-5">
                 <div className="space-y-5">
                   <h3 className="text-2xl uppercase">{mealName}</h3>
-                  <p className="font-semibold text-primary-1">{mealPrice}</p>
+                  <p className="font-semibold text-primary-1">${mealPrice}</p>
                 </div>
                 <div className="-mt-32">
                   <button
@@ -53,20 +53,6 @@ const ProductsList = ({ productsData }: any) => {
                   </button>
                 </div>
               </div>
-
-          {/* const productId = meal.id;   
-
-          return (
-            <div key={index}>
-              <h3 className='uppercase'>{mealName}</h3>
-             
-              <p className=''>{mealPrice}</p>
-              <button
-                className='uppercase'
-                onClick={() => router.push(`/product/${productId}`)}>
-                order now
-              </button>
- main */}
             </div>
           );
         })}
