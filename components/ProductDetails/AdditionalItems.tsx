@@ -1,10 +1,29 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ImCheckboxChecked, ImCheckboxUnchecked } from 'react-icons/im';
 
 // AdditionalItems component
 const AdditionalItems = ({ additionalItems }: any) => {
+ const [isAdditionalItems, setIsAdditionalItems] = useState(false);
+
+  useEffect(() => {
+   if(additionalItems.length === 0) {
+    setIsAdditionalItems(false)
+   } else {
+    setIsAdditionalItems(true)
+   }
+  })
+  
   return (
-    <section className='mt-8'>
+   <div>
+     {isAdditionalItems && <AdditionalItemsContainer additionalItems={additionalItems} />}
+   </div>
+  );
+};
+
+const AdditionalItemsContainer = ({ additionalItems }: any) => {
+
+ return (
+   <section className='mt-8'>
       <h3 className='uppercase md:text-xl mb-1 tracking-wider'>
         additional items
       </h3>
@@ -13,8 +32,8 @@ const AdditionalItems = ({ additionalItems }: any) => {
         return <AdditionalItemsInfo name={name} price={price} key={index} />;
       })}
     </section>
-  );
-};
+ )
+}
 
 const AdditionalItemsInfo = ({ name, price }: any) => {
   const [isCheckBoxChecked, setIsCheckBoxChecked] = useState(false);

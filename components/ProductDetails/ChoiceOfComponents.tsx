@@ -1,10 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MdKeyboardArrowUp } from 'react-icons/md';
 
 // ChoicesOfComponents component
 const ChoicesOfComponents = ({ choiceOfComponents }: any) => {
+
+ const [isChoiceOfComponents, setIsChoiceOfComponents] = useState(false);
+
+ useEffect(() => {
+  if(choiceOfComponents.length === 0) {
+   setIsChoiceOfComponents(false)
+  } else {
+   setIsChoiceOfComponents(true)
+  }
+ }, []);
+
  return (
-  <section>
+   <div>
+     {isChoiceOfComponents && <ChoiceofComponentsContainer choiceOfComponents={choiceOfComponents} />}
+   </div>
+  );
+};
+
+const ChoiceofComponentsContainer = ({ choiceOfComponents }: any) => {
+ return (
+    <section>
       {choiceOfComponents.map((item: any, index: any) => {
        const { component, options } = item;
         //turn options into a list
@@ -18,7 +37,7 @@ const ChoicesOfComponents = ({ choiceOfComponents }: any) => {
         );
       })}
     </section>
-  );
+ )
 };
 
 // SingleChoiceOfComponent component
