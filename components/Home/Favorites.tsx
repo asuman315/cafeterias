@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
 import { ImCross } from 'react-icons/im';
+import { useRouter } from 'next/router';
 
 //This component is used to display the 'customer favorites' section on the home page
 
 const Favorites = ({ customerFavoritesData }: any) => {
-  // console.log(customerFavoritesData);
 
   const [lastItem, setLastItem] = useState(8);
   const [showLess, setShowLess] = useState(false);
   const [zoomedImage, setZoomedImage] = useState('');
   const [showZoomedImage, setShowZoomedImage] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     // if all the items in the array are displayed
@@ -48,7 +49,7 @@ const Favorites = ({ customerFavoritesData }: any) => {
       <div className='pt-4 grid grid-cols-autofill-sm md:grid-cols-autofill-md lg:grid-cols-autofill-lg gap-4 w-full'>
         {dispalyedCustomerFavoriteItems.map((favoriteItem: any) => {
           const id = favoriteItem.id;
-          //const itemId = favoriteItem.attributes.identity;
+          const itemId = favoriteItem.attributes.identity;
           const name = favoriteItem.attributes.name;
           const price = favoriteItem.attributes.price;
           const imageUrl = favoriteItem.attributes.image.data[0].attributes.url;
@@ -69,7 +70,7 @@ const Favorites = ({ customerFavoritesData }: any) => {
                   {name}
                 </h3>
                 <p className='font-bold text-center'>$ {price}</p>
-                <button className='mt-4 py-3 text-base lg:text-lg capitalize'>
+                <button className='mt-4 py-3 text-base lg:text-lg capitalize' onClick={() => router.push(`/product/${itemId}`)}>
                   order now
                 </button>
               </div>

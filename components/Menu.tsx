@@ -10,7 +10,7 @@ const Menu = ({ categoryData }: any) => {
       <h1 className='text-center py-3'>
         Welcome To <span className='font-["Arima_Madurai"]'>Cafeteriase</span>
       </h1>
-      <p className='px-3 font-medium leading-8 tracking-wide'>
+      <p className='px-3 font-medium leading-[36px] tracking-wide'>
         Welcome to Cafeteriase&apos;s delicious universe. Everything from our
         Big on Breakfast, Perfected Drinks, Decadent to your Generous Big Meals
         right here at your fingertips. ORDER NOW.
