@@ -1,16 +1,16 @@
-import recommendedData from './recommended_data';
-import Image from 'next/image';
-import Link from 'next/link';
-import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
+import recommendedData from "./recommended_data";
+import Image from "next/image";
+import Link from "next/link";
+import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 
 const Recomended = () => {
   function slideLeft() {
-    let slider = document.getElementById('slider');
+    let slider = document.getElementById("slider");
     slider!.scrollLeft = slider!.scrollLeft - 300;
   }
 
   function slideRight() {
-    let slider = document.getElementById('slider');
+    let slider = document.getElementById("slider");
     slider!.scrollLeft = slider!.scrollLeft + 300;
   }
   return (
@@ -21,18 +21,16 @@ const Recomended = () => {
           id='slider'
           className='relative overflow-x-scroll scrollbar-hide whitespace-nowrap scroll-smooth h-full w-full space-x-3'>
           {recommendedData.map((item) => (
-            <div
-              key={item.name}
-              className='bg-white w-[200px] md:w-[300px] inline-block text-center cursor-pointer rounded relative group overflow-hidden shadow-xl'>
-              <Link href={item.path}>
+            <Link href={item.path} key={item.name} >
+              <div className='bg-white w-[200px] md:w-[300px] inline-block text-center cursor-pointer rounded relative group overflow-hidden shadow-xl'>
                 <div>
                   <Image src={item.image} alt={item.name} objectFit='cover' />
                 </div>
                 <div className='p-5'>
                   <p className='font-bold tracking-wide'>{item.name}</p>
                 </div>
-              </Link>
-            </div>
+              </div>
+            </Link>
           ))}
         </div>
         <div
