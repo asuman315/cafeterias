@@ -1,6 +1,6 @@
 import { GetStaticProps, GetStaticPaths /*GetServerSideProps*/ } from 'next';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
-import ProductDetails from '../../../components/ProductDetails';
+import ProductDetails from '../../../components/ProductDetails/ProductDetails';
 
 export default function ProductDetailsPage({ mealData }: any){
   return (
