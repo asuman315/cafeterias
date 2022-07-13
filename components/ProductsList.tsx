@@ -21,8 +21,9 @@ const ProductsList = ({ productsData }: any) => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-4 py-8 max-w-6xl mx-auto gap-5">
         {mealsData.map((meal: any, index: any) => {
           const mealName = meal.attributes.name;
-          const mealImage = meal.attributes.image.data.attributes.url;
+         // const mealImage = meal.attributes.image.data.attributes.url;
           const mealPrice = meal.attributes.price;
+ main
           const productId = meal.id;
           console.log("productId", productId);
 
@@ -53,6 +54,20 @@ const ProductsList = ({ productsData }: any) => {
                   </button>
                 </div>
               </div>
+
+          const productId = meal.id;   
+
+          return (
+            <div key={index}>
+              <h3 className='uppercase'>{mealName}</h3>
+             
+              <p className=''>{mealPrice}</p>
+              <button
+                className='uppercase'
+                onClick={() => router.push(`/product/${productId}`)}>
+                order now
+              </button>
+ main
             </div>
           );
         })}
