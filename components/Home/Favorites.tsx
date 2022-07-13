@@ -95,11 +95,8 @@ const Favorites = ({ customerFavoritesData }: any) => {
           className='absolute right-4 top-4 font-bold text-dark-red lg:cursor-pointer'
           onClick={() => setShowZoomedImage(false)}
         />
-        <img
-          src={zoomedImage}
-          alt='zoomed image'
-          className='w-full h-full'
-        />
+        {/* eslint-disable-next-line */}
+        <img src={zoomedImage} alt='zoomed image' className='w-full h-full' />
       </div>
     </section>
   );
