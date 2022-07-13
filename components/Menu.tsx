@@ -24,14 +24,14 @@ const Menu = ({ categoryData }: any) => {
           return (
             <div
               key={productId}
-              className='shadow-xl lg:cursor-pointer my-4'
+              className='lg:cursor-pointer my-4'
               onClick={() => router.push(`/subcategory/${productId}`)}>
               <h2 className='pb-4 text-3xl'>{name}</h2>
               {/* eslint-disable-next-line */}
               <img
                 src={imageUrl}
                 alt={`image of ${name}`}
-                className='rounded-md'
+                className='rounded-md shadow-xl'
               />
             </div>
           );

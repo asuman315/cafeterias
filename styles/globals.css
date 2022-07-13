@@ -21,10 +21,10 @@ h4 {
   @apply  capitalize leading-[3rem]
 }
 h1 {
-  @apply text-4xl font-['Old_Standard_TT'] font-bold  md:text-[2.5rem] lg:text-6xl leading-[3rem] tracking-wide
+  @apply text-4xl font-['Old_Standard_TT'] font-extrabold  md:text-[2.5rem] lg:text-6xl leading-[3rem] tracking-wide
 }
 h2 {
-    @apply text-2xl font-[Poppins] font-extrabold md:text-3xl tracking-widest
+    @apply text-2xl font-[Poppins] font-bold md:text-3xl tracking-widest
   }
 h3 {
     @apply text-lg font-bold md:text-[1.9rem] tracking-wide
