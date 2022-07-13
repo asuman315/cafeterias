@@ -9,6 +9,7 @@ const ProductDetails = ({ mealData }: any) => {
   const productImage = mealData.attributes.image.data.attributes.url;
   const choiceOfComponents = mealData.attributes.choiceOfComponents;
   const accompaniment = mealData.attributes.accompaniment;
+  const accompanimentData = accompaniment ? accompaniment : [];
   const additionalItems = mealData.attributes.additionalItems;
   const router = useRouter();
 
@@ -23,7 +24,7 @@ const ProductDetails = ({ mealData }: any) => {
       <div className='pt-10 md:pt-0 md:px-5'>
         <ProductInfo mealData={mealData} />
         <ChoicesOfComponents choiceOfComponents={choiceOfComponents} />
-        <Accompaniment accompaniment={accompaniment} />
+        <Accompaniment accompaniment={accompanimentData} />
         <AdditionalItems additionalItems={additionalItems} />
         <button
           className='uppercase w-full py-3 mt-8'

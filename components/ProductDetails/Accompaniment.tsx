@@ -7,7 +7,7 @@ const Accompaniment = ({ accompaniment }: any) => {
 
   useEffect(() => {
     //show/hide accompaniment container
-    if (accompaniment) {
+    if (accompaniment.length > 0) {
       setIsAccompanimentPresent(true);
     } else {
       setIsAccompanimentPresent(false);

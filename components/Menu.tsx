@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 
 const Menu = ({ categoryData }: any) => {
    const router = useRouter();
-   console.log('categoryData', categoryData);
    
   return (
     <main className='max-w-6xl mx-auto'>
