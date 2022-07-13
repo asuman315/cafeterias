@@ -15,7 +15,7 @@ const Menu = ({ categoryData }: any) => {
         Big on Breakfast, Perfected Drinks, Decadent to your Generous Big Meals
         right here at your fingertips. ORDER NOW.
       </p>
-      <div className='grid grid-cols-2 gap-4 my-8 px-4'>
+      <div className='grid md:grid-cols-2 gap-4 my-4 px-4'>
         {categoryData.map((category: any) => {
           const productId = category.id;
           const name = category.attributes.Name;
@@ -24,9 +24,9 @@ const Menu = ({ categoryData }: any) => {
           return (
             <div
               key={productId}
-              className='shadow-xl lg:cursor-pointer'
+              className='shadow-xl lg:cursor-pointer my-4'
               onClick={() => router.push(`/subcategory/${productId}`)}>
-              <h2 className='pb-2'>{name}</h2>
+              <h2 className='pb-4 text-3xl'>{name}</h2>
               {/* eslint-disable-next-line */}
               <img
                 src={imageUrl}
