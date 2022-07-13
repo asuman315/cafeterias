@@ -6,7 +6,7 @@ const Subcategory = ({ subcategoryData }: any) => {
   const router = useRouter();
 
   return (
-    <div className='max-w-6xl mx-auto px-2'>
+    <div className='max-w-6xl mx-auto px-2 mt-6'>
       <h1 className='text-center py-3'>{subcategoryName}</h1>
       <p className='px-3 font-medium leading-8 tracking-wide'>
         Welcome to Cafeteriase&apos;s delicious universe. Everything from our

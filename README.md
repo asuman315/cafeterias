@@ -36,3 +36,34 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
  {/* overlay under text so it looks cleaner */}
       {/* <div className="absolute w-screen h-screen top-0 left-0 bg-gradient-to-l from-primary-9 opacity-80 z-10"></div> */}
       {/* <Text /> */}
+
+        const productId = meal.id;
+          console.log("productId", productId);
+
+          return (
+            <div
+              key={index}
+              className="bg-white shadow-xl rounded-md overflow-hidden flex flex-col justify-between"
+            >
+              <div className="relative w-full h-[40vh]">
+                <Image
+                  src={mealImage}
+                  alt={mealName}
+                  layout="fill"
+                  objectFit="cover"
+                />
+              </div>
+              <div className="flex flex-col h-full justify-between py-10 px-5">
+                <div className="space-y-5">
+                  <h3 className="text-2xl uppercase">{mealName}</h3>
+                  <p className="font-semibold text-primary-1">{mealPrice}</p>
+                </div>
+                <div className="-mt-32">
+                  <button
+                    className="uppercase w-full py-2 rounded-md"
+                    onClick={() => router.push(`/product/${productId}`)}
+                  >
+                    order now
+                  </button>
+                </div>
+              </div>
