@@ -6,7 +6,7 @@ const ProductInfo = ({ mealData }: any) => {
 
   return (
     <>
-      <h1 className='text-2xl text-primary-1 tracking-wider'>{name}</h1>
+      <h1 className='text-3xl md:text-5xl text-primary-1 tracking-wider'>{name}</h1>
       <p className='font-medium leading-8 tracking-wide'>{components}</p>
       <p className='font-bold text-primary-1 leading-8 tracking-wider text-3xl py-3'>
         ${price}

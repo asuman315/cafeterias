@@ -11,7 +11,7 @@ const ProductsList = ({ productsData }: any) => {
     <div className='flex flex-col items-center justify-center'>
       <div className='relative flex w-full h-[35vh] md:h-[40vh] xl:h-[40vh] duration-150 ease-in'>
         <div className='bg-white flex items-center px-4'>
-          <h1 className=''>{subcategoryName}</h1>
+          <h1>{subcategoryName}</h1>
         </div>
         <div className='w-full'>
           <img
