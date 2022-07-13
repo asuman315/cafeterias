@@ -1,5 +1,5 @@
-import { useRouter } from "next/router";
-import Image from "next/image";
+import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 const ProductsList = ({ productsData }: any) => {
   const subcategoryName = productsData.attributes.name;
@@ -8,47 +8,47 @@ const ProductsList = ({ productsData }: any) => {
   const router = useRouter();
 
   return (
-    <div className="flex flex-col items-center justify-center">
-      <div className="relative w-full h-[20vh] md:h-[30vh] xl:h-[40vh] duration-150 ease-in">
-        <Image
-          src={subcategoryImage}
-          alt={subcategoryName}
-          layout="fill"
-          objectFit="cover"
-        />
-        <h1 className="absolute top-[45%]">{subcategoryName}</h1>
+    <div className='flex flex-col items-center justify-center'>
+      <div className='relative flex w-full h-[35vh] md:h-[40vh] xl:h-[40vh] duration-150 ease-in'>
+        <div className='bg-white flex items-center px-4'>
+          <h1 className=''>{subcategoryName}</h1>
+        </div>
+        <div className='w-full'>
+          <img
+            src={subcategoryImage}
+            alt={subcategoryName}
+            className='object-cover h-full w-full'
+          />
+        </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-4 py-8 max-w-6xl mx-auto gap-5">
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-4 py-8 max-w-6xl mx-auto gap-5'>
         {mealsData.map((meal: any, index: any) => {
           const mealName = meal.attributes.name;
           const mealImage = meal.attributes.image.data.attributes.url;
           const mealPrice = meal.attributes.price;
           const productId = meal.id;
-          console.log("productId", productId);
 
           return (
             <div
               key={index}
-              className="bg-white shadow-xl rounded-md overflow-hidden flex flex-col justify-between"
-            >
-              <div className="relative w-full h-[40vh]">
+              className='bg-white shadow-xl rounded-md overflow-hidden flex flex-col justify-between'>
+              <div className='relative w-full h-[40vh]'>
                 <Image
                   src={mealImage}
                   alt={mealName}
-                  layout="fill"
-                  objectFit="cover"
+                  layout='fill'
+                  objectFit='cover'
                 />
               </div>
-              <div className="flex flex-col h-full justify-between py-10 px-5">
-                <div className="space-y-5">
-                  <h3 className="text-2xl uppercase">{mealName}</h3>
-                  <p className="font-semibold text-primary-1">${mealPrice}</p>
+              <div className='flex flex-col h-full justify-between p-5'>
+                <div className=''>
+                  <h3 className='text-xl uppercase'>{mealName}</h3>
+                  <p className='font-semibold text-primary-1 text-2xl pt-3'>${mealPrice}</p>
                 </div>
-                <div className="-mt-32">
+                <div className='mt-[-70px]'>
                   <button
-                    className="uppercase w-full py-2 rounded-md"
-                    onClick={() => router.push(`/product/${productId}`)}
-                  >
+                    className='uppercase w-full py-2 rounded-md'
+                    onClick={() => router.push(`/product/${productId}`)}>
                     order now
                   </button>
                 </div>
