@@ -23,7 +23,10 @@ const Recomended = () => {
         >
           {recommendedData.map((item) => (
             <Link href={item.path}>
-              <div className="bg-white w-[200px] md:w-[300px] inline-block text-center cursor-pointer rounded relative group overflow-hidden shadow-xl">
+              <div
+                key={item.name}
+                className="bg-white w-[200px] md:w-[300px] inline-block text-center cursor-pointer rounded relative group overflow-hidden shadow-xl"
+              >
                 <div>
                   <Image src={item.image} alt={item.name} objectFit="cover" />
                 </div>
