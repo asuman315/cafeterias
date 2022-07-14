@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react';
 import { ImCheckboxChecked, ImCheckboxUnchecked } from 'react-icons/im';
+import { useAppDispatch } from '../../hooks';
+import { cartActions } from '../../store/cartSlice';
+import { selectedAdditionalItems } from '../../store/cartSlice';
+import { useSelector } from 'react-redux';
 
 // AdditionalItems component
 const AdditionalItems = ({ additionalItems }: any) => {
@@ -35,32 +39,54 @@ const AdditionalItemsContainer = ({ additionalItems }: any) => {
  )
 }
 
-const AdditionalItemsInfo = ({ name, price }: any) => {
+const AdditionalItemsInfo = ({ name, price }: {name: string, price: number}) => {
   const [isCheckBoxChecked, setIsCheckBoxChecked] = useState(false);
+  const dispatch = useAppDispatch();
+
+  type SelectedAdditionalItem = {
+    name: string,
+    price: number,
+  };
+
+  const SelectedAdditionalItem: SelectedAdditionalItem = {
+    name,
+    price,
+  };
+
+  const handleClick = () => {
+    setIsCheckBoxChecked(!isCheckBoxChecked)
+    // send them to the store
+    dispatch(cartActions.setAdditionalItems(SelectedAdditionalItem));
+ }
+
+  const additionalItems = useSelector(selectedAdditionalItems);
+  console.log('additionalItems', additionalItems);
+  
+ 
   return (
     <div className='flex justify-between my-4'>
       <div className='text-primary-3'>
         {isCheckBoxChecked ? (
           <ImCheckboxChecked
             className='w-5 h-5 cursor-pointer'
-            onClick={() => setIsCheckBoxChecked(!isCheckBoxChecked)}
+            onClick={handleClick}
           />
         ) : (
           <ImCheckboxUnchecked
             className='w-5 h-5 cursor-pointer'
-            onClick={() => setIsCheckBoxChecked(!isCheckBoxChecked)}
+            onClick={handleClick}
           />
         )}
       </div>
       <div className='flex w-[80%] justify-between font-medium'>
         <p
           className='uppercase font-medium cursor-pointer'
-          onClick={() => setIsCheckBoxChecked(!isCheckBoxChecked)}>
+          onClick={handleClick}>
           {name}
         </p>
         <p
           className='font-medium cursor-pointer'
-          onClick={() => setIsCheckBoxChecked(!isCheckBoxChecked)}>
+          onClick={handleClick}>
           +{price}
         </p>
       </div>

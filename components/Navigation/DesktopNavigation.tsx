@@ -15,7 +15,7 @@ const DesktopNavigation = () => {
       <nav className='w-full max-w-[1400px] flex items-center justify-between h-full'>
         <Link href='/'>
           <h1 className="text-4xl font-extrabold cursor-pointer font-['Arima_Madurai']">
-            Cafeterias
+            Cafeteriase
           </h1>
         </Link>
         <ul className='flex items-center text-xl font-bold h-full'>
