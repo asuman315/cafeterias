@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { MdKeyboardArrowUp } from 'react-icons/md';
+import { useSelector, useDispatch } from 'react-redux';
+import { cartActions } from "../../store/cartSlice";
 
 // ChoicesOfComponents component
 const ChoicesOfComponents = ({ choiceOfComponents }: any) => {
@@ -47,14 +49,34 @@ const SingleChoiceOfComponent = ({
 }: any) => {
 
    const [isChoiceOpened, setIsChoiceOpened] = useState(false);
-   const [choice, setChoice] = useState(null);
+   const [choice, setChoice] = useState('');
    const [isChoiceSelected, setIsChoiceSelected] = useState(false);
+   const dispatch = useDispatch();
 
-    const handleSelectedChoice = (option: any) => {
+    const handleSelectedChoice = (option: string, id: number) => {
       setChoice(option);
       setIsChoiceSelected(true);
       setIsChoiceOpened(!isChoiceOpened);
+
+      type SelectedChoice = {
+        name: string,
+        id: number,
+      };
+
+      //get the name and index of the selected choice
+      const selectedChoice: SelectedChoice = {
+        name: option,
+        id,
+      }; 
+
+      // send them to the store
+      dispatch(cartActions.setChoiceOfComponents(selectedChoice));
     };
+
+    const choiceOfComponents = useSelector((state) => state.cart.choiceOfComponents);
+
+    console.log('choiceOfComponents', choiceOfComponents);
+    
 
      const handleClick = () => {
        setIsChoiceOpened(!isChoiceOpened);
@@ -80,11 +102,12 @@ const SingleChoiceOfComponent = ({
         </div>
         <ul className={`${isChoiceOpened ? 'h-auto' : 'h-0'} overflow-hidden`}>
           {optionsList.map((option: any, index: any) => {
+            const id = index;
             return (
               <li
                 key={index}
                 className='capitalize px-2 font-medium text-md cursor-pointer hover:bg-primary-1'
-                onClick={() => handleSelectedChoice(option)}>
+                onClick={() => handleSelectedChoice(option, id)}>
                 {option}
               </li>
             );
