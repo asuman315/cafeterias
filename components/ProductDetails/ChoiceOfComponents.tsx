@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { MdKeyboardArrowUp } from 'react-icons/md';
 import { useSelector, useDispatch } from 'react-redux';
 import { cartActions } from "../../store/cartSlice";
+import { selectedChoiceOfComponents } from "../../store/cartSlice";
 
 // ChoicesOfComponents component
 const ChoicesOfComponents = ({ choiceOfComponents }: any) => {
@@ -53,27 +54,27 @@ const SingleChoiceOfComponent = ({
    const [isChoiceSelected, setIsChoiceSelected] = useState(false);
    const dispatch = useDispatch();
 
-    const handleSelectedChoice = (option: string, id: number) => {
+    const handleSelectedChoice = (option: string, component: string) => {
       setChoice(option);
       setIsChoiceSelected(true);
       setIsChoiceOpened(!isChoiceOpened);
 
       type SelectedChoice = {
-        name: string,
-        id: number,
+        component: string,
+        option: string,
       };
 
-      //get the name and index of the selected choice
+      //get the name of the compoment e.g eggs and the selected choice of the component e.g boiled
       const selectedChoice: SelectedChoice = {
-        name: option,
-        id,
+        component,
+        option,
       }; 
 
       // send them to the store
       dispatch(cartActions.setChoiceOfComponents(selectedChoice));
     };
 
-    const choiceOfComponents = useSelector((state) => state.cart.choiceOfComponents);
+    const choiceOfComponents = useSelector(selectedChoiceOfComponents);
 
     console.log('choiceOfComponents', choiceOfComponents);
     
@@ -102,12 +103,11 @@ const SingleChoiceOfComponent = ({
         </div>
         <ul className={`${isChoiceOpened ? 'h-auto' : 'h-0'} overflow-hidden`}>
           {optionsList.map((option: any, index: any) => {
-            const id = index;
             return (
               <li
                 key={index}
                 className='capitalize px-2 font-medium text-md cursor-pointer hover:bg-primary-1'
-                onClick={() => handleSelectedChoice(option, id)}>
+                onClick={() => handleSelectedChoice(option, component)}>
                 {option}
               </li>
             );

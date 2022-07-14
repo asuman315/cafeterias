@@ -2,13 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from "../store";
 
-interface SelectedChoice {
-  name: string,
-  id: number,
+interface SelectedOption {
+  component: string,
+  option: string,
 }
 
 interface CounterState {
- choiceOfComponents: SelectedChoice[]
+ choiceOfComponents: SelectedOption[]
 }
 
 const initialState: CounterState = {
@@ -19,18 +19,18 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-   setChoiceOfComponents: (state, action: PayloadAction<{id: number, name: string}>) => {
-    const selectedChoice: SelectedChoice = action.payload;
-    // check if the selectedChoice is already in the choiceOfComponents array
-    const existingChoice: SelectedChoice = state.choiceOfComponents.find(
-      (choice) => choice.id === selectedChoice.id
+   setChoiceOfComponents: (state, action: PayloadAction<{component: string, option: string}>) => {
+    const selectedOption: SelectedOption = action.payload;
+    // check if the selected option/component is already in the choiceOfComponents array
+    const existingOption: SelectedOption = state.choiceOfComponents.find(
+      (option) => option.component === selectedOption.component
     )!;
-    if (existingChoice) {
+    if (existingOption) {
       // if it is, update the choice 
-      existingChoice.name = selectedChoice.name;
+      existingOption.option = selectedOption.option;
    } else {
-      // if it is not, add the choice to the choiceOfComponents array
-      state.choiceOfComponents.push(selectedChoice);
+      // if it is not, add the option to the choiceOfComponents array
+      state.choiceOfComponents.push(selectedOption);
     }
    }
   },
