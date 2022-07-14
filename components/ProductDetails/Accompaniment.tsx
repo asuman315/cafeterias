@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
 import { MdKeyboardArrowUp } from 'react-icons/md';
-import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../hooks';
 import { cartActions } from '../../store/cartSlice';
-import { selectedAccompaniment } from '../../store/cartSlice';
 
 // Accompaniment component
 const Accompaniment = ({ accompaniment }: any) => {
@@ -50,12 +48,7 @@ const AccompanimentContainer = ({ accompanimentList }: any) => {
 
     //add accompaniment to local storage
     dispatch(cartActions.setAccompaniment(option));
-  };
-  
-   const accompaniment = useSelector(selectedAccompaniment);
-
-   console.log('accompaniment', accompaniment);
-   
+  }; 
 
   return (
     <div className='mt-8'>

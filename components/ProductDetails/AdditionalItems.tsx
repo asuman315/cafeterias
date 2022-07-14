@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 import { ImCheckboxChecked, ImCheckboxUnchecked } from 'react-icons/im';
 import { useAppDispatch } from '../../hooks';
 import { cartActions } from '../../store/cartSlice';
-import { selectedAdditionalItems } from '../../store/cartSlice';
-import { useSelector } from 'react-redux';
 
 // AdditionalItems component
 const AdditionalItems = ({ additionalItems }: any) => {
@@ -58,10 +56,6 @@ const AdditionalItemsInfo = ({ name, price }: {name: string, price: number}) => 
     // send them to the store
     dispatch(cartActions.setAdditionalItems(SelectedAdditionalItem));
  }
-
-  const additionalItems = useSelector(selectedAdditionalItems);
-  console.log('additionalItems', additionalItems);
-  
  
   return (
     <div className='flex justify-between my-4'>
