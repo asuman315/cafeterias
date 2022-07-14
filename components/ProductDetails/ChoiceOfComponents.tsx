@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { MdKeyboardArrowUp } from 'react-icons/md';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { cartActions } from "../../store/cartSlice";
-import { selectedChoiceOfComponents } from "../../store/cartSlice";
 
 // ChoicesOfComponents component
 const ChoicesOfComponents = ({ choiceOfComponents }: any) => {
@@ -74,11 +73,8 @@ const SingleChoiceOfComponent = ({
       dispatch(cartActions.setChoiceOfComponents(selectedChoice));
     };
 
-    const choiceOfComponents = useSelector(selectedChoiceOfComponents);
-
-    console.log('choiceOfComponents', choiceOfComponents);
+    //const choiceOfComponents = useSelector(selectedChoiceOfComponents);
     
-
      const handleClick = () => {
        setIsChoiceOpened(!isChoiceOpened);
      };

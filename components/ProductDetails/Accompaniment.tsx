@@ -1,5 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 import { MdKeyboardArrowUp } from 'react-icons/md';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from '../../hooks';
+import { cartActions } from '../../store/cartSlice';
+import { selectedAccompaniment } from '../../store/cartSlice';
 
 // Accompaniment component
 const Accompaniment = ({ accompaniment }: any) => {
@@ -15,22 +19,27 @@ const Accompaniment = ({ accompaniment }: any) => {
     //eslint-disable-next-line
   }, []);
 
- //turn accompaniment into a list otherwise set it to an empty array
-  const accompanimentList = isAccompanimentPresent ? accompaniment.split(',') : [];
+  //turn accompaniment into a list otherwise set it to an empty array
+  const accompanimentList = isAccompanimentPresent
+    ? accompaniment.split(',')
+    : [];
 
   return (
-   <div>
-     { isAccompanimentPresent && <AccompanimentContainer  accompanimentList={accompanimentList} /> }
-   </div>
+    <div>
+      {isAccompanimentPresent && (
+        <AccompanimentContainer accompanimentList={accompanimentList} />
+      )}
+    </div>
   );
 };
 
 const AccompanimentContainer = ({ accompanimentList }: any) => {
- const [openedChoice, setOpenedOptions] = useState(false);
- const [accompanimentState, setAccompanimentState] = useState(null);
+  const [openedChoice, setOpenedOptions] = useState(false);
+  const [accompanimentState, setAccompanimentState] = useState(null);
   const [isAccompanimentSelected, setIsAccompanimentSelected] = useState(false);
+  const dispatch = useAppDispatch();
 
-   const handleClick = () => {
+  const handleClick = () => {
     setOpenedOptions(!openedChoice);
   };
 
@@ -38,9 +47,17 @@ const AccompanimentContainer = ({ accompanimentList }: any) => {
     setAccompanimentState(option);
     setIsAccompanimentSelected(true);
     setOpenedOptions(!openedChoice);
-  };
 
-   return (
+    //add accompaniment to local storage
+    dispatch(cartActions.setAccompaniment(option));
+  };
+  
+   const accompaniment = useSelector(selectedAccompaniment);
+
+   console.log('accompaniment', accompaniment);
+   
+
+  return (
     <div className='mt-8'>
       <h3 className='uppercase md:text-xl mb-1 tracking-wider'>
         choose an accompaniment
@@ -74,7 +91,7 @@ const AccompanimentContainer = ({ accompanimentList }: any) => {
         </ul>
       </div>
     </div>
-   )
-}
+  );
+};
 
 export default Accompaniment;
