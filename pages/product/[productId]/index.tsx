@@ -44,6 +44,13 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
             data {
               attributes {
                 name
+                mealcategories {
+                  data {
+                    attributes {
+                      Name
+                    }
+                  }
+                }
               }
             }
           }

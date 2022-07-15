@@ -9,9 +9,12 @@ import { useSelector } from 'react-redux';
 import { selectedAccompaniment } from '../../store/cartSlice';
 import { selectedChoiceOfComponents } from '../../store/cartSlice';
 import Alert from '../Alert';
+import CurrentPage from '../CurrentPage';
 
 const ProductDetails = ({ mealData }: any) => {
-  const name = mealData.attributes.name;
+  const productName = mealData.attributes.name;
+  const categoryName = mealData.attributes.mealsubcategories.data[0].attributes.mealcategories.data[0].attributes.Name;
+  const subcategoryName = mealData.attributes.mealsubcategories.data[0].attributes.name;
   const productImage = mealData.attributes.image.data.attributes.url;
   const choiceOfComponents = mealData.attributes.choiceOfComponents;
   const accompaniment = mealData.attributes.accompaniment;
@@ -24,6 +27,9 @@ const ProductDetails = ({ mealData }: any) => {
     msg: '',
     status: '',
   });
+
+  console.log('productDetails', mealData);
+  
 
   // fetch the selected items from the redux store
   const getSelectedAdditionalItems = useSelector(selectedAdditionalItems);
@@ -50,7 +56,7 @@ const ProductDetails = ({ mealData }: any) => {
   }
 
   const cart: Cart = {
-    name,
+    name: productName,
     productImage,
     choiceOfComponents: getSelectedChoiceOfComponents,
     accompaniment: getSelectedAccompaniment || '',
@@ -64,13 +70,13 @@ const ProductDetails = ({ mealData }: any) => {
 
   // add the selected items to the cart
   const addToCart = () => {
-    // set the userCart to the cart in redux store if it exists else set usercart to an empty array
+    // set the userCart to the 'userCart' in redux store if it exists else set userCart to an empty array
     const userCart: Cart[] = localStorage.getItem('userCart')
       ? JSON.parse(localStorage.getItem('userCart') || '')
       : [];
       // check if the userCart already contains the selected items
       const existingCart: Cart = userCart.find((cart) => {
-        return cart.name === name;
+        return cart.name === productName;
       }
       )!;
 
@@ -83,9 +89,7 @@ const ProductDetails = ({ mealData }: any) => {
         return;
       }
 
-      
-
-      // if it does, update the cart
+      // if the userCart already contains the selected items, update the cart
       if (existingCart) {
         existingCart.choiceOfComponents = cart.choiceOfComponents;
         existingCart.accompaniment = cart.accompaniment;
@@ -107,21 +111,21 @@ const ProductDetails = ({ mealData }: any) => {
 
       // add the userCart to localStorage
       localStorage.setItem('userCart', JSON.stringify(userCart));
-
   };
 
   return (
-    <div className='max-w-6xl px-4 py-8 mx-auto md:grid grid-cols-2'>
+    <div className='max-w-6xl px-4 py-5 mx-auto md:grid grid-cols-2'>
       <div className='w-full left-0 fixed top-0 z-40'>
         {alert.show && <Alert alert={alert} setAlert={setAlert} />}
       </div>
       {/* eslint-disable-next-line */}
       <img
         src={productImage}
-        alt={name}
+        alt={productName}
         className='object-cover h-[50vh] rounded-md w-full'
       />
       <div className='pt-10 md:pt-0 md:px-5'>
+        <CurrentPage categoryName={categoryName} subcategoryName={subcategoryName} productName={productName} />
         <ProductInfo mealData={mealData} />
         <ChoicesOfComponents choiceOfComponents={choiceOfComponents} />
         <Accompaniment accompaniment={accompanimentData} />
