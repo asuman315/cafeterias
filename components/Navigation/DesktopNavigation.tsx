@@ -3,7 +3,7 @@ import { BiUserPlus } from "react-icons/bi";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 const DesktopNavigation = () => {
   const router = useRouter();
