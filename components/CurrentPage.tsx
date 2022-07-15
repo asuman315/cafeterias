@@ -11,7 +11,7 @@ type Props = {
 const CurrentPage = ({ categoryName, subcategoryName, productName }: Props) => {
  const router = useRouter();
  const divStyles = `flex items-center`;
- const headingStyles = `uppercase text-xs lg:text-sm tracking-wider`;
+ const headingStyles = `capitalize text-xs lg:text-sm tracking-wider`;
  const highlightedHeadingStyles = `${headingStyles} text-primary-1`;
  const iconStyles = `w-5 h-5 mx-2`;
 

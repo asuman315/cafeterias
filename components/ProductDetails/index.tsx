@@ -21,25 +21,17 @@ const ProductDetails = ({ mealData }: any) => {
    type AdditionalItems = {
      name: string;
      price: number;
-   };
+   }; 
 
    // Just in case a value of null is returned from the server
-  const productName: string = mealData.attributes.name ? mealData.attributes.name : '';
-
-  const categoryName: string = mealData.attributes.mealsubcategories.data[0].attributes.mealcategories.data[0].attributes.Name ? mealData.attributes.mealsubcategories.data[0].attributes.mealcategories.data[0].attributes.Name : '';
-
-  const subcategoryName: string = mealData.attributes.mealsubcategories.data[0].attributes.name ? mealData.attributes.mealsubcategories.data[0].attributes.name : '';
-
-  const productImage: string = mealData.attributes.image.data.attributes.url ? mealData.attributes.image.data.attributes.url : '';
-
-  const choiceOfComponents = mealData.attributes.choiceOfComponents ? mealData.attributes.choiceOfComponents : { component: '', option: '' };
-
-  const accompaniment: string = mealData.attributes.accompaniment ? mealData.attributes.accompaniment : '';
-
+  const productName: string = mealData.attributes.name;
+  const categoryName: string = mealData.attributes.mealsubcategories.data[0].attributes.mealcategories.data[0].attributes.Name 
+  const subcategoryName: string = mealData.attributes.mealsubcategories.data[0].attributes.name;
+  const productImage: string = mealData.attributes.image.data.attributes.url;
+  const choiceOfComponents = mealData.attributes.choiceOfComponents;
+  const accompaniment: string = mealData.attributes.accompaniment;
   const accompanimentData = accompaniment ? accompaniment : [];
-
-  const additionalItems: AdditionalItems = mealData.attributes.additionalItems ? mealData.attributes.additionalItems : { name: '', price: 0 };
-
+  const additionalItems: AdditionalItems = mealData.attributes.additionalItems;
   const price = mealData.attributes.price ? mealData.attributes.price : 0;
 
   //const router = useRouter();
