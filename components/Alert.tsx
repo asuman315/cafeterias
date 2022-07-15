@@ -14,7 +14,7 @@ const Alert = ({ alert, setAlert }: any) => {
   return (
     <div
       className={`flex items-center relative border-2 w-[95%] mx-auto ${
-        status === 'danger'
+        status === 'error'
           ? 'text-dark-red bg-light-red border-dark-red border-[1px]'
           : 'text-dark-green bg-white border-[1px] border-dark-green'
       }`}>
@@ -23,7 +23,7 @@ const Alert = ({ alert, setAlert }: any) => {
       </p>
       <div
         className={`absolute right-3 pl-4 text-2xl lg:cursor-pointer ${
-          status === 'danger' ? 'text-dark-red' : 'text-dark-green'
+          status === 'error' ? 'text-dark-red' : 'text-dark-green'
         }`}
         onClick={() => setAlert({ show: false })}>
         <MdOutlineCancel />

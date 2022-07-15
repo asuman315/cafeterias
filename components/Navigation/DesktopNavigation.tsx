@@ -3,14 +3,23 @@ import { BiUserPlus } from "react-icons/bi";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
 
 const DesktopNavigation = () => {
   const router = useRouter();
   const { pathname } = router;
+  const [numberOfCartItems, setNumberOfCartItems] = useState(0);
+
+  useEffect(() => {
+    const cartItems = JSON.parse(localStorage.getItem("userCart") || "");
+    const getNumberOfCartItems: number = cartItems.length;
+    setNumberOfCartItems(getNumberOfCartItems);
+  }, []);
+
+  console.log('numberOfCartItems', numberOfCartItems);
 
   return (
-    // Check the header width.
-    // I am not sure how you decided so I left it like this
+    
     <header className='bg-secondary-1 hidden md:flex items-center justify-center w-full h-20 px-5 md:px-10 lg:px-16 xl:px-20 mx-auto duration-150 ease-in shadow-xl'>
       <nav className='w-full max-w-[1400px] flex items-center justify-between h-full'>
         <Link href='/'>
@@ -25,8 +34,7 @@ const DesktopNavigation = () => {
             </li>
           </Link>
           <Link href='/menu'>
-            {/* Here I applied conditional rendering only menu li */}
-            {/* Cuz I don't know the other pages paths so when they're defined, we can implement the rest */}
+            
             <li
               className={
                 pathname === '/menu'
@@ -58,17 +66,15 @@ const DesktopNavigation = () => {
           </Link>
         </ul>
         <div className='flex items-center gap-10 text-3xl'>
-          {/* On the original site, the cart icon takes user to another page. */}
-          {/* So I used Link for this reason. You may want to change it. */}
+          
           <Link href='/'>
             <div className='cursor-pointer hover:text-primary-1 relative duration-300 ease-in'>
               <AiOutlineShoppingCart />
-              <div className='text-sm font-bold w-5 h-5 text-primary-1 bg-primary-3 rounded-full absolute -top-1 -right-3 flex items-center justify-center'>
-                0
-              </div>
+             { numberOfCartItems <= 0 ? null : <div className='text-sm font-bold w-5 h-5 text-primary-1 bg-primary-3 rounded-full absolute -top-1 -right-3 flex items-center justify-center'>
+                { numberOfCartItems }
+              </div> }
             </div>
           </Link>
-          {/* Conditionally render the user icon logged in / logged out state */}
           <div className='hover:text-primary-1 cursor-pointer '>
             <BiUserPlus />
           </div>

@@ -3,7 +3,7 @@ import ProductInfo from './ProductInfo';
 import ChoicesOfComponents from './ChoiceOfComponents';
 import Accompaniment from './Accompaniment';
 import AdditionalItems from './AdditionalItems';
-import { useRouter } from 'next/router';
+//import { useRouter } from 'next/router';
 import { selectedAdditionalItems } from '../../store/cartSlice';
 import { useSelector } from 'react-redux';
 import { selectedAccompaniment } from '../../store/cartSlice';
@@ -18,7 +18,7 @@ const ProductDetails = ({ mealData }: any) => {
   const accompanimentData = accompaniment ? accompaniment : [];
   const additionalItems = mealData.attributes.additionalItems;
   const price = mealData.attributes.price;
-  const router = useRouter();
+  //const router = useRouter();
   const [alert, setAlert] = useState({
     show: false,
     msg: '',
@@ -58,6 +58,10 @@ const ProductDetails = ({ mealData }: any) => {
     price,
   };
 
+    const numberOfChoices: number = choiceOfComponents.length;
+    const selectedNumberOfChoices: number =
+      getSelectedChoiceOfComponents.length;
+
   // add the selected items to the cart
   const addToCart = () => {
     // set the userCart to the cart in redux store if it exists else set usercart to an empty array
@@ -69,6 +73,15 @@ const ProductDetails = ({ mealData }: any) => {
         return cart.name === name;
       }
       )!;
+
+      if (numberOfChoices !== selectedNumberOfChoices) {
+        setAlert({
+          show: true,
+          msg: 'Please select all options',
+          status: 'error',
+        });
+        return;
+      }
 
       // if it does, update the cart
       if (existingCart) {
@@ -89,6 +102,7 @@ const ProductDetails = ({ mealData }: any) => {
            msg: 'Item added to cart successfully!',
          });
       }
+
       // add the userCart to localStorage
       localStorage.setItem('userCart', JSON.stringify(userCart));
 
