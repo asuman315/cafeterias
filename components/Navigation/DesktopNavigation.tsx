@@ -11,9 +11,14 @@ const DesktopNavigation = () => {
   const [numberOfCartItems, setNumberOfCartItems] = useState(0);
 
   useEffect(() => {
-     const cartItems = JSON.parse(localStorage.getItem("userCart") || "");
-     const getNumberOfCartItems: number = cartItems.length;
-     setNumberOfCartItems(getNumberOfCartItems); 
+    //set 'cartItems' to an empty array if there is no cartItems in localStorage i.e if the user has not added any items to the cart when they first visit the site
+    const cartItems = localStorage.getItem('userCart')
+      ? JSON.parse(localStorage.getItem('userCart')!)
+      : [];
+    //const cartItems = JSON.parse(localStorage.getItem("userCart")!);
+    const getNumberOfCartItems: number = cartItems.length;
+    setNumberOfCartItems(getNumberOfCartItems);
+    localStorage.removeItem('userCart');
   }, [pathname]);
 
   return (

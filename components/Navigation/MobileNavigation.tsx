@@ -1,9 +1,9 @@
 // this component is used to render the mobile navigation
-import { BiUserPlus } from "react-icons/bi";
-import { AiOutlineShoppingCart } from "react-icons/ai";
-import { MdOutlineClose, MdOutlineMenu } from "react-icons/md";
-import Link from "next/link";
-import { useRouter } from "next/router";
+import { BiUserPlus } from 'react-icons/bi';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { MdOutlineClose, MdOutlineMenu } from 'react-icons/md';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 
 const MobileNavigation = () => {
@@ -13,11 +13,14 @@ const MobileNavigation = () => {
   const router = useRouter();
   const { pathname } = router;
 
-   useEffect(() => {
-    const cartItems = JSON.parse(localStorage.getItem('userCart')!);
+  useEffect(() => {
+    //set 'cartItems' to an empty array if there is no cartItems in localStorage i.e if the user has not added any items to the cart when they first visit the site
+    const cartItems = localStorage.getItem('userCart')
+      ? JSON.parse(localStorage.getItem('userCart')!)
+      : [];
     const getNumberOfCartItems: number = cartItems.length;
     setNumberOfCartItems(getNumberOfCartItems);
-   }, [pathname]);
+  }, [pathname]);
 
   const handleNav = () => {
     setIsNavOpen((prevNavValue) => !prevNavValue);
@@ -99,9 +102,11 @@ const MobileNavigation = () => {
           <Link href='/'>
             <div className=' hover:text-primary-3 relative'>
               <AiOutlineShoppingCart />
-             { numberOfCartItems <= 0 ? null : <div className='text-sm font-bold w-5 h-5 text-primary-3 bg-primary-2 rounded-full absolute -top-1 -right-3 flex items-center justify-center'>
-                {numberOfCartItems}
-              </div> }
+              {numberOfCartItems <= 0 ? null : (
+                <div className='text-sm font-bold w-5 h-5 text-primary-3 bg-primary-2 rounded-full absolute -top-1 -right-3 flex items-center justify-center'>
+                  {numberOfCartItems}
+                </div>
+              )}
             </div>
           </Link>
           <div className='hover:text-primary-1'>
