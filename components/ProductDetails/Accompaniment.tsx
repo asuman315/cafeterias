@@ -51,15 +51,15 @@ const AccompanimentContainer = ({ accompanimentList }: any) => {
   }; 
 
   return (
-    <div className='mt-8'>
-      <h3 className='uppercase md:text-xl mb-1 tracking-wider'>
+    <div className='mt-12'>
+      <h3 className='uppercase text-base md:text-lg mb-1 tracking-wider'>
         choose an accompaniment
       </h3>
       <div className='border-2 rounded-md cursor-pointer'>
         <div
           className='flex justify-between items-center'
           onClick={handleClick}>
-          <p className='font-medium capitalize tracking-wide text-lg px-2'>
+          <p className={`font-medium capitalize tracking-wide text-sm md:text-lg px-2 ${isAccompanimentSelected ? 'text-primary-1' : 'text-primary-3'}`}>
             {isAccompanimentSelected
               ? accompanimentState
               : 'select an accompaniment'}

@@ -80,15 +80,15 @@ const SingleChoiceOfComponent = ({
      };
 
   return (
-    <div className='mt-4'>
-      <h3 className='uppercase md:text-xl mb-1 tracking-wider'>
+    <div className='mt-10'>
+      <h3 className='uppercase text-base md:text-lg mb-1 tracking-wider'>
         choice of {component}
       </h3>
       <div className='border-2 rounded-md'>
         <div
           className='flex justify-between items-center cursor-pointer px-2'
           onClick={handleClick}>
-          <p className='font-medium w-full capitalize tracking-wide text-lg'>
+          <p className={`font-medium w-full capitalize tracking-wide text-sm ${isChoiceSelected ? 'text-primary-1' : 'text-primary-3'}`}>
             {isChoiceSelected ? choice : 'select an option'}
           </p>
           <MdKeyboardArrowUp
