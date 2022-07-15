@@ -36,8 +36,8 @@ const CurrentPage = ({ categoryName, subcategoryName, productName }: Props) => {
           {subcategoryName}
         </h3>
       </div>
+      { isProductDeatailsPage && <MdKeyboardArrowRight className={iconStyles} /> }
      { isProductDeatailsPage && <div className={divStyles}>
-        <MdKeyboardArrowRight className={iconStyles} />
         <h3 className={highlightedHeadingStyles}>{productName}</h3>
       </div> }
     </section>

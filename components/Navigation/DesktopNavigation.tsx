@@ -15,11 +15,12 @@ const DesktopNavigation = () => {
     const cartItems = localStorage.getItem('userCart')
       ? JSON.parse(localStorage.getItem('userCart')!)
       : [];
-    //const cartItems = JSON.parse(localStorage.getItem("userCart")!);
     const getNumberOfCartItems: number = cartItems.length;
     setNumberOfCartItems(getNumberOfCartItems);
-    localStorage.removeItem('userCart');
   }, [pathname]);
+
+  console.log('numberOfCartItems', numberOfCartItems);
+  
 
   return (
     <header className='bg-primary-3 text-primary-2 tracking-wider hidden md:flex items-center justify-center w-full h-20 px-5 md:px-10 lg:px-16 xl:px-20 mx-auto duration-150 ease-in shadow-xl'>
