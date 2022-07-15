@@ -8,18 +8,16 @@ import { useState, useEffect } from 'react';
 
 const MobileNavigation = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
- // const [numberOfCartItems, setNumberOfCartItems] = useState(0);
+  const [numberOfCartItems, setNumberOfCartItems] = useState(0);
 
   const router = useRouter();
   const { pathname } = router;
 
    useEffect(() => {
-    // const cartItems = JSON.parse(localStorage.getItem('userCart')!);
-    //const getNumberOfCartItems: number = cartItems.length;
-   // setNumberOfCartItems(getNumberOfCartItems);
+    const cartItems = JSON.parse(localStorage.getItem('userCart')!);
+    const getNumberOfCartItems: number = cartItems.length;
+    setNumberOfCartItems(getNumberOfCartItems);
    }, [pathname]);
-
- //  console.log('numberOfCartItems', numberOfCartItems);
 
   const handleNav = () => {
     setIsNavOpen((prevNavValue) => !prevNavValue);
@@ -101,9 +99,9 @@ const MobileNavigation = () => {
           <Link href='/'>
             <div className=' hover:text-primary-3 relative'>
               <AiOutlineShoppingCart />
-              <div className='text-sm font-bold w-5 h-5 text-primary-3 bg-primary-2 rounded-full absolute -top-1 -right-3 flex items-center justify-center'>
-                {/* {numberOfCartItems} */}0
-              </div>
+             { numberOfCartItems <= 0 ? null : <div className='text-sm font-bold w-5 h-5 text-primary-3 bg-primary-2 rounded-full absolute -top-1 -right-3 flex items-center justify-center'>
+                {numberOfCartItems}
+              </div> }
             </div>
           </Link>
           <div className='hover:text-primary-1'>

@@ -14,7 +14,7 @@ const ChoicesOfComponents = ({ choiceOfComponents }: any) => {
   } else {
    setIsChoiceOfComponents(true)
   }
- }, [choiceOfComponents.length]);
+ });
 
  return (
    <div>
