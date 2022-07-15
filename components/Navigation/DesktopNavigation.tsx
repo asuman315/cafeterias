@@ -14,13 +14,10 @@ const DesktopNavigation = () => {
     const cartItems = JSON.parse(localStorage.getItem("userCart") || "");
     const getNumberOfCartItems: number = cartItems.length;
     setNumberOfCartItems(getNumberOfCartItems);
-  }, []);
-
-  console.log('numberOfCartItems', numberOfCartItems);
+  }, [pathname]);
 
   return (
-    
-    <header className='bg-secondary-1 hidden md:flex items-center justify-center w-full h-20 px-5 md:px-10 lg:px-16 xl:px-20 mx-auto duration-150 ease-in shadow-xl'>
+    <header className='bg-primary-3 text-primary-2 tracking-wider hidden md:flex items-center justify-center w-full h-20 px-5 md:px-10 lg:px-16 xl:px-20 mx-auto duration-150 ease-in shadow-xl'>
       <nav className='w-full max-w-[1400px] flex items-center justify-between h-full'>
         <Link href='/'>
           <h1 className="text-4xl font-extrabold cursor-pointer font-['Arima_Madurai']">
@@ -38,7 +35,7 @@ const DesktopNavigation = () => {
             <li
               className={
                 pathname === '/menu'
-                  ? 'bg bg-primary-3 text-primary-1 h-full flex items-center justify-center xl:px-10 md:px-6 cursor-pointer'
+                  ? ' text-primary-1 h-full flex items-center justify-center xl:px-10 md:px-6 cursor-pointer'
                   : 'bg-transparent h-full flex items-center justify-center xl:px-10 md:px-6 cursor-pointer hover:text-primary-1 duration-300 ease-in'
               }>
               Menu
@@ -65,12 +62,11 @@ const DesktopNavigation = () => {
             </li>
           </Link>
         </ul>
-        <div className='flex items-center gap-10 text-3xl'>
-          
+        <div className='flex items-center gap-10 text-3xl'>        
           <Link href='/'>
             <div className='cursor-pointer hover:text-primary-1 relative duration-300 ease-in'>
               <AiOutlineShoppingCart />
-             { numberOfCartItems <= 0 ? null : <div className='text-sm font-bold w-5 h-5 text-primary-1 bg-primary-3 rounded-full absolute -top-1 -right-3 flex items-center justify-center'>
+             { numberOfCartItems <= 0 ? null : <div className='text-sm font-bold w-5 h-5 text-primary-3 bg-primary-2 rounded-full absolute -top-1 -right-3 flex items-center justify-center'>
                 { numberOfCartItems }
               </div> }
             </div>

@@ -7,7 +7,7 @@ const Menu = ({ categoryData }: any) => {
    
   return (
     <main className='max-w-6xl mx-auto'>
-      <h1 className='text-center py-3'>
+      <h1 className='text-center py-3 mt-10'>
         Welcome To <span className='font-["Arima_Madurai"]'>Cafeteriase</span>
       </h1>
       <p className='px-3 font-medium leading-[36px] tracking-wide'>

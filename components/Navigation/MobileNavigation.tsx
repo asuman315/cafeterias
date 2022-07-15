@@ -4,19 +4,27 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { MdOutlineClose, MdOutlineMenu } from "react-icons/md";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect } from 'react';
 
 const MobileNavigation = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const [numberOfCartItems, setNumberOfCartItems] = useState(0);
 
   const router = useRouter();
   const { pathname } = router;
 
+   useEffect(() => {
+     const cartItems = JSON.parse(localStorage.getItem('userCart') || '');
+     const getNumberOfCartItems: number = cartItems.length;
+     setNumberOfCartItems(getNumberOfCartItems);
+   }, [pathname]);
+
   const handleNav = () => {
     setIsNavOpen((prevNavValue) => !prevNavValue);
   };
+
   return (
-    <header className='bg-secondary-1 flex md:hidden items-center justify-center w-full h-20 px-5 md:px-10 lg:px-16 xl:px-20 mx-auto duration-150 ease-in shadow-xl'>
+    <header className='bg-primary-3  text-primary-2 flex md:hidden items-center justify-center w-full h-20 px-5 md:px-10 lg:px-16 xl:px-20 mx-auto duration-150 ease-in shadow-xl'>
       <nav className='w-full max-w-[1400px] flex items-center justify-between h-full'>
         <Link href='/'>
           <h1 className='text-2xl cursor-pointer font-["Arima_Madurai"]'>
@@ -29,11 +37,11 @@ const MobileNavigation = () => {
               ? 'fixed bg-primary-10/60 z-10 top-0 right-0 w-full h-full flex flex-col items-end duration-300 ease-in'
               : 'fixed bg-primary-10/60 z-10 top-0 -right-[110%] w-full h-full flex flex-col items-end duration-300 ease-in'
           }>
-          <div className='bg-primary-2 w-[60%] h-full flex flex-col items-end justify-between py-10'>
+          <div className='bg-primary-3 w-[60%] h-full flex flex-col items-end justify-between py-10'>
             <div
               onClick={handleNav}
               className='w-10 h-10 bg-primary-3 text-xl text-primary-1 rounded-full flex items-center justify-center group cursor-pointer mr-10'>
-              <MdOutlineClose className='group-hover:rotate-90 duration-300 ease-in group-hover:text-primary-1' />
+              <MdOutlineClose className='group-hover:rotate-90 duration-300 ease-in group-hover:text-primary-1 w-8 h-8' />
             </div>
             <ul className='w-full text-xl font-bold flex flex-col justify-center'>
               <Link href='/'>
@@ -44,8 +52,6 @@ const MobileNavigation = () => {
                 </li>
               </Link>
               <Link href='/menu'>
-                {/* Here I applied conditional rendering only menu li */}
-                {/* Cuz I don't know the other pages paths so when they're defined, we can implement the rest */}
                 <li
                   onClick={handleNav}
                   className={
@@ -80,10 +86,10 @@ const MobileNavigation = () => {
               </Link>
             </ul>
             <div className='w-full px-10 flex flex-col items-center gap-4'>
-              <button className='w-full bg-primary-3 py-2 text-lg hover:bg-primary-2 hover:border-primary-1 hover:border'>
+              <button className='w-full border-[1px] border-primary-2 py-2 text-lg hover:bg-primary-2 hover:border-primary hover:border'>
                 Sign In
               </button>
-              <button className='w-full border-primary-3 text-primary-3 bg-primary-4 py-2 text-lg hover:border-primary-1 hover:bg-primary-2 hover:border'>
+              <button className='w-full border-primary-3 text-primary-3 bg-primary-2 py-2 text-lg hover:text-primary-4 hover:bg-primary-3 hover:border-[1px] hover:border-primary-2'>
                 Sign Out
               </button>
             </div>
@@ -93,13 +99,12 @@ const MobileNavigation = () => {
           <Link href='/'>
             <div className=' hover:text-primary-3 relative'>
               <AiOutlineShoppingCart />
-              <div className='text-sm font-bold w-5 h-5 text-primary-1 bg-primary-3 rounded-full absolute -top-1 -right-3 flex items-center justify-center'>
-                0
+              <div className='text-sm font-bold w-5 h-5 text-primary-3 bg-primary-2 rounded-full absolute -top-1 -right-3 flex items-center justify-center'>
+                {numberOfCartItems}
               </div>
             </div>
           </Link>
-          {/* Conditionally render the user icon logged in / logged out state */}
-          <div className='hover:text-primary-1 '>
+          <div className='hover:text-primary-1'>
             <BiUserPlus />
           </div>
           <div

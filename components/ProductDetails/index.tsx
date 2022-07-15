@@ -83,6 +83,8 @@ const ProductDetails = ({ mealData }: any) => {
         return;
       }
 
+      
+
       // if it does, update the cart
       if (existingCart) {
         existingCart.choiceOfComponents = cart.choiceOfComponents;

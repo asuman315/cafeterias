@@ -19,7 +19,7 @@ const Text = () => {
   return (
     <section className="w-full h-full absolute top-0 left-0 z-20">
       <div className="w-full h-full flex flex-col md:flex-row-reverse items-center justify-around ">
-        <ul className="text-primary-1 text-xl lg:text-2xl xl:text-3xl w-[250px] xl:w-[300px] uppercase font-bold tracking-wider duration-300 ease-in">
+        <ul className="text-primary-3 text-xl lg:text-2xl xl:text-3xl w-[250px] xl:w-[300px] uppercase font-bold tracking-wider duration-300 ease-in">
           <h1 className='py-5 lg:py-10 xl:py-14 border-b text-4xl md:text-3xl lg:text-5xl xl:text-6xl capitalize font-["Arima_Madurai"]'>
             Cafeteriase
           </h1>
