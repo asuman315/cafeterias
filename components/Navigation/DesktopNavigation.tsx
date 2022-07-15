@@ -8,12 +8,14 @@ import { useState, useEffect } from "react";
 const DesktopNavigation = () => {
   const router = useRouter();
   const { pathname } = router;
-  const [numberOfCartItems, setNumberOfCartItems] = useState(0);
+  //const [numberOfCartItems, setNumberOfCartItems] = useState(0);
 
   useEffect(() => {
     const cartItems = JSON.parse(localStorage.getItem("userCart") || "");
-    const getNumberOfCartItems: number = cartItems.length;
-    setNumberOfCartItems(getNumberOfCartItems);
+   // const getNumberOfCartItems: number = cartItems.length;
+   // setNumberOfCartItems(getNumberOfCartItems);
+   console.log("cartItems", cartItems);
+   
   }, [pathname]);
 
   return (
@@ -66,9 +68,9 @@ const DesktopNavigation = () => {
           <Link href='/'>
             <div className='cursor-pointer hover:text-primary-1 relative duration-300 ease-in'>
               <AiOutlineShoppingCart />
-             { numberOfCartItems <= 0 ? null : <div className='text-sm font-bold w-5 h-5 text-primary-3 bg-primary-2 rounded-full absolute -top-1 -right-3 flex items-center justify-center'>
+             {/* { numberOfCartItems <= 0 ? null : <div className='text-sm font-bold w-5 h-5 text-primary-3 bg-primary-2 rounded-full absolute -top-1 -right-3 flex items-center justify-center'>
                 { numberOfCartItems }
-              </div> }
+              </div> } */}
             </div>
           </Link>
           <div className='hover:text-primary-1 cursor-pointer '>
