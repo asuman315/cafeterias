@@ -30,6 +30,7 @@ const ProductsList = ({ productsData }: any) => {
         <CurrentPage
           categoryName={categoryName}
           subcategoryName={subcategoryName}
+          productName={''}
         />
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-5 max-w-6xl mx-auto gap-5'>
           {mealsData.map((meal: any, index: any) => {
