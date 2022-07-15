@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import ProductInfo from './ProductInfo';
 import ChoicesOfComponents from './ChoiceOfComponents';
 import Accompaniment from './Accompaniment';
@@ -7,7 +8,7 @@ import { selectedAdditionalItems } from '../../store/cartSlice';
 import { useSelector } from 'react-redux';
 import { selectedAccompaniment } from '../../store/cartSlice';
 import { selectedChoiceOfComponents } from '../../store/cartSlice';
-import { type } from 'os';
+import Alert from '../Alert';
 
 const ProductDetails = ({ mealData }: any) => {
   const name = mealData.attributes.name;
@@ -18,13 +19,16 @@ const ProductDetails = ({ mealData }: any) => {
   const additionalItems = mealData.attributes.additionalItems;
   const price = mealData.attributes.price;
   const router = useRouter();
+  const [alert, setAlert] = useState({
+    show: false,
+    msg: '',
+    status: '',
+  });
 
   // fetch the selected items from the redux store
   const getSelectedAdditionalItems = useSelector(selectedAdditionalItems);
   const getSelectedAccompaniment = useSelector(selectedAccompaniment);
   const getSelectedChoiceOfComponents = useSelector(selectedChoiceOfComponents);
-
-  console.log('Additional Items', getSelectedAdditionalItems);
   
   type ChoiceOfComponents = {
     component: string;
@@ -71,16 +75,30 @@ const ProductDetails = ({ mealData }: any) => {
         existingCart.choiceOfComponents = cart.choiceOfComponents;
         existingCart.accompaniment = cart.accompaniment;
         existingCart.additionalItems = cart.additionalItems;
+         setAlert({
+           status: 'success',
+           show: true,
+           msg: 'Your cart has been updated successfully!',
+         });
       } else {
         // if it does not, add the selected items to the userCart
         userCart.push(cart);
+         setAlert({
+           status: 'success',
+           show: true,
+           msg: 'Item added to cart successfully!',
+         });
       }
       // add the userCart to localStorage
       localStorage.setItem('userCart', JSON.stringify(userCart));
+
   };
 
   return (
     <div className='max-w-6xl px-4 py-8 mx-auto md:grid grid-cols-2'>
+      <div className='w-full left-0 fixed top-0 z-40'>
+        {alert.show && <Alert alert={alert} setAlert={setAlert} />}
+      </div>
       {/* eslint-disable-next-line */}
       <img
         src={productImage}
@@ -92,9 +110,7 @@ const ProductDetails = ({ mealData }: any) => {
         <ChoicesOfComponents choiceOfComponents={choiceOfComponents} />
         <Accompaniment accompaniment={accompanimentData} />
         <AdditionalItems additionalItems={additionalItems} />
-        <button
-          className='uppercase w-full py-3 mt-8'
-          onClick={addToCart}>
+        <button className='uppercase w-full py-3 mt-8' onClick={addToCart}>
           add to order
         </button>
       </div>

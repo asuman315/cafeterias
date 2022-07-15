@@ -14,7 +14,8 @@ const Carousel = ({ imagesData }: any) => {
     return () => clearInterval(interval);
   }, [imageUrls.length]);
 
-  imagesData.map((image: any) => {
+  //get only images with ids 1, 5 and 9
+  imagesData.map((image: { id: string, image: string, attributes: any }) => {
     if (image.id === '1' || image.id === '5' || image.id === '9') {
       //grab image url from the data
       const imageUrl: string = image.attributes.image.data[0].attributes.url;
