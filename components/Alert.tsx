@@ -9,7 +9,7 @@ const Alert = ({ alert, setAlert }: any) => {
       setAlert({ show: false });
     }, 3500);
     return () => clearTimeout(alertTimeOut);
-  });
+  }, [msg]);
 
   return (
     <div

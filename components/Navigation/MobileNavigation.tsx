@@ -14,7 +14,7 @@ const MobileNavigation = () => {
   const { pathname } = router;
 
    useEffect(() => {
-     const cartItems = JSON.parse(localStorage.getItem('userCart') || '');
+     const cartItems = JSON.parse(localStorage.getItem('userCart')!);
      const getNumberOfCartItems: number = cartItems.length;
      setNumberOfCartItems(getNumberOfCartItems);
    }, [pathname]);
