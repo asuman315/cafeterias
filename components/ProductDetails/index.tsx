@@ -12,7 +12,8 @@ import Alert from '../Alert';
 import CurrentPage from '../CurrentPage';
 
 const ProductDetails = ({ mealData }: any) => {
-   type ChoiceOfComponents = {
+   
+  type ChoiceOfComponents = {
      component: string;
      option: string;
    };
@@ -31,7 +32,7 @@ const ProductDetails = ({ mealData }: any) => {
 
   const productImage: string = mealData.attributes.image.data.attributes.url ? mealData.attributes.image.data.attributes.url : '';
 
-  const choiceOfComponents: ChoiceOfComponents = mealData.attributes.choiceOfComponents ? mealData.attributes.choiceOfComponents : { component: '', option: '' };
+  const choiceOfComponents = mealData.attributes.choiceOfComponents ? mealData.attributes.choiceOfComponents : { component: '', option: '' };
 
   const accompaniment: string = mealData.attributes.accompaniment ? mealData.attributes.accompaniment : '';
 
