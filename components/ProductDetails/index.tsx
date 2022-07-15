@@ -26,10 +26,7 @@ const ProductDetails = ({ mealData }: any) => {
     show: false,
     msg: '',
     status: '',
-  });
-
-  console.log('productDetails', mealData);
-  
+  }); 
 
   // fetch the selected items from the redux store
   const getSelectedAdditionalItems = useSelector(selectedAdditionalItems);
