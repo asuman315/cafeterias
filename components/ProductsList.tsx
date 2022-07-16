@@ -11,7 +11,7 @@ const ProductsList = ({ productsData }: any) => {
   
   return (
     <div className='flex flex-col items-center justify-center'>
-      <div className='relative flex w-full h-[35vh] md:h-[40vh] xl:h-[40vh] duration-150 ease-in'>
+      <div className='relative flex w-full h-[35vh] md:h-[40vh] xl:h-[40vh] mb-6'>
         <div className='bg-white flex items-center px-4'>
           <h1 className='text-base sm:text-lg md:text-2xl'>
             {subcategoryName}
@@ -26,13 +26,13 @@ const ProductsList = ({ productsData }: any) => {
           />
         </div>
       </div>
-      <div className='px-4 py-5'>
+      <div className='px-4'>
         <CurrentPage
           categoryName={categoryName}
           subcategoryName={subcategoryName}
           productName={''}
         />
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-5 max-w-6xl mx-auto gap-5'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto gap-5 py-10'>
           {mealsData.map((meal: any, index: any) => {
             const mealName = meal.attributes.name;
             const mealImage = meal.attributes.image.data.attributes.url;
