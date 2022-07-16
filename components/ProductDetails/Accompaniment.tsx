@@ -48,18 +48,30 @@ const AccompanimentContainer = ({ accompanimentList }: any) => {
 
     //add accompaniment to local storage
     dispatch(cartActions.setAccompaniment(option));
-  }; 
+  };
+
+  const clearAccompaniment = () => {
+    setIsAccompanimentSelected(false);
+    //clear accompaniment from store
+    dispatch(cartActions.setAccompaniment(''));
+  }
 
   return (
     <div className='mt-12'>
-      <h3 className='uppercase text-base md:text-lg mb-1 tracking-wider'>
-        choose an accompaniment
-      </h3>
+      <div className='flex items-center justify-between mb-1'>
+        <h3 className='uppercase text-base md:text-lg tracking-wider'>
+          choose an accompaniment
+        </h3>
+        <p className='font-bold cursor-pointer' onClick={clearAccompaniment}>Clear</p>
+      </div>
       <div className='border-2 rounded-md cursor-pointer'>
         <div
           className='flex justify-between items-center'
           onClick={handleClick}>
-          <p className={`font-medium capitalize tracking-wide text-sm md:text-lg px-2 ${isAccompanimentSelected ? 'text-primary-1' : 'text-primary-3'}`}>
+          <p
+            className={`font-medium capitalize tracking-wide text-sm md:text-lg px-2 ${
+              isAccompanimentSelected ? 'text-primary-1' : 'text-primary-3'
+            }`}>
             {isAccompanimentSelected
               ? accompanimentState
               : 'select an accompaniment'}

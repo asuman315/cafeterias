@@ -45,7 +45,7 @@ const ProductDetails = ({ mealData }: any) => {
   const getSelectedAdditionalItems = useSelector(selectedAdditionalItems);
   const getSelectedAccompaniment = useSelector(selectedAccompaniment);
   const getSelectedChoiceOfComponents = useSelector(selectedChoiceOfComponents);
-
+  
   type Cart = {
     choiceOfComponents: ChoiceOfComponents[];
     accompaniment?: string;

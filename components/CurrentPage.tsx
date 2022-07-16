@@ -1,5 +1,4 @@
 import React from 'react';
-import { MdKeyboardArrowRight } from 'react-icons/md';
 import { useRouter } from 'next/router';
 
 type Props = {
@@ -13,7 +12,6 @@ const CurrentPage = ({ categoryName, subcategoryName, productName }: Props) => {
  const divStyles = `flex items-center mt-4 mr-4`;
  const headingStyles = `capitalize text-xs tracking-wider`;
  const highlightedHeadingStyles = `${headingStyles} text-primary-1`;
- const iconStyles = `w-5 h-5 mx-2`;
  const numberStyles = 'bg-primary-1 text-white border-none';
 
  const isProductsListPage = router.pathname === '/products/[productId]';

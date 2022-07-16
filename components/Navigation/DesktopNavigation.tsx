@@ -18,10 +18,7 @@ const DesktopNavigation = () => {
     const getNumberOfCartItems: number = cartItems.length;
     setNumberOfCartItems(getNumberOfCartItems);
   }, [pathname]);
-
-  console.log('numberOfCartItems', numberOfCartItems);
   
-
   return (
     <header className='bg-primary-3 text-primary-2 tracking-wider hidden md:flex items-center justify-center w-full h-20 px-5 md:px-10 lg:px-16 xl:px-20 mx-auto duration-150 ease-in shadow-xl'>
       <nav className='w-full max-w-[1400px] flex items-center justify-between h-full'>
