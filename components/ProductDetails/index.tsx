@@ -45,7 +45,7 @@ const ProductDetails = ({ mealData }: any) => {
   const getSelectedAdditionalItems = useSelector(selectedAdditionalItems);
   const getSelectedAccompaniment = useSelector(selectedAccompaniment);
   const getSelectedChoiceOfComponents = useSelector(selectedChoiceOfComponents);
-  
+
   type Cart = {
     choiceOfComponents: ChoiceOfComponents[];
     accompaniment?: string;
@@ -124,7 +124,7 @@ const ProductDetails = ({ mealData }: any) => {
         alt={productName}
         className='object-cover h-[50vh] rounded-md w-full'
       />
-      <div className='mt-8 md:pt-0 md:px-5'>
+      <div className='mt-8 md:mt-0 md:pt-0 md:px-5'>
         <CurrentPage categoryName={categoryName} subcategoryName={subcategoryName} productName={productName} />
         <ProductInfo mealData={mealData} />
         <ChoicesOfComponents choiceOfComponents={choiceOfComponents} />
