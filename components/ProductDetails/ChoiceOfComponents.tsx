@@ -104,9 +104,8 @@ const SingleChoiceOfComponent = ({ component, optionsList }: any) => {
         <ul className={`${isChoiceOpened ? 'h-auto' : 'h-0'} overflow-hidden`}>
           {optionsList.map((option: any, index: any) => {
             return (
-              <Zoom bottom>
+              <Zoom bottom key={index}>
                 <li
-                  key={index}
                   className='capitalize px-2 font-medium text-md cursor-pointer hover:bg-primary-1'
                   onClick={() => handleSelectedChoice(option, component)}>
                   {option}
