@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Reveal from 'react-reveal/Reveal';
 
 const Footer = () => {
   const branches = [
@@ -31,21 +32,23 @@ const Footer = () => {
       <div className='w-full max-w-6xl flex flex-col md:flex-row flex-wrap items-start justify-between gap-10'>
         <div className='space-y-3'>
           <h2 className='uppercase'>Locations</h2>
-          <h3 className='uppercase'>Kampala</h3>
+          <h3 className='uppercase md:text-2xl'>Kampala</h3>
           <ul className='flex flex-col items-start gap-2 font-medium'>
             {branches.map((branch, index) => {
               const { name } = branch;
               return (
                 <Link href='/' key={index}>
-                  <li className='hover:text-primary-1 cursor-pointer duration-300 ease-in'>
-                    {name}
-                  </li>
+                  <Reveal>
+                    <li className='hover:text-primary-1 cursor-pointer duration-300 ease-in'>
+                      {name}
+                    </li>
+                  </Reveal>
                 </Link>
               );
             })}
           </ul>
           <div className='space-y-2'>
-            <h3 className='uppercase'>Entebbe</h3>
+            <h3 className='uppercase md:text-2xl'>Entebbe</h3>
             <ul className='flex flex-col items-start gap-1'>
               <Link href='/'>
                 <li className='hover:text-primary-1 cursor-pointer duration-300 ease-in'>
@@ -55,18 +58,20 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        <div className='space-y-3'>
-          <h2 className='uppercase'>Contact Us</h2>
-          <div className='flex flex-col items-start gap-2 font-medium'>
-            <Link
-              className='hover:text-primary-1 cursor-pointer duration-300 ease-in'
-              href='/'>
-              info@cafeterias.com
-            </Link>
-            <span>+256 313 88 00 00</span>
-            <span>+256 200 99 00 00</span>
+        <Reveal>
+          <div className='space-y-3'>
+            <h2 className='uppercase'>Contact Us</h2>
+            <div className='flex flex-col items-start gap-2 font-medium'>
+              <Link
+                className='hover:text-primary-1 cursor-pointer duration-300 ease-in'
+                href='/'>
+                info@cafeterias.com
+              </Link>
+              <span>+256 313 88 00 00</span>
+              <span>+256 200 99 00 00</span>
+            </div>
           </div>
-        </div>
+        </Reveal>
         <div className='space-y-3'>
           <h2 className='uppercase'>Our Menu</h2>
           <ul className='flex flex-col items-start gap-2 font-medium'>
@@ -74,21 +79,25 @@ const Footer = () => {
               const { name } = item;
               return (
                 <Link href='/' key={index}>
-                  <li className='hover:text-primary-1 cursor-pointer duration-300 ease-in'>
-                    {name}
-                  </li>
+                  <Reveal>
+                    <li className='hover:text-primary-1 cursor-pointer duration-300 ease-in'>
+                      {name}
+                    </li>
+                  </Reveal>
                 </Link>
               );
             })}
           </ul>
         </div>
       </div>
-      <p className='font-bold text-center w-full lg:w-3/4 xl:w-2/4 leading-8 tracking-wide'>
-        We&apos;re commited to great food, great coffee, great service, an
-        experience that will make your time with us fabulous. All visuals are
-        serving suggestions only. Prices are quoted in US dollars and inclusive
-        of VAT.{' '}
-      </p>
+      <Reveal>
+        <p className='font-bold text-center w-full lg:w-3/4 xl:w-2/4 leading-8 tracking-wide'>
+          We&apos;re commited to great food, great coffee, great service, an
+          experience that will make your time with us fabulous. All visuals are
+          serving suggestions only. Prices are quoted in US dollars and
+          inclusive of VAT.{' '}
+        </p>
+      </Reveal>
       <ul className='w-full flex items-center justify-center gap-2 flex-wrap text-md font-bold'>
         <Link href='/'>
           <li className='hover:text-primary-1 cursor-pointer duration-300 ease-in'>
@@ -99,9 +108,11 @@ const Footer = () => {
           const { name } = item;
           return (
             <Link href='/' key={index}>
-              <li className='hover:text-primary-1 cursor-pointer duration-300 ease-in'>
-                | {name}
-              </li>
+              <Reveal>
+                <li className='hover:text-primary-1 cursor-pointer duration-300 ease-in'>
+                  | {name}
+                </li>
+              </Reveal>
             </Link>
           );
         })}

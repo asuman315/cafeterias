@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { ImCross } from 'react-icons/im';
 import { useRouter } from 'next/router';
+import Zoom from 'react-reveal/Zoom';
 
 //This component is used to display the 'customer favorites' section on the home page
 
 const Favorites = ({ customerFavoritesData }: any) => {
-
   const [lastItem, setLastItem] = useState(8);
   const [showLess, setShowLess] = useState(false);
   const [zoomedImage, setZoomedImage] = useState('');
@@ -41,7 +41,7 @@ const Favorites = ({ customerFavoritesData }: any) => {
   const zoomImage = (imageUrl: string) => {
     setZoomedImage(imageUrl);
     setShowZoomedImage(true);
-  }
+  };
 
   return (
     <section className='flex flex-col items-center px-4 py-8 max-w-6xl mx-auto'>
@@ -58,22 +58,26 @@ const Favorites = ({ customerFavoritesData }: any) => {
             <div
               key={id}
               className='flex flex-col items-center bg-white shadow-xl relative rounded-md lg:cursor-pointer'>
-              {/* eslint-disable-next-line */}
-              <img
-                src={imageUrl}
-                alt={`image of ${name}`}
-                className='rounded-t-md cursor-zoom-in'
-                onClick={() => zoomImage(imageUrl)}
-              />
-              <div className='p-3 right-6 flex flex-col w-full h-full'>
-                <h3 className='font-semibold text-center capitalize text-sm md:text-base lg:text-lg'>
-                  {name}
-                </h3>
-                <p className='font-bold text-center'>$ {price}</p>
-                <button className='mt-4 py-3 text-base lg:text-lg capitalize' onClick={() => router.push(`/product/${itemId}`)}>
-                  order now
-                </button>
-              </div>
+              <Zoom top>
+                {/* eslint-disable-next-line */}
+                <img
+                  src={imageUrl}
+                  alt={`image of ${name}`}
+                  className='rounded-t-md cursor-zoom-in'
+                  onClick={() => zoomImage(imageUrl)}
+                />
+                <div className='p-3 right-6 flex flex-col w-full h-full'>
+                  <h3 className='font-semibold text-center capitalize text-sm md:text-base lg:text-lg'>
+                    {name}
+                  </h3>
+                  <p className='font-bold text-center'>$ {price}</p>
+                  <button
+                    className='mt-4 py-3 text-base lg:text-lg capitalize'
+                    onClick={() => router.push(`/product/${itemId}`)}>
+                    order now
+                  </button>
+                </div>
+              </Zoom>
             </div>
           );
         })}

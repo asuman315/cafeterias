@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { MdKeyboardArrowUp } from 'react-icons/md';
 import { useAppDispatch } from '../../hooks';
 import { cartActions } from '../../store/cartSlice';
+import Zoom from 'react-reveal/Zoom';
 
 // Accompaniment component
 const Accompaniment = ({ accompaniment }: any) => {
@@ -25,7 +26,9 @@ const Accompaniment = ({ accompaniment }: any) => {
   return (
     <div>
       {isAccompanimentPresent && (
-        <AccompanimentContainer accompanimentList={accompanimentList} />
+        <Zoom>
+          <AccompanimentContainer accompanimentList={accompanimentList} />
+        </Zoom>
       )}
     </div>
   );

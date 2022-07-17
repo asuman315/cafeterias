@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { ImCheckboxChecked, ImCheckboxUnchecked } from 'react-icons/im';
 import { useAppDispatch } from '../../hooks';
 import { cartActions } from '../../store/cartSlice';
+import Zoom from 'react-reveal/Zoom';
 
 // AdditionalItems component
 const AdditionalItems = ({ additionalItems }: any) => {
@@ -17,7 +18,10 @@ const AdditionalItems = ({ additionalItems }: any) => {
   
   return (
    <div>
-     {isAdditionalItems && <AdditionalItemsContainer additionalItems={additionalItems} />}
+     {isAdditionalItems && 
+     <Zoom bottom>
+       <AdditionalItemsContainer additionalItems={additionalItems} />
+     </Zoom>}
    </div>
   );
 };

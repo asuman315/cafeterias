@@ -1,10 +1,12 @@
 import { useRouter } from 'next/router';
+import Roll from 'react-reveal/Roll';
+import Zoom from 'react-reveal/Zoom';
 
 //This component displays the menu screee
 
 const Menu = ({ categoryData }: any) => {
-   const router = useRouter();
-   
+  const router = useRouter();
+
   return (
     <main className='max-w-6xl mx-auto'>
       <h1 className='text-center py-3 mt-10'>
@@ -26,19 +28,23 @@ const Menu = ({ categoryData }: any) => {
               key={productId}
               className='lg:cursor-pointer my-4'
               onClick={() => router.push(`/subcategory/${productId}`)}>
-              <h2 className='pb-4 text-3xl'>{name}</h2>
+              <Roll left>
+                <h2 className='pb-4 text-3xl'>{name}</h2>
+              </Roll>
+              <Zoom>
               {/* eslint-disable-next-line */}
               <img
                 src={imageUrl}
                 alt={`image of ${name}`}
                 className='rounded-md shadow-xl'
               />
+            </Zoom>
             </div>
           );
         })}
       </div>
     </main>
   );
-}
+};
 
-export default Menu
+export default Menu;

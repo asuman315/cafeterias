@@ -1,14 +1,17 @@
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import CurrentPage from './CurrentPage';
+import Zoom from 'react-reveal/Zoom';
+import Slide from 'react-reveal/Slide';
 
 const ProductsList = ({ productsData }: any) => {
   const subcategoryName = productsData.attributes.name;
   const mealsData = productsData.attributes.meals.data;
   const subcategoryImage = productsData.attributes.image.data[0].attributes.url;
-  const categoryName = productsData.attributes.mealcategories.data[0].attributes.Name;
+  const categoryName =
+    productsData.attributes.mealcategories.data[0].attributes.Name;
   const router = useRouter();
-  
+
   return (
     <div className='flex flex-col items-center justify-center'>
       <div className='relative flex w-full h-[35vh] md:h-[40vh] xl:h-[40vh] mb-6'>
@@ -43,27 +46,33 @@ const ProductsList = ({ productsData }: any) => {
               <div
                 key={index}
                 className='bg-white shadow-xl rounded-md overflow-hidden flex flex-col justify-between'>
-                <div className='relative w-full h-[40vh]'>
-                  <Image
-                    src={mealImage}
-                    alt={mealName}
-                    layout='fill'
-                    objectFit='cover'
-                  />
-                </div>
-                <div className='flex flex-col h-full justify-between p-5'>
-                  <div className=''>
-                    <h3 className='text-xl uppercase'>{mealName}</h3>
-                    <p className='font-semibold text-primary-1 text-2xl pt-3'>
-                      ${mealPrice}
-                    </p>
+                <Zoom>
+                  <div className='relative w-full h-[40vh]'>
+                    <Image
+                      src={mealImage}
+                      alt={mealName}
+                      layout='fill'
+                      objectFit='cover'
+                    />
                   </div>
+                </Zoom>
+                <div className='flex flex-col h-full justify-between p-5'>
+                  <Slide left>
+                    <div className=''>
+                      <h3 className='text-xl uppercase'>{mealName}</h3>
+                      <p className='font-semibold text-primary-1 text-2xl pt-3'>
+                        ${mealPrice}
+                      </p>
+                    </div>
+                  </Slide>
                   <div className='mt-[-70px]'>
-                    <button
-                      className='uppercase w-full py-2 rounded-md'
-                      onClick={() => router.push(`/product/${productId}`)}>
-                      order now
-                    </button>
+                    <Slide right>
+                      <button
+                        className='uppercase w-full py-2 rounded-md'
+                        onClick={() => router.push(`/product/${productId}`)}>
+                        order now
+                      </button>
+                    </Slide>
                   </div>
                 </div>
               </div>
