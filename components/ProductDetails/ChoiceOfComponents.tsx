@@ -3,6 +3,7 @@ import { MdKeyboardArrowUp } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 import { cartActions } from '../../store/cartSlice';
 import Slide from 'react-reveal/Slide';
+import Zoom from 'react-reveal/Zoom';
 
 // ChoicesOfComponents component
 const ChoicesOfComponents = ({ choiceOfComponents }: any) => {
@@ -84,7 +85,6 @@ const SingleChoiceOfComponent = ({ component, optionsList }: any) => {
           choice of {component}
         </h3>
       </Slide>
-      <Slide right>
       <div className='border-2 rounded-md'>
         <div
           className='flex justify-between items-center cursor-pointer px-2'
@@ -104,17 +104,18 @@ const SingleChoiceOfComponent = ({ component, optionsList }: any) => {
         <ul className={`${isChoiceOpened ? 'h-auto' : 'h-0'} overflow-hidden`}>
           {optionsList.map((option: any, index: any) => {
             return (
-              <li
-                key={index}
-                className='capitalize px-2 font-medium text-md cursor-pointer hover:bg-primary-1'
-                onClick={() => handleSelectedChoice(option, component)}>
-                {option}
-              </li>
+              <Zoom bottom>
+                <li
+                  key={index}
+                  className='capitalize px-2 font-medium text-md cursor-pointer hover:bg-primary-1'
+                  onClick={() => handleSelectedChoice(option, component)}>
+                  {option}
+                </li>
+              </Zoom>
             );
           })}
         </ul>
       </div>
-      </Slide>
     </div>
   );
 };
