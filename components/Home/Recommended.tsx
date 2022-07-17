@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 import Zoom from 'react-reveal/Zoom';
+import Slide from 'react-reveal/Slide';
 
 const Recomended = () => {
   function slideLeft() {
@@ -23,16 +24,18 @@ const Recomended = () => {
           className='relative overflow-x-scroll scrollbar-hide whitespace-nowrap scroll-smooth h-full w-full space-x-3'>
           {recommendedData.map((item) => (
             <Link href={item.path} key={item.name}>
-              <Zoom bottom>
-                <div className='bg-white w-[200px] md:w-[300px] inline-block text-center cursor-pointer rounded relative group overflow-hidden shadow-xl'>
-                  <div>
+              <div className='bg-white w-[200px] md:w-[300px] inline-block text-center cursor-pointer rounded relative group overflow-hidden shadow-xl'>
+                <div>
+                 <Zoom bottom>
                     <Image src={item.image} alt={item.name} objectFit='cover' />
-                  </div>
-                  <div className='p-5'>
-                    <p className='font-bold tracking-wide'>{item.name}</p>
-                  </div>
+                 </Zoom>        
                 </div>
-              </Zoom>
+                <div className='p-5'>
+                  <Slide left>
+                  <p className='font-bold tracking-wide'>{item.name}</p>
+                  </Slide>
+                </div>
+              </div>
             </Link>
           ))}
         </div>
