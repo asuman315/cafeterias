@@ -123,7 +123,7 @@ const ProductDetails = ({ mealData }: any) => {
       <div className='w-full left-0 fixed top-0 z-40'>
         {alert.show && <Alert alert={alert} setAlert={setAlert} />}
       </div>
-      <Zoom left>
+      <Zoom>
         {/* eslint-disable-next-line */}
         <img
           src={productImage}
@@ -132,7 +132,7 @@ const ProductDetails = ({ mealData }: any) => {
         />
       </Zoom>
       <div className='mt-8 md:mt-0 md:pt-0 md:px-5'>
-        <Slide right>
+        <Slide>
           <CurrentPage
             categoryName={categoryName}
             subcategoryName={subcategoryName}
