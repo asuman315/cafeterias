@@ -15,6 +15,7 @@ const ChoicesOfComponents = ({ choiceOfComponents }: any) => {
     } else {
       setIsChoiceOfComponents(true);
     }
+    //eslint-disable-next-line
   });
 
   return (

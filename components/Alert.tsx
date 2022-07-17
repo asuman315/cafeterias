@@ -9,6 +9,7 @@ const Alert = ({ alert, setAlert }: any) => {
       setAlert({ show: false });
     }, 3500);
     return () => clearTimeout(alertTimeOut);
+    //eslint-disable-next-line
   }, [msg]);
 
   return (
