@@ -1,7 +1,10 @@
 import Link from 'next/link';
 import Reveal from 'react-reveal/Reveal';
+import {  useRouter } from 'next/router';
 
 const Footer = () => {
+ const router = useRouter();
+
   const branches = [
     { name: 'Kira Road' },
     { name: 'Kampala Boulevard' },
@@ -37,24 +40,20 @@ const Footer = () => {
             {branches.map((branch, index) => {
               const { name } = branch;
               return (
-                <Link href='/' key={index}>
-                  <Reveal>
-                    <li className='hover:text-primary-1 cursor-pointer duration-300 ease-in'>
-                      {name}
-                    </li>
-                  </Reveal>
-                </Link>
+                <Reveal key={index} onClick={() => router.push('/')}>
+                  <li className='hover:text-primary-1 cursor-pointer duration-300 ease-in'>
+                    {name}
+                  </li>
+                </Reveal>
               );
             })}
           </ul>
           <div className='space-y-2'>
             <h3 className='uppercase md:text-2xl'>Entebbe</h3>
-            <ul className='flex flex-col items-start gap-1'>
-              <Link href='/'>
+            <ul className='flex flex-col items-start gap-1'>    
                 <li className='hover:text-primary-1 cursor-pointer duration-300 ease-in'>
                   Victoria Mall
                 </li>
-              </Link>
             </ul>
           </div>
         </div>
@@ -62,11 +61,11 @@ const Footer = () => {
           <div className='space-y-3'>
             <h2 className='uppercase'>Contact Us</h2>
             <div className='flex flex-col items-start gap-2 font-medium'>
-              <Link
+              <div
                 className='hover:text-primary-1 cursor-pointer duration-300 ease-in'
-                href='/'>
+                onClick={() => router.push('/')}>
                 info@cafeterias.com
-              </Link>
+              </div>
               <span>+256 313 88 00 00</span>
               <span>+256 200 99 00 00</span>
             </div>
@@ -78,13 +77,11 @@ const Footer = () => {
             {menu.map((item, index) => {
               const { name } = item;
               return (
-                <Link href='/' key={index}>
-                  <Reveal>
-                    <li className='hover:text-primary-1 cursor-pointer duration-300 ease-in'>
-                      {name}
-                    </li>
-                  </Reveal>
-                </Link>
+                <Reveal key={index} onClick={() => router.push('/')}>
+                  <li className='hover:text-primary-1 cursor-pointer duration-300 ease-in'>
+                    {name}
+                  </li>
+                </Reveal>
               );
             })}
           </ul>
@@ -98,22 +95,18 @@ const Footer = () => {
           inclusive of VAT.{' '}
         </p>
       </Reveal>
-      <ul className='w-full flex items-center justify-center gap-2 flex-wrap text-md font-bold'>
-        <Link href='/'>
+      <ul className='w-full flex items-center justify-center gap-2 flex-wrap text-md font-bold'>    
           <li className='hover:text-primary-1 cursor-pointer duration-300 ease-in'>
             Privacy Policy
           </li>
-        </Link>
         {footerInfo.map((item, index) => {
           const { name } = item;
           return (
-            <Link href='/' key={index}>
-              <Reveal>
-                <li className='hover:text-primary-1 cursor-pointer duration-300 ease-in'>
-                  | {name}
-                </li>
-              </Reveal>
-            </Link>
+            <Reveal key={index} onClick={() => router.push('/')}>
+              <li className='hover:text-primary-1 cursor-pointer duration-300 ease-in'>
+                | {name}
+              </li>
+            </Reveal>
           );
         })}
       </ul>
