@@ -2,6 +2,8 @@ import { GetStaticProps, GetStaticPaths /*GetServerSideProps*/ } from 'next';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import ProductDetails from '../../../components/ProductDetails';
 
+//This file is used to query for data of a single product from the database
+
 export default function ProductDetailsPage({ mealData }: any){
   return (
     <main>
@@ -27,6 +29,7 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
       query {
         meal(id: ${productId}) {
             data {
+              id
         attributes {
           name
           components

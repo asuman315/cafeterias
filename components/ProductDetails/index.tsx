@@ -3,6 +3,8 @@ import ProductInfo from './ProductInfo';
 import ChoicesOfComponents from './ChoiceOfComponents';
 import Accompaniment from './Accompaniment';
 import AdditionalItems from './AdditionalItems';
+import { useDispatch } from 'react-redux';
+import { cartActions } from '../../store/cartSlice';
 //import { useRouter } from 'next/router';
 
 import { selectedAdditionalItems } from '../../store/cartSlice';
@@ -27,18 +29,20 @@ const ProductDetails = ({ mealData }: any) => {
     name: string;
     price: number;
   };
-
-  const productName: string = mealData.attributes.name;
-  const categoryName: string =
-    mealData.attributes.mealsubcategories.data[0].attributes.mealcategories
+  
+  const productId = mealData.id;
+  const productName = mealData.attributes.name;
+  const categoryName =
+  mealData.attributes.mealsubcategories.data[0].attributes.mealcategories
       .data[0].attributes.Name;
-  const subcategoryName: string =
+  const subcategoryName =
     mealData.attributes.mealsubcategories.data[0].attributes.name;
-  const productImage: string = mealData.attributes.image.data.attributes.url;
+  const productImage = mealData.attributes.image.data.attributes.url;
   const choiceOfComponents = mealData.attributes.choiceOfComponents;
-  const accompaniment: string = mealData.attributes.accompaniment;
+  const accompaniment = mealData.attributes.accompaniment;
+  // return an empty array if accompaniment wasn't provided
   const accompanimentData = accompaniment ? accompaniment : [];
-  const additionalItems: AdditionalItems = mealData.attributes.additionalItems;
+  const additionalItems = mealData.attributes.additionalItems;
   const price = mealData.attributes.price ? mealData.attributes.price : 0;
 
   //const router = useRouter();
@@ -54,26 +58,28 @@ const ProductDetails = ({ mealData }: any) => {
   const getSelectedChoiceOfComponents = useSelector(selectedChoiceOfComponents);
 
   type Cart = {
+    productId: string;
     choiceOfComponents: ChoiceOfComponents[];
-    accompaniment?: string;
+    accompaniment: string;
     additionalItems: AdditionalItems[];
     productImage: string;
     name: string;
     price: number;
+    quantity: number
   };
 
   const cart: Cart = {
+    productId,
     name: productName,
     productImage,
     choiceOfComponents: getSelectedChoiceOfComponents,
     accompaniment: getSelectedAccompaniment || '',
     additionalItems: getSelectedAdditionalItems,
     price,
+    quantity: 1
   };
 
-  const numberOfChoices: number = choiceOfComponents.length;
-  const selectedNumberOfChoices: number = getSelectedChoiceOfComponents.length;
-
+  const dispatch = useDispatch();
   // add the selected items to the cart
   const addToCart = () => {
     // set the userCart to the 'userCart' in redux store if it exists else set userCart to an empty array
@@ -85,6 +91,11 @@ const ProductDetails = ({ mealData }: any) => {
       return cart.name === productName;
     })!;
 
+     const numberOfChoices: number = choiceOfComponents.length;
+     const selectedNumberOfChoices: number =
+       getSelectedChoiceOfComponents.length;
+       console.log('numberOfChoices', numberOfChoices, 'selectedNumberOfChoices', selectedNumberOfChoices, 'selectedChoiceOfComponents', getSelectedChoiceOfComponents);
+       
     if (numberOfChoices !== selectedNumberOfChoices) {
       setAlert({
         show: true,
@@ -107,6 +118,7 @@ const ProductDetails = ({ mealData }: any) => {
     } else {
       // if it does not, add the selected items to the userCart
       userCart.push(cart);
+
       setAlert({
         status: 'success',
         show: true,
@@ -116,6 +128,15 @@ const ProductDetails = ({ mealData }: any) => {
 
     // add the userCart to localStorage
     localStorage.setItem('userCart', JSON.stringify(userCart));
+
+    // set the choiceOfComponents to an empty array in the redux store to reset the selected choices
+   type SelectedOption = {
+  component: string;
+  option: string;
+}
+
+    const emptyArray: SelectedOption[] = [];
+    dispatch(cartActions.setChoiceOfComponents(emptyArray));
   };
 
   return (

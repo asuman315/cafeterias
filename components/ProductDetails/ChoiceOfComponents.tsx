@@ -72,8 +72,10 @@ const SingleChoiceOfComponent = ({ component, optionsList }: any) => {
     dispatch(cartActions.setChoiceOfComponents(selectedChoice));
   };
 
-  //const choiceOfComponents = useSelector(selectedChoiceOfComponents);
+  // const choiceOfComponents = useSelector(selectedChoiceOfComponents);
 
+  // console.log('choice Of Components', choiceOfComponents);
+  
   const handleClick = () => {
     setIsChoiceOpened(!isChoiceOpened);
   };
