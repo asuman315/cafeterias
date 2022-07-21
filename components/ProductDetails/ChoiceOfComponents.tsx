@@ -101,7 +101,7 @@ const SingleChoiceOfComponent = ({ component, optionsList }: any) => {
           className='flex justify-between items-center cursor-pointer px-2'
           onClick={handleClick}>
           <p
-            className={`font-medium w-full capitalize tracking-wide text-sm ${
+            className={`font-medium w-full capitalize tracking-wide ${
               isChoiceSelected ? 'text-primary-1' : 'text-primary-3'
             }`}>
             {isChoiceSelected ? choice : 'select an option'}

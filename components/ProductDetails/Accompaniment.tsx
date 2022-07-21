@@ -35,19 +35,19 @@ const Accompaniment = ({ accompaniment }: any) => {
 };
 
 const AccompanimentContainer = ({ accompanimentList }: any) => {
-  const [openedChoice, setOpenedOptions] = useState(false);
-  const [accompanimentState, setAccompanimentState] = useState(null);
+  const [isOptionsOpened, setIsOptionsOpened] = useState(false);
+  const [selectedAccompaniment, setSelectedAccompaniment] = useState(null);
   const [isAccompanimentSelected, setIsAccompanimentSelected] = useState(false);
   const dispatch = useAppDispatch();
 
   const handleClick = () => {
-    setOpenedOptions(!openedChoice);
+    setIsOptionsOpened(!isOptionsOpened);
   };
 
   const handleSelectedAccompaniment = (option: any) => {
-    setAccompanimentState(option);
+    setSelectedAccompaniment(option);
     setIsAccompanimentSelected(true);
-    setOpenedOptions(!openedChoice);
+    setIsOptionsOpened(!isOptionsOpened);
 
     //add accompaniment to local storage
     dispatch(cartActions.setAccompaniment(option));
@@ -76,16 +76,16 @@ const AccompanimentContainer = ({ accompanimentList }: any) => {
               isAccompanimentSelected ? 'text-primary-1' : 'text-primary-3'
             }`}>
             {isAccompanimentSelected
-              ? accompanimentState
+              ? selectedAccompaniment
               : 'select an accompaniment'}
           </p>
           <MdKeyboardArrowUp
             className={`w-10 h-10 ease-in duration-300 ${
-              openedChoice ? null : 'rotate-[180deg]'
+              isOptionsOpened ? null : 'rotate-[180deg]'
             }`}
           />
         </div>
-        <ul className={`${openedChoice ? 'h-auto' : 'h-0'} overflow-hidden`}>
+        <ul className={`${isOptionsOpened ? 'h-auto' : 'h-0'} overflow-hidden`}>
           {accompanimentList.map((option: any, index: any) => {
             return (
               <li

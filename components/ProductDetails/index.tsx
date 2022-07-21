@@ -3,8 +3,6 @@ import ProductInfo from './ProductInfo';
 import ChoicesOfComponents from './ChoiceOfComponents';
 import Accompaniment from './Accompaniment';
 import AdditionalItems from './AdditionalItems';
-import { useDispatch } from 'react-redux';
-import { cartActions } from '../../store/cartSlice';
 //import { useRouter } from 'next/router';
 
 import { selectedAdditionalItems } from '../../store/cartSlice';
@@ -79,12 +77,6 @@ const ProductDetails = ({ mealData }: any) => {
     quantity: 1
   };
 
-  // useEffect(() => {
-  //   localStorage.removeItem('userCart');
-  // });
-
-  const dispatch = useDispatch();
-
   const addToCart = () => {
     // set the userCart to the 'userCart' in redux store if it exists else set userCart to an empty array
     const userCart: Cart[] = localStorage.getItem('userCart')
@@ -105,7 +97,6 @@ const ProductDetails = ({ mealData }: any) => {
      const numberOfChoices: number = choiceOfComponents.length;
      const selectedNumberOfChoices: number =
        getSelectedChoiceOfComponents.length;
-      //  console.log('numberOfChoices', numberOfChoices, 'selectedNumberOfChoices', selectedNumberOfChoices, 'selectedChoiceOfComponents', getSelectedChoiceOfComponents);
        
     if (numberOfChoices !== selectedNumberOfChoices) {
       setAlert({
