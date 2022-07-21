@@ -79,8 +79,12 @@ const ProductDetails = ({ mealData }: any) => {
     quantity: 1
   };
 
+  // useEffect(() => {
+  //   localStorage.removeItem('userCart');
+  // });
+
   const dispatch = useDispatch();
-  // add the selected items to the cart
+
   const addToCart = () => {
     // set the userCart to the 'userCart' in redux store if it exists else set userCart to an empty array
     const userCart: Cart[] = localStorage.getItem('userCart')
@@ -90,11 +94,18 @@ const ProductDetails = ({ mealData }: any) => {
     const existingCart: Cart = userCart.find((cart) => {
       return cart.name === productName;
     })!;
-
+    
+    console.log(
+      'selectedChoiceOfComponents',
+      getSelectedChoiceOfComponents,
+      'additionalItems',
+      getSelectedAdditionalItems
+    );
+  
      const numberOfChoices: number = choiceOfComponents.length;
      const selectedNumberOfChoices: number =
        getSelectedChoiceOfComponents.length;
-       console.log('numberOfChoices', numberOfChoices, 'selectedNumberOfChoices', selectedNumberOfChoices, 'selectedChoiceOfComponents', getSelectedChoiceOfComponents);
+      //  console.log('numberOfChoices', numberOfChoices, 'selectedNumberOfChoices', selectedNumberOfChoices, 'selectedChoiceOfComponents', getSelectedChoiceOfComponents);
        
     if (numberOfChoices !== selectedNumberOfChoices) {
       setAlert({
@@ -128,15 +139,6 @@ const ProductDetails = ({ mealData }: any) => {
 
     // add the userCart to localStorage
     localStorage.setItem('userCart', JSON.stringify(userCart));
-
-    // set the choiceOfComponents to an empty array in the redux store to reset the selected choices
-   type SelectedOption = {
-  component: string;
-  option: string;
-}
-
-    const emptyArray: SelectedOption[] = [];
-    dispatch(cartActions.setChoiceOfComponents(emptyArray));
   };
 
   return (

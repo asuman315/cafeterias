@@ -45,11 +45,15 @@ const cartSlice = createSlice({
         state.choiceOfComponents.push(selectedOption);
       }
     },
-
+    emptyChoiceOfComponents: (state) => {
+      state.choiceOfComponents = [];
+    },
+    emptyAdditionalItems: (state) => {
+      state.additionalItems = [];
+    },
     setAccompaniment: (state, action: PayloadAction<string>) => {
       state.accompaniment = action.payload;
     },
-
     setAdditionalItems: (state, action: PayloadAction<AdditionalItems>) => {
       const additionalItem: AdditionalItems = action.payload;
       //check if additional item is already in the additionalItems array
@@ -77,7 +81,7 @@ export const selectedChoiceOfComponents = (state: RootState) =>
 export const selectedAccompaniment = (state: RootState) =>
   state.cart.accompaniment;
 
-  export const selectedAdditionalItems = (state: RootState) =>
+export const selectedAdditionalItems = (state: RootState) =>
   state.cart.additionalItems;
 
 export default cartSlice.reducer;

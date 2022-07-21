@@ -3,12 +3,14 @@ import { ImCheckboxChecked, ImCheckboxUnchecked } from 'react-icons/im';
 import { useAppDispatch } from '../../hooks';
 import { cartActions } from '../../store/cartSlice';
 import Zoom from 'react-reveal/Zoom';
+import { useRouter } from 'next/router';
 
 // AdditionalItems component
 const AdditionalItems = ({ additionalItems }: any) => {
  const [isAdditionalItems, setIsAdditionalItems] = useState(false);
 
   useEffect(() => {
+    // check if there are any additional items so that the additional items section can be displayed
    if(additionalItems.length === 0) {
     setIsAdditionalItems(false)
    } else {
@@ -44,6 +46,12 @@ const AdditionalItemsContainer = ({ additionalItems }: any) => {
 const AdditionalItemsInfo = ({ name, price }: {name: string, price: number}) => {
   const [isCheckBoxChecked, setIsCheckBoxChecked] = useState(false);
   const dispatch = useAppDispatch();
+  const router = useRouter();
+
+  useEffect(() => {
+     // set additional items in redux store to an empty array whenever the user leaves the product details page
+     dispatch(cartActions.emptyAdditionalItems());
+  }, [router.pathname]);
 
   type SelectedAdditionalItem = {
     name: string,
