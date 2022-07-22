@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { HiPlus, HiMinus } from 'react-icons/hi';
+import { MdOutlineDelete } from 'react-icons/md';
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -26,11 +27,6 @@ const Cart = () => {
 };
 
 const WithCartItems = ({ cartItems }: any) => {
-  console.log(cartItems);
-
-  const handleIncreament = (id: number) => {};
-
-  const handleDecreament = (id: number) => {};
 
   return (
     <div>
@@ -51,7 +47,16 @@ const WithoutCartItems = () => {
 
 const CartItem = ({ item }: any) => {
   const [quantity, setQuantity] = useState(1);
-  const { name, price, productImage } = item;
+  const { name, price, productImage, productId } = item;
+
+    const handleIncrement = (productId) => {
+      setQuantity(quantity + 1);
+    };
+
+    const handleDecrement = (productId) => {
+     quantity > 1 ? setQuantity(quantity - 1) : setQuantity(1);
+    };
+
   return (
     <div className='flex flex-col py-6 border-b-[1px]'>
       <div className='flex'>
@@ -63,24 +68,30 @@ const CartItem = ({ item }: any) => {
         />
         <div className='ml-6'>
           <h3>{name}</h3>
-          <h4 className='mt-5 underline'>See Details</h4>
+          <h4 className='mt-3 underline'>See Details</h4>
+          <div className='mt-3 flex items-center justify-between text-xl uppercase text-dark-red'>
+            <p className='cursor-pointer'>Remove</p>
+            <MdOutlineDelete className='w-6 h-6 font-bold mr-2 cursor-pointer' />
+          </div>
         </div>
       </div>
       <div className='flex justify-between mt-4'>
         <div className='flex items-center'>
           <div
             className='flex items-center justify-center cursor-pointer'
-            onClick={() => setQuantity(quantity + 1)}>
+            onClick={() => handleIncrement(productId)}>
             <HiPlus className='w-6 h-6 mr-3' />
           </div>
           <p className='bg-primary-4 px-4 py-2 font-bold text'>{quantity}</p>
           <div
             className=' w-7 h-7 flex items-center justify-center cursor-pointer'
-            onClick={() => setQuantity(quantity - 1)}>
+            onClick={() => handleDecrement(productId)}>
             <HiMinus className='w-6 h-6 ml-3' />
           </div>
         </div>
-        <h3 className='self-end font-bold text-2xl mb-[-10px] md:mb-[-4px]'>${price}</h3>
+        <h3 className='self-end font-bold text-2xl mb-[-10px] md:mb-[-4px]'>
+          ${price}
+        </h3>
       </div>
     </div>
   );
