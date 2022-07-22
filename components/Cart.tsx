@@ -1,3 +1,4 @@
+import { formatPrice } from './Functions';
 import { useEffect, useState } from 'react';
 import { HiPlus, HiMinus } from 'react-icons/hi';
 import { MdOutlineDelete } from 'react-icons/md';
@@ -33,7 +34,7 @@ const WithCartItems = ({ cartItems }: any) => {
       {cartItems.map((item: any, index: any) => {
         return (
           <div key={index}>
-            <CartItem item={item} />
+            <CartItem item={item} cartItems={cartItems} />
           </div>
         );
       })}
@@ -45,17 +46,41 @@ const WithoutCartItems = () => {
   return <div></div>;
 };
 
-const CartItem = ({ item }: any) => {
-  const [quantity, setQuantity] = useState(1);
-  const { name, price, productImage, productId } = item;
+const CartItem = ({ item, cartItems }: any) => {
+  type Item = {
+    name: string;
+    price: number;
+    quantity: number;
+    productImage: string;
+    productId: string;
+  };
+  const { name, price, productImage, productId, quantity }: Item = item;
+  const [itemQuantity, setItemQuantity] = useState(quantity);
+  const itemId = productId;
+  let totalPrice = price * itemQuantity;
+  totalPrice = formatPrice(totalPrice);
+ 
+   const handleIncrement = (itemId: string) => {
+     setItemQuantity(itemQuantity + 1);
+     cartItems.map((item: any) => {
+        if (item.productId === itemId) {
+          item.quantity = itemQuantity +1;
+        }
+      });
+      // up date the local storage with the updated cart
+      localStorage.setItem('userCart', JSON.stringify(cartItems));
+   };
 
-    const handleIncrement = (productId) => {
-      setQuantity(quantity + 1);
-    };
-
-    const handleDecrement = (productId) => {
-     quantity > 1 ? setQuantity(quantity - 1) : setQuantity(1);
-    };
+   const handleDecrement = (itemId: string) => {
+     itemQuantity > 1 ? setItemQuantity(itemQuantity - 1) : setItemQuantity(1);
+     cartItems.map((item: any) => {
+       if (item.productId === itemId) {
+         item.quantity = itemQuantity - 1;
+       }
+     });
+     // up date the local storage with the updated cart
+     localStorage.setItem('userCart', JSON.stringify(cartItems));
+   };
 
   return (
     <div className='flex flex-col py-6 border-b-[1px]'>
@@ -79,18 +104,20 @@ const CartItem = ({ item }: any) => {
         <div className='flex items-center'>
           <div
             className='flex items-center justify-center cursor-pointer'
-            onClick={() => handleIncrement(productId)}>
+            onClick={() => handleIncrement(itemId)}>
             <HiPlus className='w-6 h-6 mr-3' />
           </div>
-          <p className='bg-primary-4 px-4 py-2 font-bold text'>{quantity}</p>
+          <p className='bg-primary-4 px-4 py-2 font-bold text'>
+            {itemQuantity}
+          </p>
           <div
             className=' w-7 h-7 flex items-center justify-center cursor-pointer'
-            onClick={() => handleDecrement(productId)}>
+            onClick={() => handleDecrement(itemId)}>
             <HiMinus className='w-6 h-6 ml-3' />
           </div>
         </div>
         <h3 className='self-end font-bold text-2xl mb-[-10px] md:mb-[-4px]'>
-          ${price}
+          ${totalPrice}
         </h3>
       </div>
     </div>
