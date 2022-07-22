@@ -40,7 +40,7 @@ const MobileNavigation = () => {
               ? 'fixed bg-primary-10/60 z-10 top-0 right-0 w-full h-full flex flex-col items-end duration-300 ease-in'
               : 'fixed bg-primary-10/60 z-10 top-0 -right-[110%] w-full h-full flex flex-col items-end duration-300 ease-in'
           }>
-          <div className='bg-primary-3 w-[60%] h-full flex flex-col items-end justify-between py-10'>
+          <div className='bg-primary-3 w-[70%] h-full flex flex-col items-end justify-between py-10'>
             <div
               onClick={handleNav}
               className='w-10 h-10 bg-primary-3 text-xl text-primary-1 rounded-full flex items-center justify-center group cursor-pointer mr-10'>
