@@ -41,13 +41,15 @@ const ChoiceofComponentsContainer = ({ choiceOfComponents }: any) => {
       {choiceOfComponents.map((item: any, index: any) => {
         const { component, options } = item;
         //turn options into a list
-        const optionsList = options.split(',');
+        const optionsList = options ? options.split(',') : [];
         return (
-          <SingleChoiceOfComponent
-            component={component}
-            optionsList={optionsList}
-            key={index}
-          />
+          <div>
+          { options ? (<SingleChoiceOfComponent
+              component={component}
+              optionsList={optionsList}
+              key={index}
+            />) : null }
+          </div>
         );
       })}
     </section>

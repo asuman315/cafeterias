@@ -6,30 +6,19 @@ import Zoom from 'react-reveal/Zoom';
 
 // Accompaniment component
 const Accompaniment = ({ accompaniment }: any) => {
-  const [isAccompanimentPresent, setIsAccompanimentPresent] = useState(false);
+  console.log('accompaniment: ', accompaniment);
+  
 
-  useEffect(() => {
-    //show/hide accompaniment container
-    if (accompaniment.length > 0) {
-      setIsAccompanimentPresent(true);
-    } else {
-      setIsAccompanimentPresent(false);
-    }
-    //eslint-disable-next-line
-  }, []);
-
-  //turn accompaniment into a list otherwise set it to an empty array
-  const accompanimentList = isAccompanimentPresent
-    ? accompaniment.split(',')
-    : [];
+  //If the meal/drink comes with an accompaniment, turn accompaniment into a list otherwise set it to an empty array
+  const accompanimentList = accompaniment.length > 0 ? accompaniment.split(',') : [];
 
   return (
     <div>
-      {isAccompanimentPresent && (
+      {accompaniment.length > 0 ? (
         <Zoom>
           <AccompanimentContainer accompanimentList={accompanimentList} />
         </Zoom>
-      )}
+      ) : null}
     </div>
   );
 };

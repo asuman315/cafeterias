@@ -7,23 +7,15 @@ import { useRouter } from 'next/router';
 
 // AdditionalItems component
 const AdditionalItems = ({ additionalItems }: any) => {
- const [isAdditionalItems, setIsAdditionalItems] = useState(false);
-
-  useEffect(() => {
-    // check if there are any additional items so that the additional items section can be displayed
-   if(additionalItems.length === 0) {
-    setIsAdditionalItems(false)
-   } else {
-    setIsAdditionalItems(true)
-   }
-  }, [additionalItems.length]);
+  console.log('Additional Items');
+  
   
   return (
    <div>
-     {isAdditionalItems && 
+     {additionalItems ? 
      <Zoom bottom>
        <AdditionalItemsContainer additionalItems={additionalItems} />
-     </Zoom>}
+     </Zoom> : null}
    </div>
   );
 };
