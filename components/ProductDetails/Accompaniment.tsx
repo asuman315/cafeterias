@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { MdKeyboardArrowUp } from 'react-icons/md';
 import { useAppDispatch } from '../../hooks';
 import { cartActions } from '../../store/cartSlice';
