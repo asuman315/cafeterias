@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import Reveal from 'react-reveal/Reveal';
 import {  useRouter } from 'next/router';
 
