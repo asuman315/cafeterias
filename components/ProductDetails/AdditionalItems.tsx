@@ -7,12 +7,10 @@ import { useRouter } from 'next/router';
 
 // AdditionalItems component
 const AdditionalItems = ({ additionalItems }: any) => {
-  console.log('Additional Items');
-  
   
   return (
    <div>
-     {additionalItems ? 
+     {additionalItems.length > 0 ? 
      <Zoom bottom>
        <AdditionalItemsContainer additionalItems={additionalItems} />
      </Zoom> : null}
@@ -21,18 +19,17 @@ const AdditionalItems = ({ additionalItems }: any) => {
 };
 
 const AdditionalItemsContainer = ({ additionalItems }: any) => {
-
  return (
    <section className='mt-8'>
-      <h3 className='uppercase md:text-xl mb-1 tracking-wider'>
-        additional items
-      </h3>
-      {additionalItems.map((item: any, index: any) => {
-        const { name, price } = item;
-        return <AdditionalItemsInfo name={name} price={price} key={index} />;
-      })}
-    </section>
- )
+     <h3 className='uppercase md:text-xl mb-1 tracking-wider'>
+       additional items
+     </h3> 
+     {additionalItems.map((item: any, index: any) => {
+       const { name, price } = item;
+       return <AdditionalItemsInfo name={name} price={price} key={index} />;
+     })}
+   </section>
+ );
 }
 
 const AdditionalItemsInfo = ({ name, price }: {name: string, price: number}) => {
@@ -82,9 +79,7 @@ const AdditionalItemsInfo = ({ name, price }: {name: string, price: number}) => 
           onClick={handleClick}>
           {name}
         </p>
-        <p
-          className='font-medium cursor-pointer'
-          onClick={handleClick}>
+        <p className='font-medium cursor-pointer' onClick={handleClick}>
           +{price}
         </p>
       </div>

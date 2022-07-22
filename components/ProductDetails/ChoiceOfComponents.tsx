@@ -43,12 +43,13 @@ const ChoiceofComponentsContainer = ({ choiceOfComponents }: any) => {
         //turn options into a list
         const optionsList = options ? options.split(',') : [];
         return (
-          <div>
-          { options ? (<SingleChoiceOfComponent
-              component={component}
-              optionsList={optionsList}
-              key={index}
-            />) : null }
+          <div key={index}>
+            {options ? (
+              <SingleChoiceOfComponent
+                component={component}
+                optionsList={optionsList}
+              />
+            ) : null}
           </div>
         );
       })}
