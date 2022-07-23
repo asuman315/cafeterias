@@ -70,10 +70,7 @@ const ProductDetails = ({ mealData }: any) => {
   
      const numberOfChoices: number = choiceOfComponents.length;
      const selectedNumberOfChoices: number =
-       getSelectedChoiceOfComponents.length;
-
-       console.log('number of choices: ', numberOfChoices, 'selected number of choices: ', selectedNumberOfChoices);
-       
+       getSelectedChoiceOfComponents.length;     
        
     if (numberOfChoices !== selectedNumberOfChoices) {
       setAlert({

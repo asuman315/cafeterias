@@ -16,12 +16,16 @@ interface CounterState {
   choiceOfComponents: SelectedOption[];
   accompaniment: string;
   additionalItems: AdditionalItems[];
+  subTotal: number;
+  cartItems: any[];
 }
 
 const initialState: CounterState = {
   choiceOfComponents: [],
   accompaniment: '',
   additionalItems: [],
+  subTotal: 0,
+  cartItems: [],
 };
 
 const cartSlice = createSlice({
@@ -69,6 +73,9 @@ const cartSlice = createSlice({
         //add the item to the array
         state.additionalItems.push(additionalItem);
       }
+    },
+    updateCart: (state, action: PayloadAction<any[]>) => {
+      state.cartItems = action.payload;
     }
   },
 });
@@ -83,5 +90,7 @@ export const selectedAccompaniment = (state: RootState) =>
 
 export const selectedAdditionalItems = (state: RootState) =>
   state.cart.additionalItems;
+
+  export const cartItems = (state: RootState) => state.cart.cartItems;
 
 export default cartSlice.reducer;

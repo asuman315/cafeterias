@@ -2,6 +2,9 @@ import { formatPrice } from './Functions';
 import { useEffect, useState } from 'react';
 import { HiPlus, HiMinus } from 'react-icons/hi';
 import { MdOutlineDelete } from 'react-icons/md';
+import { cartItems } from '../store/cartSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { cartActions } from '../store/cartSlice';
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -47,16 +50,17 @@ const WithoutCartItems = () => {
 
 const CartItem = ({ item, cartItems, setCartItems }: any) => {
 
+const dispatch = useDispatch();
+  
   type Item = {
     name: string;
-    price: number;
     quantity: number;
     productImage: string;
     productId: string;
     totalPrice: number;
   };
 
-  const { name, productImage, productId, quantity, price, totalPrice }: Item = item;
+  const { name, productImage, productId, quantity, totalPrice }: Item = item;
   const [itemQuantity, setItemQuantity] = useState(quantity);
  
    const handleIncrement = () => {
@@ -69,10 +73,12 @@ const CartItem = ({ item, cartItems, setCartItems }: any) => {
       });
       // update the local storage with the updated cart
       localStorage.setItem('userCart', JSON.stringify(cartItems));
+      // update the redux store with the updated cart
+      dispatch(cartActions.updateCart(cartItems));
    };
 
    const handleDecrement = () => {
-     itemQuantity < 2 ? setItemQuantity(1) : setItemQuantity(itemQuantity - 1);
+     itemQuantity <= 1 ? setItemQuantity(1) : setItemQuantity(itemQuantity - 1);
      cartItems.map((item: any) => {
        if (item.productId === productId) {
          item.quantity = item.quantity === 1 ? 1 : item.quantity - 1;
@@ -81,6 +87,8 @@ const CartItem = ({ item, cartItems, setCartItems }: any) => {
      });
      // update the local storage with the updated cart
      localStorage.setItem('userCart', JSON.stringify(cartItems));
+      // update the redux store with the updated cart
+      //dispatch(cartActions.updateCart(cartItems));
    };
 
    const removeItemFromCart = () => {
@@ -88,8 +96,10 @@ const CartItem = ({ item, cartItems, setCartItems }: any) => {
      setCartItems(newCartItems);
      // update the local storage with the updated cart
       localStorage.setItem('userCart', JSON.stringify(newCartItems));
+      // update the redux store with the updated cart
+      dispatch(cartActions.updateCart(newCartItems));
    }
-
+   
   return (
     <div className='flex flex-col py-6 border-b-[1px]'>
       <div className='flex'>
@@ -133,28 +143,39 @@ const CartItem = ({ item, cartItems, setCartItems }: any) => {
 };
 
 const Totals = ({ cartItems }: any) => {
-  let subTotal = 0;
+  const [total, setTotal] = useState(0);
+  const [tax, setTax] = useState(0);
+  const [subTotal, setSubTotal] = useState(0); 
+
+  // import the cart items from the redux store
+  const cartItemsFromRedux = useSelector((state: any) => state.cart.cartItems);
   
-  cartItems.map((item: any) => {
-     const { totalPrice }: {totalPrice: number} = item;
-     subTotal += totalPrice; 
-  });
+  useEffect(() => {
+     let subTotal = 0;
+     cartItems.map((item: any) => {
+       const { totalPrice }: { totalPrice: number } = item;
+       subTotal += totalPrice;
+     });
+     setSubTotal(subTotal);
 
-  const tax = formatPrice(subTotal * 0.15);
+     const tax = formatPrice(subTotal * 0.15);
+      setTax(tax);
 
-  const total = formatPrice(subTotal + tax);
+     const total = formatPrice(subTotal + tax);
+      setTotal(total);
+  }, [cartItemsFromRedux]);
 
   return (
     <section className='mt-4'>
-      <div className='flex justify-between items-end border-b-[1px] mt-2'>
+      <div className='flex justify-between items-end border-b-[1px] py-3'>
         <h3 className='text-xl uppercase font-bold'>Subtotal</h3>
         <h3 className='text-2xl font-bold text-primary-1'>${subTotal}</h3>
       </div>
-      <div className='flex justify-between items-end border-b-[1px] mt-2'>
+      <div className='flex justify-between items-end border-b-[1px] py-3'>
         <h3 className='text-xl uppercase font-bold'>Tax (15%)</h3>
         <h3 className='text-2xl font-bold text-primary-1'>${tax}</h3>
       </div>
-      <div className='flex justify-between items-end border-b-[1px] mt-2'>
+      <div className='flex justify-between items-end border-b-[1px] py-3'>
         <h3 className='text-xl uppercase font-bold'>Total</h3>
         <h3 className='text-2xl font-bold text-primary-1'>${total}</h3>
       </div>
