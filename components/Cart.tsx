@@ -140,10 +140,9 @@ const Totals = ({ cartItems }: any) => {
      subTotal += totalPrice; 
   });
 
-  console.log('subTotal', subTotal);
-  
-
   const tax = formatPrice(subTotal * 0.15);
+
+  const total = formatPrice(subTotal + tax);
 
   return (
     <section className='mt-4'>
@@ -152,8 +151,12 @@ const Totals = ({ cartItems }: any) => {
         <h3 className='text-2xl font-bold text-primary-1'>${subTotal}</h3>
       </div>
       <div className='flex justify-between items-end border-b-[1px] mt-2'>
-        <h3 className='text-xl uppercase font-bold'>Subtotal</h3>
-        <h3 className='text-2xl font-bold text-primary-1'>${subTotal}</h3>
+        <h3 className='text-xl uppercase font-bold'>Tax (15%)</h3>
+        <h3 className='text-2xl font-bold text-primary-1'>${tax}</h3>
+      </div>
+      <div className='flex justify-between items-end border-b-[1px] mt-2'>
+        <h3 className='text-xl uppercase font-bold'>Total</h3>
+        <h3 className='text-2xl font-bold text-primary-1'>${total}</h3>
       </div>
     </section>
   );
