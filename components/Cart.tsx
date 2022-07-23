@@ -105,14 +105,14 @@ const CartItem = ({ item, cartItems, setCartItems }: any) => {
           <h4 className='mt-3 underline'>See Details</h4>
           <div className='mt-3 flex items-center justify-between text-xl uppercase text-dark-red' onClick={removeItemFromCart}>
             <p className='cursor-pointer'>Remove</p>
-            <MdOutlineDelete className='w-6 h-6 font-bold mr-2 cursor-pointer' />
+            <MdOutlineDelete className='w-6 h-6 font-bold mr-2 lg:cursor-pointer' />
           </div>
         </div>
       </div>
       <div className='flex justify-between mt-4'>
         <div className='flex items-center'>
           <div
-            className='flex items-center justify-center cursor-pointer'
+            className='flex items-center justify-center lg:cursor-pointer'
             onClick={handleIncrement}>
             <HiPlus className='w-6 h-6 mr-3' />
           </div>
@@ -132,5 +132,24 @@ const CartItem = ({ item, cartItems, setCartItems }: any) => {
     </div>
   );
 };
+
+const Totals = ({ cartItems }: any) => {
+  let totalPriceOfAllCartItems = 0;
+
+  const subTotal = cartItems.map((item: any) => {
+     const { price, quantity }: {price: number, quantity: number} = item;
+     return totalPriceOfAllCartItems += price * quantity;
+  });
+
+  return (
+    <section>
+      <div>
+        <h3 className='text-2xl uppercase font-bold'>Subtotal</h3>
+        <p>{subTotal}</p>
+      </div>
+    </section>
+  )
+}
+
 
 export default Cart;
