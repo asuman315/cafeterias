@@ -18,30 +18,21 @@ import Slide from 'react-reveal/Slide';
 import Roll from 'react-reveal/Roll';
 
 const ProductDetails = ({ mealData }: any) => {
-  type ChoiceOfComponents = {
-    component: string;
-    option: string;
-  };
-
-  type AdditionalItems = {
-    name: string;
-    price: number;
-  };
-  
-  const productId = mealData.id;
-  const productName = mealData.attributes.name;
+ 
+  const productId: string = mealData.id;
+  const productName: string = mealData.attributes.name;
   const categoryName =
   mealData.attributes.mealsubcategories.data[0].attributes.mealcategories
       .data[0].attributes.Name;
   const subcategoryName =
     mealData.attributes.mealsubcategories.data[0].attributes.name;
-  const productImage = mealData.attributes.image.data.attributes.url;
+  const productImage: string = mealData.attributes.image.data.attributes.url;
   const choiceOfComponents = mealData.attributes.choiceOfComponents;
   const accompaniment = mealData.attributes.accompaniment;
   // return an empty array if accompaniment wasn't provided
   const accompanimentData = accompaniment ? accompaniment : [];
   const additionalItems = mealData.attributes.additionalItems;
-  const price = mealData.attributes.price ? mealData.attributes.price : 0;
+  const price: number = mealData.attributes.price ? mealData.attributes.price : 0;
 
   //const router = useRouter();
   const [alert, setAlert] = useState({
@@ -55,18 +46,7 @@ const ProductDetails = ({ mealData }: any) => {
   const getSelectedAccompaniment = useSelector(selectedAccompaniment);
   const getSelectedChoiceOfComponents = useSelector(selectedChoiceOfComponents);
 
-  type Cart = {
-    productId: string;
-    choiceOfComponents: ChoiceOfComponents[];
-    accompaniment: string;
-    additionalItems: AdditionalItems[];
-    productImage: string;
-    name: string;
-    price: number;
-    quantity: number
-  };
-
-  const cart: Cart = {
+  const cart = {
     productId,
     name: productName,
     productImage,
@@ -74,29 +54,26 @@ const ProductDetails = ({ mealData }: any) => {
     accompaniment: getSelectedAccompaniment || '',
     additionalItems: getSelectedAdditionalItems,
     price,
-    quantity: 1
+    quantity: 1,
+    totalPrice: price,
   };
 
   const addToCart = () => {
     // set the userCart to the 'userCart' in redux store if it exists else set userCart to an empty array
-    const userCart: Cart[] = localStorage.getItem('userCart')
+    const userCart = localStorage.getItem('userCart')
       ? JSON.parse(localStorage.getItem('userCart') || '')
       : [];
     // check if the userCart already contains the selected items
-    const existingCart: Cart = userCart.find((cart) => {
+    const existingCart = userCart.find((cart: any) => {
       return cart.name === productName;
     })!;
-    
-    console.log(
-      'selectedChoiceOfComponents',
-      getSelectedChoiceOfComponents,
-      'additionalItems',
-      getSelectedAdditionalItems
-    );
   
      const numberOfChoices: number = choiceOfComponents.length;
      const selectedNumberOfChoices: number =
        getSelectedChoiceOfComponents.length;
+
+       console.log('number of choices: ', numberOfChoices, 'selected number of choices: ', selectedNumberOfChoices);
+       
        
     if (numberOfChoices !== selectedNumberOfChoices) {
       setAlert({

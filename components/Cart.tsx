@@ -14,8 +14,6 @@ const Cart = () => {
     //eslint-disable-next-line
   }, []);
 
-  console.log('typeof cartItems', typeof cartItems);
-
   return (
     <div className='px-4 py-2 mb-8'>
       {cartItems.length > 0 ? (
@@ -23,6 +21,7 @@ const Cart = () => {
       ) : (
         <WithoutCartItems />
       )}
+      <Totals cartItems={cartItems} />
     </div>
   );
 };
@@ -54,40 +53,40 @@ const CartItem = ({ item, cartItems, setCartItems }: any) => {
     quantity: number;
     productImage: string;
     productId: string;
+    totalPrice: number;
   };
 
-  const { name, price, productImage, productId, quantity }: Item = item;
+  const { name, productImage, productId, quantity, price, totalPrice }: Item = item;
   const [itemQuantity, setItemQuantity] = useState(quantity);
-
-  let totalPrice = price * itemQuantity;
-  totalPrice = formatPrice(totalPrice);
  
    const handleIncrement = () => {
      setItemQuantity(itemQuantity + 1);
      cartItems.map((item: any) => {
         if (item.productId === productId) {
-          item.quantity = itemQuantity +1;
+          item.quantity = item.quantity + 1;
+          item.totalPrice = formatPrice(item.quantity * item.price);
         }
       });
-      // up date the local storage with the updated cart
+      // update the local storage with the updated cart
       localStorage.setItem('userCart', JSON.stringify(cartItems));
    };
 
    const handleDecrement = () => {
-     itemQuantity > 1 ? setItemQuantity(itemQuantity - 1) : setItemQuantity(1);
+     itemQuantity < 2 ? setItemQuantity(1) : setItemQuantity(itemQuantity - 1);
      cartItems.map((item: any) => {
        if (item.productId === productId) {
-         item.quantity = itemQuantity - 1;
+         item.quantity = item.quantity === 1 ? 1 : item.quantity - 1;
+         item.totalPrice = formatPrice(item.quantity * item.price);
        }
      });
-     // up date the local storage with the updated cart
+     // update the local storage with the updated cart
      localStorage.setItem('userCart', JSON.stringify(cartItems));
    };
 
    const removeItemFromCart = () => {
      const newCartItems = cartItems.filter((item: any) => item.productId !== productId);
      setCartItems(newCartItems);
-     // up date the local storage with the updated cart
+     // update the local storage with the updated cart
       localStorage.setItem('userCart', JSON.stringify(newCartItems));
    }
 
@@ -100,12 +99,12 @@ const CartItem = ({ item, cartItems, setCartItems }: any) => {
           alt={`Image of ${productImage}`}
           className='w-36 sm:w-44 sm:h-auto h-32 rounded'
         />
-        <div className='ml-6'>
+        <div className='ml-6 w-full'>
           <h3>{name}</h3>
           <h4 className='mt-3 underline'>See Details</h4>
-          <div className='mt-3 flex items-center justify-between text-xl uppercase text-dark-red' onClick={removeItemFromCart}>
+          <div className='mt-3 flex items-center justify-between text-xl w-full uppercase text-dark-red' onClick={removeItemFromCart}>
             <p className='cursor-pointer'>Remove</p>
-            <MdOutlineDelete className='w-6 h-6 font-bold mr-2 lg:cursor-pointer' />
+            <MdOutlineDelete className='w-6 h-6 font-bold lg:cursor-pointer' />
           </div>
         </div>
       </div>
@@ -113,16 +112,16 @@ const CartItem = ({ item, cartItems, setCartItems }: any) => {
         <div className='flex items-center'>
           <div
             className='flex items-center justify-center lg:cursor-pointer'
-            onClick={handleIncrement}>
-            <HiPlus className='w-6 h-6 mr-3' />
+            onClick={handleDecrement}>
+            <HiMinus className='w-6 h-6 mr-3' />
           </div>
           <p className='bg-primary-4 px-4 py-2 font-bold text'>
             {itemQuantity}
           </p>
           <div
             className=' w-7 h-7 flex items-center justify-center cursor-pointer'
-            onClick={handleDecrement}>
-            <HiMinus className='w-6 h-6 ml-3' />
+            onClick={handleIncrement}>
+            <HiPlus className='w-6 h-6 ml-3' />
           </div>
         </div>
         <h3 className='self-end font-bold text-2xl mb-[-10px] md:mb-[-4px]'>
@@ -134,21 +133,30 @@ const CartItem = ({ item, cartItems, setCartItems }: any) => {
 };
 
 const Totals = ({ cartItems }: any) => {
-  let totalPriceOfAllCartItems = 0;
-
-  const subTotal = cartItems.map((item: any) => {
-     const { price, quantity }: {price: number, quantity: number} = item;
-     return totalPriceOfAllCartItems += price * quantity;
+  let subTotal = 0;
+  
+  cartItems.map((item: any) => {
+     const { totalPrice }: {totalPrice: number} = item;
+     subTotal += totalPrice; 
   });
 
+  console.log('subTotal', subTotal);
+  
+
+  const tax = formatPrice(subTotal * 0.15);
+
   return (
-    <section>
-      <div>
-        <h3 className='text-2xl uppercase font-bold'>Subtotal</h3>
-        <p>{subTotal}</p>
+    <section className='mt-4'>
+      <div className='flex justify-between items-end border-b-[1px] mt-2'>
+        <h3 className='text-xl uppercase font-bold'>Subtotal</h3>
+        <h3 className='text-2xl font-bold text-primary-1'>${subTotal}</h3>
+      </div>
+      <div className='flex justify-between items-end border-b-[1px] mt-2'>
+        <h3 className='text-xl uppercase font-bold'>Subtotal</h3>
+        <h3 className='text-2xl font-bold text-primary-1'>${subTotal}</h3>
       </div>
     </section>
-  )
+  );
 }
 
 

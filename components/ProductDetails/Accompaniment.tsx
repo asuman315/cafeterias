@@ -6,8 +6,6 @@ import Zoom from 'react-reveal/Zoom';
 
 // Accompaniment component
 const Accompaniment = ({ accompaniment }: any) => {
-  console.log('accompaniment: ', accompaniment);
-  
 
   //If the meal/drink comes with an accompaniment, turn accompaniment into a list otherwise set it to an empty array
   const accompanimentList = accompaniment.length > 0 ? accompaniment.split(',') : [];
