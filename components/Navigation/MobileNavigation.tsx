@@ -4,23 +4,12 @@ import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { MdOutlineClose, MdOutlineMenu } from 'react-icons/md';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
-const MobileNavigation = () => {
+const MobileNavigation = ({ totalQuantity }: any) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
-  const [numberOfCartItems, setNumberOfCartItems] = useState(0);
-
   const router = useRouter();
-  const { pathname } = router;
-
-  useEffect(() => {
-    //set 'cartItems' to an empty array if there is no cartItems in localStorage i.e if the user has not added any items to the cart when they first visit the site
-    const cartItems = localStorage.getItem('userCart')
-      ? JSON.parse(localStorage.getItem('userCart')!)
-      : [];
-    const getNumberOfCartItems: number = cartItems.length;
-    setNumberOfCartItems(getNumberOfCartItems);
-  }, [pathname]);
+  const pathname = router.pathname;
 
   const handleNav = () => {
     setIsNavOpen((prevNavValue) => !prevNavValue);
@@ -103,9 +92,9 @@ const MobileNavigation = () => {
             className=' hover:text-primary-1 relative'
             onClick={() => router.push('/user/cart')}>
             <AiOutlineShoppingCart />
-            {numberOfCartItems <= 0 ? null : (
+            {totalQuantity <= 0 ? null : (
               <div className='text-sm font-bold w-5 h-5 text-primary-3 bg-primary-2 rounded-full absolute -top-1 -right-3 flex items-center justify-center'>
-                {numberOfCartItems}
+                {totalQuantity}
               </div>
             )}
           </div>

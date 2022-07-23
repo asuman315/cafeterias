@@ -30,13 +30,16 @@ const Cart = () => {
 };
 
 const WithCartItems = ({ cartItems, setCartItems }: any) => {
-
   return (
     <div>
       {cartItems.map((item: any, index: any) => {
         return (
           <div key={index}>
-            <CartItem item={item} cartItems={cartItems} setCartItems={setCartItems} />
+            <CartItem
+              item={item}
+              cartItems={cartItems}
+              setCartItems={setCartItems}
+            />
           </div>
         );
       })}
@@ -49,9 +52,8 @@ const WithoutCartItems = () => {
 };
 
 const CartItem = ({ item, cartItems, setCartItems }: any) => {
+  const dispatch = useDispatch();
 
-const dispatch = useDispatch();
-  
   type Item = {
     name: string;
     quantity: number;
@@ -62,44 +64,46 @@ const dispatch = useDispatch();
 
   const { name, productImage, productId, quantity, totalPrice }: Item = item;
   const [itemQuantity, setItemQuantity] = useState(quantity);
- 
-   const handleIncrement = () => {
-     setItemQuantity(itemQuantity + 1);
-     cartItems.map((item: any) => {
-        if (item.productId === productId) {
-          item.quantity = item.quantity + 1;
-          item.totalPrice = formatPrice(item.quantity * item.price);
-        }
-      });
-      // update the local storage with the updated cart
-      localStorage.setItem('userCart', JSON.stringify(cartItems));
-      // update the redux store with the updated cart
-      dispatch(cartActions.updateCart(cartItems));
-   };
 
-   const handleDecrement = () => {
-     itemQuantity <= 1 ? setItemQuantity(1) : setItemQuantity(itemQuantity - 1);
-     cartItems.map((item: any) => {
-       if (item.productId === productId) {
-         item.quantity = item.quantity === 1 ? 1 : item.quantity - 1;
-         item.totalPrice = formatPrice(item.quantity * item.price);
-       }
-     });
-     // update the local storage with the updated cart
-     localStorage.setItem('userCart', JSON.stringify(cartItems));
-      // update the redux store with the updated cart
-      //dispatch(cartActions.updateCart(cartItems));
-   };
+  const handleIncrement = () => {
+    setItemQuantity(itemQuantity + 1);
+    cartItems.map((item: any) => {
+      if (item.productId === productId) {
+        item.quantity = item.quantity + 1;
+        item.totalPrice = formatPrice(item.quantity * item.price);
+      }
+    });
+    // update the local storage with the updated cart
+    localStorage.setItem('userCart', JSON.stringify(cartItems));
+    // update the redux store with the updated cart
+    dispatch(cartActions.updateCart(cartItems));
+  };
 
-   const removeItemFromCart = () => {
-     const newCartItems = cartItems.filter((item: any) => item.productId !== productId);
-     setCartItems(newCartItems);
-     // update the local storage with the updated cart
-      localStorage.setItem('userCart', JSON.stringify(newCartItems));
-      // update the redux store with the updated cart
-      dispatch(cartActions.updateCart(newCartItems));
-   }
-   
+  const handleDecrement = () => {
+    itemQuantity <= 1 ? setItemQuantity(1) : setItemQuantity(itemQuantity - 1);
+    cartItems.map((item: any) => {
+      if (item.productId === productId) {
+        item.quantity = item.quantity === 1 ? 1 : item.quantity - 1;
+        item.totalPrice = formatPrice(item.quantity * item.price);
+      }
+    });
+    // update the local storage with the updated cart
+    localStorage.setItem('userCart', JSON.stringify(cartItems));
+    // update the redux store with the updated cart
+    dispatch(cartActions.updateCart(cartItems));
+  };
+
+  const removeItemFromCart = () => {
+    const newCartItems = cartItems.filter(
+      (item: any) => item.productId !== productId
+    );
+    setCartItems(newCartItems);
+    // update the local storage with the updated cart
+    localStorage.setItem('userCart', JSON.stringify(newCartItems));
+    // update the redux store with the updated cart
+    dispatch(cartActions.updateCart(newCartItems));
+  };
+
   return (
     <div className='flex flex-col py-6 border-b-[1px]'>
       <div className='flex'>
@@ -112,7 +116,9 @@ const dispatch = useDispatch();
         <div className='ml-6 w-full'>
           <h3>{name}</h3>
           <h4 className='mt-3 underline'>See Details</h4>
-          <div className='mt-3 flex items-center justify-between text-xl w-full uppercase text-dark-red' onClick={removeItemFromCart}>
+          <div
+            className='mt-3 flex items-center justify-between text-xl w-full uppercase text-dark-red'
+            onClick={removeItemFromCart}>
             <p className='cursor-pointer'>Remove</p>
             <MdOutlineDelete className='w-6 h-6 font-bold lg:cursor-pointer' />
           </div>
@@ -143,27 +149,18 @@ const dispatch = useDispatch();
 };
 
 const Totals = ({ cartItems }: any) => {
-  const [total, setTotal] = useState(0);
-  const [tax, setTax] = useState(0);
-  const [subTotal, setSubTotal] = useState(0); 
-
   // import the cart items from the redux store
   const cartItemsFromRedux = useSelector((state: any) => state.cart.cartItems);
-  
-  useEffect(() => {
-     let subTotal = 0;
-     cartItems.map((item: any) => {
-       const { totalPrice }: { totalPrice: number } = item;
-       subTotal += totalPrice;
-     });
-     setSubTotal(subTotal);
 
-     const tax = formatPrice(subTotal * 0.15);
-      setTax(tax);
+  let subTotal = 0;
+  cartItems.map((item: any) => {
+    const { totalPrice }: { totalPrice: number } = item;
+    subTotal += totalPrice;
+  });
 
-     const total = formatPrice(subTotal + tax);
-      setTotal(total);
-  }, [cartItemsFromRedux]);
+  const tax = formatPrice(subTotal * 0.15);
+
+  const total = formatPrice(subTotal + tax);
 
   return (
     <section className='mt-4'>
@@ -181,7 +178,6 @@ const Totals = ({ cartItems }: any) => {
       </div>
     </section>
   );
-}
-
+};
 
 export default Cart;
