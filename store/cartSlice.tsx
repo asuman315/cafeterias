@@ -76,11 +76,8 @@ const cartSlice = createSlice({
         state.additionalItems.push(additionalItem);
       }
     },
-    updateCart: (state, action: PayloadAction<any[]>) => {
-      state.cartItems = action.payload;
-    },
      setTotalQuantity: (state, action: PayloadAction<number>) => {
-      state.totalQuantity = action.payload;
+      state.totalQuantity = action.payload;    
   },
   },
 });
@@ -95,7 +92,5 @@ export const selectedAccompaniment = (state: RootState) =>
 
 export const selectedAdditionalItems = (state: RootState) =>
   state.cart.additionalItems;
-
-  export const cartItems = (state: RootState) => state.cart.cartItems;
 
 export default cartSlice.reducer;

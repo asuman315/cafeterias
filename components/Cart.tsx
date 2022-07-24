@@ -53,15 +53,24 @@ const WithoutCartItems = () => {
 const CartItem = ({ item, cartItems, setCartItems }: any) => {
   const dispatch = useDispatch();
 
-  let totalQuantity = 0;
   useEffect(() => {
     // update the redux store with the total number of items in the cart whenever a cart item changes
+    let totalQuantity = 0;
     cartItems.map((cartItem: any) => {
       totalQuantity += cartItem.quantity;
     });
     dispatch(cartActions.setTotalQuantity(totalQuantity));
     //eslint-disable-next-line
-  }, [item]);
+  });
+
+  useEffect(() => {
+     if (cartItems.length === 0) {
+      dispatch(cartActions.setTotalQuantity(0));
+    }
+    console.log('number of items in cart',cartItems.length);
+    
+    //eslint-disable-next-line
+  }, [cartItems.length]);
 
   type Item = {
     name: string;

@@ -1,8 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ProductInfo from './ProductInfo';
 import ChoicesOfComponents from './ChoiceOfComponents';
 import Accompaniment from './Accompaniment';
 import AdditionalItems from './AdditionalItems';
+import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
+import { cartActions } from '../../store/cartSlice';
 //import { useRouter } from 'next/router';
 
 import { selectedAdditionalItems } from '../../store/cartSlice';
@@ -58,6 +61,13 @@ const ProductDetails = ({ mealData }: any) => {
     totalPrice: price,
   };
 
+    const router = useRouter();
+    const dispatch = useDispatch();
+    useEffect(() => {
+      // set choiceOfComponents in redux store to an empty array whenever the user leaves the product details page
+      dispatch(cartActions.emptyChoiceOfComponents());
+    }, [router.pathname]);
+
   const addToCart = () => {
     // set the userCart to the 'userCart' in redux store if it exists else set userCart to an empty array
     const userCart = localStorage.getItem('userCart')
@@ -70,7 +80,12 @@ const ProductDetails = ({ mealData }: any) => {
   
      const numberOfChoices: number = choiceOfComponents.length;
      const selectedNumberOfChoices: number =
-       getSelectedChoiceOfComponents.length;     
+       getSelectedChoiceOfComponents.length;  
+       
+       console.log('number of choices',numberOfChoices, 'selected number of choices',selectedNumberOfChoices);
+
+       console.log('selected choice of components',getSelectedChoiceOfComponents);
+       
        
     if (numberOfChoices !== selectedNumberOfChoices) {
       setAlert({
