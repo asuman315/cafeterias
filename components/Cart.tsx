@@ -2,7 +2,7 @@ import { formatPrice } from './Functions';
 import { useEffect, useState } from 'react';
 import { HiPlus, HiMinus } from 'react-icons/hi';
 import { MdOutlineDelete } from 'react-icons/md';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { cartActions } from '../store/cartSlice';
 
 const Cart = () => {
@@ -66,9 +66,9 @@ const CartItem = ({ item, cartItems, setCartItems }: any) => {
     cartItems.map((cartItem: any) => {
       totalQuantity += cartItem.quantity;
     });
-    // update the redux store with the total number of items in the cart whenever a cart item changes
+    // update the redux store with the total number of items in the cart whenever a cart item's state changes
     dispatch(cartActions.setTotalQuantity(totalQuantity));
-    // update itemquantity whenever a cart item is removed from the cart
+    // update itemQuantity whenever a cart item is removed from the cart
     setItemQuantity(quantity);
     //eslint-disable-next-line
   });
@@ -92,7 +92,7 @@ const CartItem = ({ item, cartItems, setCartItems }: any) => {
         item.totalPrice = formatPrice(item.quantity * item.price);
       }
     });
-    // update the local storage with the updated cart
+    // update the local storage so as to reflect the changes in the cart
     localStorage.setItem('userCart', JSON.stringify(cartItems));
   };
 
@@ -106,7 +106,7 @@ const CartItem = ({ item, cartItems, setCartItems }: any) => {
         item.totalPrice = formatPrice(item.quantity * item.price);
       }
     });
-    // update the local storage with the updated cart
+    // update the local storage so as to reflect the updated cart
     localStorage.setItem('userCart', JSON.stringify(cartItems));
   };
 
@@ -116,7 +116,7 @@ const CartItem = ({ item, cartItems, setCartItems }: any) => {
     );
     setCartItems(newCartItems);
     setItemQuantity(quantity);
-    // update the local storage with the updated cart
+    // update the local storage so as to reflect the updates done on the cart
     localStorage.setItem('userCart', JSON.stringify(newCartItems));
   };
 
@@ -165,14 +165,14 @@ const CartItem = ({ item, cartItems, setCartItems }: any) => {
 };
 
 const Totals = ({ cartItems }: any) => {
-  // import the cart items from the redux store
-  const cartItemsFromRedux = useSelector((state: any) => state.cart.cartItems);
+  
+  const totalQuantity = useSelector((state: any) => state.cart.totalQuantity);
 
   let subTotal = 0;
   cartItems.map((item: any) => {
     const { totalPrice }: { totalPrice: number } = item;
     subTotal += totalPrice;
-  });
+  }, [totalQuantity]);
 
   const tax = formatPrice(subTotal * 0.15);
 
