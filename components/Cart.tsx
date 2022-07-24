@@ -30,7 +30,7 @@ const Cart = () => {
 
 const WithCartItems = ({ cartItems, setCartItems }: any) => {
   return (
-    <div>
+    <div className='mt-20'>
       {cartItems.map((item: any, index: any) => {
         return (
           <div key={index}>

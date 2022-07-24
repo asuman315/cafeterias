@@ -24,7 +24,7 @@ const MainNavigation = () => {
   const totalQuantity = useSelector((state: any) => state.cart.totalQuantity);
 
   return (
-    <nav>
+    <nav className='fixed z-40 w-full'>
       <DesktopNavigation totalQuantity={totalQuantity} />
       <MobileNavigation totalQuantity={totalQuantity} />
     </nav>
