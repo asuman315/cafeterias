@@ -7,6 +7,7 @@ import { cartActions } from '../store/cartSlice';
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const myCartItems = localStorage.getItem('userCart')
@@ -16,6 +17,11 @@ const Cart = () => {
     //eslint-disable-next-line
   }, []);
 
+ if (cartItems.length === 0) {
+  // set totalQuantity to 0 in redux store when cart remains empty after removing the last item
+  dispatch(cartActions.setTotalQuantity(0));
+ }
+  
   return (
     <div className='px-4 py-2 mb-8'>
       {cartItems.length > 0 ? (
@@ -52,14 +58,18 @@ const WithoutCartItems = () => {
 
 const CartItem = ({ item, cartItems, setCartItems }: any) => {
   const dispatch = useDispatch();
+  const { name, productImage, productId, quantity, totalPrice }: Item = item;
+  const [itemQuantity, setItemQuantity] = useState(quantity);
 
   useEffect(() => {
-    // update the redux store with the total number of items in the cart whenever a cart item changes
     let totalQuantity = 0;
     cartItems.map((cartItem: any) => {
       totalQuantity += cartItem.quantity;
     });
+    // update the redux store with the total number of items in the cart whenever a cart item changes
     dispatch(cartActions.setTotalQuantity(totalQuantity));
+    // update itemquantity whenever a cart item is removed from the cart
+    setItemQuantity(quantity);
     //eslint-disable-next-line
   });
 
@@ -71,13 +81,13 @@ const CartItem = ({ item, cartItems, setCartItems }: any) => {
     totalPrice: number;
   };
 
-  const { name, productImage, productId, quantity, totalPrice }: Item = item;
-  const [itemQuantity, setItemQuantity] = useState(quantity);
-
   const handleIncrement = () => {
+    // increment the quantity of the cart item on the UI
     setItemQuantity(itemQuantity + 1);
+
     cartItems.map((item: any) => {
       if (item.productId === productId) {
+        //increment the quantity of the cart item in the cartItems array
         item.quantity = item.quantity + 1;
         item.totalPrice = formatPrice(item.quantity * item.price);
       }
@@ -87,7 +97,9 @@ const CartItem = ({ item, cartItems, setCartItems }: any) => {
   };
 
   const handleDecrement = () => {
+    // decrement the quantity of the cart item on the UI
     itemQuantity <= 1 ? setItemQuantity(1) : setItemQuantity(itemQuantity - 1);
+    
     cartItems.map((item: any) => {
       if (item.productId === productId) {
         item.quantity = item.quantity === 1 ? 1 : item.quantity - 1;
@@ -103,6 +115,7 @@ const CartItem = ({ item, cartItems, setCartItems }: any) => {
       (item: any) => item.productId !== productId
     );
     setCartItems(newCartItems);
+    setItemQuantity(quantity);
     // update the local storage with the updated cart
     localStorage.setItem('userCart', JSON.stringify(newCartItems));
   };
