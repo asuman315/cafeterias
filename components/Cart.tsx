@@ -17,13 +17,13 @@ const Cart = () => {
     //eslint-disable-next-line
   }, []);
 
- if (cartItems.length === 0) {
-  // set totalQuantity to 0 in redux store when cart remains empty after removing the last item
-  dispatch(cartActions.setTotalQuantity(0));
- }
-  
+  if (cartItems.length === 0) {
+    // set totalQuantity to 0 in redux store when cart remains empty after removing the last item
+    dispatch(cartActions.setTotalQuantity(0));
+  }
+
   return (
-    <div className='px-4 py-2 mb-8'>
+    <div className='px-5 py-12 mb-8 md:grid grid-cols-3 gap-4 max-w-6xl mx-auto '>
       {cartItems.length > 0 ? (
         <WithCartItems cartItems={cartItems} setCartItems={setCartItems} />
       ) : (
@@ -36,7 +36,7 @@ const Cart = () => {
 
 const WithCartItems = ({ cartItems, setCartItems }: any) => {
   return (
-    <div>
+    <div className='col-span-2 md:mt-[-24px]'>
       {cartItems.map((item: any, index: any) => {
         return (
           <div key={index}>
@@ -99,7 +99,7 @@ const CartItem = ({ item, cartItems, setCartItems }: any) => {
   const handleDecrement = () => {
     // decrement the quantity of the cart item on the UI
     itemQuantity <= 1 ? setItemQuantity(1) : setItemQuantity(itemQuantity - 1);
-    
+
     cartItems.map((item: any) => {
       if (item.productId === productId) {
         item.quantity = item.quantity === 1 ? 1 : item.quantity - 1;
@@ -121,75 +121,79 @@ const CartItem = ({ item, cartItems, setCartItems }: any) => {
   };
 
   return (
-    <div className='flex flex-col py-6 border-b-[1px]'>
-      <div className='flex'>
-        {/*eslint-disable-next-line*/}
-        <img
-          src={productImage}
-          alt={`Image of ${productImage}`}
-          className='w-36 sm:w-44 sm:h-auto h-32 rounded'
-        />
-        <div className='ml-6 w-full'>
-          <h3>{name}</h3>
-          <h4 className='mt-3 underline'>See Details</h4>
-          <div
-            className='mt-3 flex items-center justify-between text-xl w-full uppercase text-dark-red'
-            onClick={removeItemFromCart}>
-            <p className='cursor-pointer'>Remove</p>
-            <MdOutlineDelete className='w-6 h-6 font-bold lg:cursor-pointer' />
+    <div className='flex flex-col px-4'>
+      <div className='border-b-[1px] py-6'>
+        <div className='flex'>
+          {/*eslint-disable-next-line*/}
+          <img
+            src={productImage}
+            alt={`Image of ${productImage}`}
+            className='w-36 sm:w-44 sm:h-auto h-32 rounded'
+          />
+          <div className='ml-6 w-full'>
+            <h3>{name}</h3>
+            <h4 className='mt-3 underline'>See Details</h4>
+            <div
+              className='mt-3 flex items-center justify-between text-xl w-full uppercase text-dark-red'
+              onClick={removeItemFromCart}>
+              <p className='cursor-pointer'>Remove</p>
+              <MdOutlineDelete className='w-6 h-6 font-bold lg:cursor-pointer' />
+            </div>
           </div>
         </div>
-      </div>
-      <div className='flex justify-between mt-4'>
-        <div className='flex items-center'>
-          <div
-            className='flex items-center justify-center lg:cursor-pointer'
-            onClick={handleDecrement}>
-            <HiMinus className='w-6 h-6 mr-3' />
+        <div className='flex justify-between mt-4'>
+          <div className='flex items-center'>
+            <div
+              className='flex items-center justify-center lg:cursor-pointer'
+              onClick={handleDecrement}>
+              <HiMinus className='w-6 h-6 mr-3' />
+            </div>
+            <p className='bg-primary-4 rounded-md px-4 py-2 font-bold text'>
+              {itemQuantity}
+            </p>
+            <div
+              className=' w-7 h-7 flex items-center justify-center lg:cursor-pointer'
+              onClick={handleIncrement}>
+              <HiPlus className='w-6 h-6 ml-3' />
+            </div>
           </div>
-          <p className='bg-primary-4 px-4 py-2 font-bold text'>
-            {itemQuantity}
-          </p>
-          <div
-            className=' w-7 h-7 flex items-center justify-center lg:cursor-pointer'
-            onClick={handleIncrement}>
-            <HiPlus className='w-6 h-6 ml-3' />
-          </div>
+          <h3 className='self-end font-bold text-2xl mb-[-10px] md:mb-[-4px]'>
+            ${totalPrice}
+          </h3>
         </div>
-        <h3 className='self-end font-bold text-2xl mb-[-10px] md:mb-[-4px]'>
-          ${totalPrice}
-        </h3>
       </div>
     </div>
   );
 };
 
 const Totals = ({ cartItems }: any) => {
-  
   const totalQuantity = useSelector((state: any) => state.cart.totalQuantity);
 
   let subTotal = 0;
-  cartItems.map((item: any) => {
-    const { totalPrice }: { totalPrice: number } = item;
-    subTotal += totalPrice;
-  }, [totalQuantity]);
+  cartItems.map(
+    (item: any) => {
+      const { totalPrice }: { totalPrice: number } = item;
+      subTotal += totalPrice;
+    },
+    [totalQuantity]
+  );
 
   const tax = formatPrice(subTotal * 0.15);
-
   const total = formatPrice(subTotal + tax);
 
   return (
-    <section className='mt-4'>
-      <div className='flex justify-between items-end border-b-[1px] py-3'>
+    <section className='mt-8 rounded-md bg-primary-4 md:mt-0 shadow-2xl px-4 py-8 md:h-[360px]'>
+      <h3 className='pb-10'>summary</h3>
+      <div className='flex justify-between items-end border-b-[1px] pb-6'>
         <h3 className='text-xl uppercase font-bold'>Subtotal</h3>
         <h3 className='text-2xl font-bold text-primary-1'>${subTotal}</h3>
       </div>
-      <div className='flex justify-between items-end border-b-[1px] py-3'>
+      <div className='flex justify-between items-end border-b-[1px] py-6'>
         <h3 className='text-xl uppercase font-bold'>Tax (15%)</h3>
         <h3 className='text-2xl font-bold text-primary-1'>${tax}</h3>
       </div>
-      <div className='flex justify-between items-end border-b-[1px] py-3'>
-        <h3 className='text-xl uppercase font-bold'>Total</h3>
+      <div className='flex justify-between items-end border-b-[1px] py-6'>
+        <h3 className='text-xl uppercase font-bold'>order Total</h3>
         <h3 className='text-2xl font-bold text-primary-1'>${total}</h3>
       </div>
     </section>
