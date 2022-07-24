@@ -82,9 +82,9 @@ const ProductDetails = ({ mealData }: any) => {
      const selectedNumberOfChoices: number =
        getSelectedChoiceOfComponents.length;  
        
-       console.log('number of choices',numberOfChoices, 'selected number of choices',selectedNumberOfChoices);
+      //  console.log('number of choices',numberOfChoices, 'selected number of choices',selectedNumberOfChoices);
 
-       console.log('selected choice of components',getSelectedChoiceOfComponents);
+      //  console.log('selected choice of components',getSelectedChoiceOfComponents);
        
        
     if (numberOfChoices !== selectedNumberOfChoices) {
@@ -119,6 +119,8 @@ const ProductDetails = ({ mealData }: any) => {
 
     // add the userCart to localStorage
     localStorage.setItem('userCart', JSON.stringify(userCart));
+
+    router.push('/user/cart');
   };
 
   return (
@@ -134,7 +136,7 @@ const ProductDetails = ({ mealData }: any) => {
           className='object-cover h-[50vh] rounded-md w-full'
         />
       </Zoom>
-      <div className='mt-8 md:mt-0 md:pt-0 md:px-5'>
+      <div className='mt-20 md:mt-0 md:pt-0 md:px-5'>
         <Slide>
           <CurrentPage
             categoryName={categoryName}

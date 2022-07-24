@@ -30,7 +30,7 @@ const Cart = () => {
 
 const WithCartItems = ({ cartItems, setCartItems }: any) => {
   return (
-    <div className='mt-20'>
+    <div>
       {cartItems.map((item: any, index: any) => {
         return (
           <div key={index}>
@@ -62,15 +62,6 @@ const CartItem = ({ item, cartItems, setCartItems }: any) => {
     dispatch(cartActions.setTotalQuantity(totalQuantity));
     //eslint-disable-next-line
   });
-
-  useEffect(() => {
-     if (cartItems.length === 0) {
-      dispatch(cartActions.setTotalQuantity(0));
-    }
-    console.log('number of items in cart',cartItems.length);
-    
-    //eslint-disable-next-line
-  }, [cartItems.length]);
 
   type Item = {
     name: string;
