@@ -2,7 +2,6 @@ import { formatPrice } from './Functions';
 import { useEffect, useState } from 'react';
 import { HiPlus, HiMinus } from 'react-icons/hi';
 import { MdOutlineDelete } from 'react-icons/md';
-import { cartItems } from '../store/cartSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { cartActions } from '../store/cartSlice';
 
@@ -54,6 +53,16 @@ const WithoutCartItems = () => {
 const CartItem = ({ item, cartItems, setCartItems }: any) => {
   const dispatch = useDispatch();
 
+  let totalQuantity = 0;
+  useEffect(() => {
+    // update the redux store with the total number of items in the cart whenever a cart item changes
+    cartItems.map((cartItem: any) => {
+      totalQuantity += cartItem.quantity;
+    });
+    dispatch(cartActions.setTotalQuantity(totalQuantity));
+    //eslint-disable-next-line
+  }, [item]);
+
   type Item = {
     name: string;
     quantity: number;
@@ -75,8 +84,6 @@ const CartItem = ({ item, cartItems, setCartItems }: any) => {
     });
     // update the local storage with the updated cart
     localStorage.setItem('userCart', JSON.stringify(cartItems));
-    // update the redux store with the updated cart
-    dispatch(cartActions.updateCart(cartItems));
   };
 
   const handleDecrement = () => {
@@ -89,8 +96,6 @@ const CartItem = ({ item, cartItems, setCartItems }: any) => {
     });
     // update the local storage with the updated cart
     localStorage.setItem('userCart', JSON.stringify(cartItems));
-    // update the redux store with the updated cart
-    dispatch(cartActions.updateCart(cartItems));
   };
 
   const removeItemFromCart = () => {
@@ -100,8 +105,6 @@ const CartItem = ({ item, cartItems, setCartItems }: any) => {
     setCartItems(newCartItems);
     // update the local storage with the updated cart
     localStorage.setItem('userCart', JSON.stringify(newCartItems));
-    // update the redux store with the updated cart
-    dispatch(cartActions.updateCart(newCartItems));
   };
 
   return (
@@ -135,7 +138,7 @@ const CartItem = ({ item, cartItems, setCartItems }: any) => {
             {itemQuantity}
           </p>
           <div
-            className=' w-7 h-7 flex items-center justify-center cursor-pointer'
+            className=' w-7 h-7 flex items-center justify-center lg:cursor-pointer'
             onClick={handleIncrement}>
             <HiPlus className='w-6 h-6 ml-3' />
           </div>

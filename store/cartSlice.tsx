@@ -18,6 +18,7 @@ interface CounterState {
   additionalItems: AdditionalItems[];
   subTotal: number;
   cartItems: any[];
+  totalQuantity: number;
 }
 
 const initialState: CounterState = {
@@ -26,6 +27,7 @@ const initialState: CounterState = {
   additionalItems: [],
   subTotal: 0,
   cartItems: [],
+  totalQuantity: 0,
 };
 
 const cartSlice = createSlice({
@@ -76,7 +78,10 @@ const cartSlice = createSlice({
     },
     updateCart: (state, action: PayloadAction<any[]>) => {
       state.cartItems = action.payload;
-    }
+    },
+     setTotalQuantity: (state, action: PayloadAction<number>) => {
+      state.totalQuantity = action.payload;
+  },
   },
 });
 
