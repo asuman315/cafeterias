@@ -122,6 +122,13 @@ const CartItem = ({ item, cartItems, setCartItems }: any) => {
     localStorage.setItem('userCart', JSON.stringify(newCartItems));
   };
 
+  const navigateToDetails = () => {
+    router.push({
+      pathname: '/details/product',
+      query: { id: productId },
+    })
+  }
+
   return (
     <div className='flex flex-col px-4'>
       <div className='border-b-[1px] py-6'>
@@ -134,7 +141,7 @@ const CartItem = ({ item, cartItems, setCartItems }: any) => {
           />
           <div className='ml-6 w-full'>
             <h3>{name}</h3>
-            <h4 className='mt-3 underline' onClick={() => router.push(`/details/${productId}`)}>See Details</h4>
+            <h4 className='mt-3 underline' onClick={navigateToDetails}>See Details</h4>
             <div
               className='mt-3 flex items-center justify-between text-xl w-full uppercase text-dark-red'
               onClick={removeItemFromCart}>
