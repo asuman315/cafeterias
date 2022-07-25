@@ -4,6 +4,7 @@ import { HiPlus, HiMinus } from 'react-icons/hi';
 import { MdOutlineDelete } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
 import { cartActions } from '../store/cartSlice';
+import { useRouter } from 'next/router';
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -58,6 +59,7 @@ const WithoutCartItems = () => {
 
 const CartItem = ({ item, cartItems, setCartItems }: any) => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const { name, productImage, productId, quantity, totalPrice }: Item = item;
   const [itemQuantity, setItemQuantity] = useState(quantity);
 
@@ -132,7 +134,7 @@ const CartItem = ({ item, cartItems, setCartItems }: any) => {
           />
           <div className='ml-6 w-full'>
             <h3>{name}</h3>
-            <h4 className='mt-3 underline'>See Details</h4>
+            <h4 className='mt-3 underline' onClick={() => router.push(`/details/${productId}`)}>See Details</h4>
             <div
               className='mt-3 flex items-center justify-between text-xl w-full uppercase text-dark-red'
               onClick={removeItemFromCart}>
