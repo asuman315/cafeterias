@@ -1,5 +1,7 @@
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Component } from 'react';
+import Zoom from 'react-reveal/Zoom';
+import Roll from 'react-reveal/Roll';
 
 const Details = () => {
   const router = useRouter();
@@ -18,9 +20,13 @@ const Details = () => {
   const [name, setName] = useState('');
   const [price, setPrice] = useState(0);
   const [image, setImage] = useState('');
-  const [choiceOfComponents, setChoiceOfComponents] = useState([] as SelectedOption[]);
+  const [choiceOfComponents, setChoiceOfComponents] = useState(
+    [] as SelectedOption[]
+  );
   const [accompaniment, setAccompaniment] = useState('');
-  const [additionalItems, setAdditionalItems] = useState([] as AdditionalItems[]);
+  const [additionalItems, setAdditionalItems] = useState(
+    [] as AdditionalItems[]
+  );
   const [totalPrice, setTotalPrice] = useState(0);
   const [quantity, setQuantity] = useState(1);
 
@@ -71,9 +77,70 @@ const Details = () => {
 
   return (
     <section>
-      <h1>Details of {name}</h1>
+      <div className='max-w-6xl px-4 py-5 mx-auto md:grid grid-cols-2'>
+        <Zoom>
+          {/* eslint-disable-next-line */}
+          <img
+            src={image}
+            alt={name}
+            className='object-cover h-[50vh] rounded-md w-full'
+          />
+        </Zoom>
+        <div className='mt-10 md:mt-0 md:pt-0 md:px-5'>
+          <ProductInfo name={name} price={price} />
+          <ChoiceOfComponents choiceOfComponents={choiceOfComponents} />
+          { accompaniment.length > 0 ? (<Accompaniment accompaniment={accompaniment} />) : null }
+        </div>
+      </div>
     </section>
   );
 };
+
+const ProductInfo = ({ name, price }: { name: string; price: number }) => {
+  return (
+    <section>
+      <div>
+        <Roll bottom>
+          <h1 className='text-4xl md:text-5xl text-primary-1 tracking-wider'>
+            {name}
+          </h1>
+        </Roll>
+        <p className='font-bold text-primary-1 leading-8 tracking-wider text-3xl py-3'>
+          ${price}
+        </p>
+      </div>
+    </section>
+  );
+};
+
+const ChoiceOfComponents = ({ choiceOfComponents }: any) => {
+  return (
+    <section className='mt-4'>
+      <h3>Choice of Components</h3>
+      {choiceOfComponents.map(
+        (component: { option: string; component: string }) => {
+
+          return (
+            <div className='flex py-2'>
+              <p className='capitalize mr-5 font-semibold'>{component.component} : </p>
+              <p className='capitalize'>{component.option}</p>
+            </div>
+          );
+        }
+      )}
+    </section>
+  );
+};
+
+const Accompaniment = ({ accompaniment }: any) => {
+  console.log('accompaniment', accompaniment);
+  
+ return (
+   <section className='flex py-2'>
+     <p className='capitalize mr-5 font-semibold'>Accompaniment :</p>
+     <p className='capitalize'>{accompaniment}</p>
+   </section>
+ );
+}
 
 export default Details;

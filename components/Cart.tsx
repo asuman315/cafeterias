@@ -141,7 +141,7 @@ const CartItem = ({ item, cartItems, setCartItems }: any) => {
           />
           <div className='ml-6 w-full'>
             <h3>{name}</h3>
-            <h4 className='mt-3 underline' onClick={navigateToDetails}>See Details</h4>
+            <h4 className='mt-3 underline lg:cursor-pointer' onClick={navigateToDetails}>See Details</h4>
             <div
               className='mt-3 flex items-center justify-between text-xl w-full uppercase text-dark-red'
               onClick={removeItemFromCart}>
