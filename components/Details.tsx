@@ -75,6 +75,8 @@ const Details = () => {
     }
   }, [productId]);
 
+  console.log('choiceOfComponents', choiceOfComponents);
+
   return (
     <section>
       <div className='max-w-6xl px-4 py-5 mx-auto md:grid grid-cols-2'>
@@ -88,8 +90,15 @@ const Details = () => {
         </Zoom>
         <div className='mt-10 md:mt-0 md:pt-0 md:px-5'>
           <ProductInfo name={name} price={price} />
-          <ChoiceOfComponents choiceOfComponents={choiceOfComponents} />
-          { accompaniment.length > 0 ? (<Accompaniment accompaniment={accompaniment} />) : null }
+            { choiceOfComponents.length >= 1 ? (<ChoiceOfComponents choiceOfComponents={choiceOfComponents} />) : (<div></div>) }
+            {accompaniment.length > 0 ? (
+              <Accompaniment accompaniment={accompaniment} />
+            ) : (<div></div>) }
+            { additionalItems.length > 0 ? (
+              <Zoom bottom>
+                <AdditionalItems additionalItems={additionalItems} />
+              </Zoom>
+            ) : (<div></div>) }
         </div>
       </div>
     </section>
@@ -119,10 +128,11 @@ const ChoiceOfComponents = ({ choiceOfComponents }: any) => {
       <h3>Choice of Components</h3>
       {choiceOfComponents.map(
         (component: { option: string; component: string }) => {
-
           return (
             <div className='flex py-2'>
-              <p className='capitalize mr-5 font-semibold'>{component.component} : </p>
+              <p className='capitalize mr-5 font-semibold'>
+                {component.component} :{' '}
+              </p>
               <p className='capitalize'>{component.option}</p>
             </div>
           );
@@ -134,13 +144,37 @@ const ChoiceOfComponents = ({ choiceOfComponents }: any) => {
 
 const Accompaniment = ({ accompaniment }: any) => {
   console.log('accompaniment', accompaniment);
-  
- return (
-   <section className='flex py-2'>
-     <p className='capitalize mr-5 font-semibold'>Accompaniment :</p>
-     <p className='capitalize'>{accompaniment}</p>
-   </section>
- );
-}
+
+  return (
+    <section className='flex py-2'>
+      <p className='capitalize mr-5 font-semibold'>Accompaniment :</p>
+      <p className='capitalize'>{accompaniment}</p>
+    </section>
+  );
+};
+
+const AdditionalItems = ({ additionalItems }: any) => {
+  return (
+    <section>
+      <h3 className='uppercase md:text-xl mb-1 tracking-wider'>
+        Additional Items
+      </h3>
+      <div className='flex justify-between my-4'>
+        {additionalItems.map(
+          (additionalItem: { name: string; price: number }) => {
+            return (
+              <div className='flex py-2'>
+                <p className='capitalize mr-5 font-semibold'>
+                  {additionalItem.name} :{' '}
+                </p>
+                <p className='capitalize'>${additionalItem.price}</p>
+              </div>
+            );
+          }
+        )}
+      </div>
+    </section>
+  );
+};
 
 export default Details;
