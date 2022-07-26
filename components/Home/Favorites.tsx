@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { ImCross } from 'react-icons/im';
 import { useRouter } from 'next/router';
 import Zoom from 'react-reveal/Zoom';
-import Image from 'next/image';
 
 //This component is used to display the 'customer favorites' section on the home page
 
@@ -60,23 +59,20 @@ const Favorites = ({ customerFavoritesData }: any) => {
               key={id}
               className='flex flex-col items-center bg-white shadow-xl relative rounded-md lg:cursor-pointer'>
               <Zoom top>
-                <div
+                {/* eslint-disable-next-line */}
+                <img
+                  src={imageUrl}
+                  alt={`image of ${name}`}
+                  className='rounded-t-md cursor-zoom-in'
                   onClick={() => zoomImage(imageUrl)}
-                  className='rounded-t-md cursor-zoom-in h-44 md:h-[300px] w-full'>
-                  <Image
-                    src={imageUrl}
-                    alt={name}
-                    layout='fill'
-                    objectFit='cover'
-                  />
-                </div>
+                />
                 <div className='p-3 right-6 flex flex-col w-full h-full'>
-                  <h3 className='font-semibold relative top-6 md:top-10 text-center capitalize text-sm md:text-base lg:text-lg'>
+                  <h3 className='font-semibold text-center capitalize text-sm md:text-base lg:text-lg'>
                     {name}
                   </h3>
-                  <p className='font-bold text-center relative md:top-16 top-8'>$ {price}</p>
+                  <p className='font-bold text-center'>$ {price}</p>
                   <button
-                    className='mt-1 py-3 text-base lg:text-lg capitalize relative top-12 md:top-20'
+                    className='mt-4 py-3 text-base lg:text-lg capitalize'
                     onClick={() => router.push(`/product/${itemId}`)}>
                     order now
                   </button>
@@ -97,7 +93,7 @@ const Favorites = ({ customerFavoritesData }: any) => {
         }`}
         onClick={() => setShowZoomedImage(false)}></div>
       <div
-        className={`z-40 fixed top-[15vh] h-[70vh] ${
+        className={`z-40 fixed top-[30vh] h-[40vh] ${
           showZoomedImage ? 'block' : 'hidden'
         }`}>
         <ImCross
