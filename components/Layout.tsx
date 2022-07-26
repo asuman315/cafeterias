@@ -12,6 +12,8 @@ const Layout = (props: any) => {
   const { pathname } = router;
   const isHome = pathname === '/';
   const isProductDetailsPage = pathname === '/details/product';
+  const isCartPage = pathname === '/user/cart';
+  const productPage = pathname === '/product/[productId]';
 
   useEffect(() => {
     //hide navigation and footer on home page
@@ -25,6 +27,11 @@ const Layout = (props: any) => {
 
     if (isProductDetailsPage) {
       setShowNavigation(false);
+      setShowFooter(false);
+    }
+
+    // hide footer on product page
+    if (productPage || isCartPage) {
       setShowFooter(false);
     }
     //eslint-disable-next-line

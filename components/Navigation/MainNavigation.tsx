@@ -19,6 +19,7 @@ const MainNavigation = () => {
     );
     dispatch(cartActions.setTotalQuantity(totalQuantity));
   }
+  //eslint-disable-next-line
   , []);
 
   const totalQuantity = useSelector((state: any) => state.cart.totalQuantity);

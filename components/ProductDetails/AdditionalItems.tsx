@@ -40,6 +40,7 @@ const AdditionalItemsInfo = ({ name, price }: {name: string, price: number}) => 
   useEffect(() => {
      // set additional items in redux store to an empty array whenever the user leaves the product details page
      dispatch(cartActions.emptyAdditionalItems());
+  //eslint-disable-next-line   
   }, [router.pathname]);
 
   type SelectedAdditionalItem = {

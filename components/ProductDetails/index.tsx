@@ -66,6 +66,7 @@ const ProductDetails = ({ mealData }: any) => {
     useEffect(() => {
       // set choiceOfComponents in redux store to an empty array whenever the user leaves the product details page
       dispatch(cartActions.emptyChoiceOfComponents());
+   //eslint-disable-next-line   
     }, [router.pathname]);
 
   const addToCart = () => {

@@ -75,11 +75,9 @@ const Details = () => {
     }
   }, [productId]);
 
-  console.log('quantity', quantity);
-
   return (
     <section>
-      <div className='max-w-6xl px-4 py-5 mx-auto md:grid grid-cols-2'>
+      <div className='max-w-6xl px-4 mt-6 mb-12 mx-auto md:grid grid-cols-2'>
         <Zoom>
           {/* eslint-disable-next-line */}
           <img
@@ -113,14 +111,15 @@ const Details = () => {
           </div>
           <div className='flex items-center'>
             <h4>total price of all items :</h4>
-            <p className='font-medium ml-8'>{totalPrice}</p>
+            <p className='font-medium ml-8'>${totalPrice}</p>
           </div>
-          <button className='mt-8 capitalize py-3 w-full' onClick={() => router.push('/user/cart')}>back to cart</button>
+           <Buttons productId={productId} />
         </div>
       </div>
     </section>
   );
 };
+
 
 const ProductInfo = ({ name, price }: { name: string; price: number }) => {
   return (
@@ -139,14 +138,15 @@ const ProductInfo = ({ name, price }: { name: string; price: number }) => {
   );
 };
 
+
 const ChoiceOfComponents = ({ choiceOfComponents }: any) => {
   return (
     <section className='mt-4'>
       <h3 className='text-2xl'>Choice of Components</h3>
       {choiceOfComponents.map(
-        (component: { option: string; component: string }) => {
+        (component: { option: string; component: string }, index: number) => {
           return (
-            <div className='flex py-2'>
+            <div className='flex py-2' key={index}>
               <p className='capitalize mr-5 font-semibold'>
                 {component.component} :{' '}
               </p>
@@ -159,6 +159,7 @@ const ChoiceOfComponents = ({ choiceOfComponents }: any) => {
   );
 };
 
+
 const Accompaniment = ({ accompaniment }: any) => {
   return (
     <section className='mt-4 mb-6'>
@@ -168,6 +169,7 @@ const Accompaniment = ({ accompaniment }: any) => {
   );
 };
 
+
 const AdditionalItems = ({ additionalItems }: any) => {
   return (
     <section>
@@ -176,9 +178,9 @@ const AdditionalItems = ({ additionalItems }: any) => {
       </h3>
       <div className=''>
         {additionalItems.map(
-          (additionalItem: { name: string; price: number }) => {
+          (additionalItem: { name: string; price: number }, index: number) => {
             return (
-              <div className='flex mb-1'>
+              <div className='flex mb-1' key={index}>
                 <p className='capitalize mr-5 font-semibold'>
                   {additionalItem.name} :{' '}
                 </p>
@@ -188,6 +190,21 @@ const AdditionalItems = ({ additionalItems }: any) => {
           }
         )}
       </div>
+    </section>
+  );
+};
+
+
+const Buttons = ({ productId }: any) => {
+  const router = useRouter();
+  return (
+    <section className='flex flex-col md:flex-row self-center mt-12'>
+      <button
+        className='py-3 uppercase w-full md:w-[200px] tracking-wider mr-3 bg-primary-2 border-primary-3 border text-primary-3 hover:border-none'
+        onClick={() => router.push('/user/cart')}>
+        back to cart
+      </button>
+      <button className='py-3 uppercase w-full mt-6 md:mt-0 md:w-[200px] tracking-wider' onClick={() => router.push(`/product/${productId}`)}>edit</button>
     </section>
   );
 };

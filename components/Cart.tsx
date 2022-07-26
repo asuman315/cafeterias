@@ -30,7 +30,7 @@ const Cart = () => {
       ) : (
         <WithoutCartItems />
       )}
-     { cartItems.length > 0 ? (<Totals cartItems={cartItems} /> ) : (<div></div>)}
+      {cartItems.length > 0 ? <Totals cartItems={cartItems} /> : <div></div>}
     </div>
   );
 };
@@ -54,10 +54,6 @@ const WithCartItems = ({ cartItems, setCartItems }: any) => {
   );
 };
 
-const WithoutCartItems = () => {
-  return <div></div>;
-};
-
 const CartItem = ({ item, cartItems, setCartItems }: any) => {
   const dispatch = useDispatch();
   const router = useRouter();
@@ -73,7 +69,7 @@ const CartItem = ({ item, cartItems, setCartItems }: any) => {
     dispatch(cartActions.setTotalQuantity(totalQuantity));
     // update itemQuantity whenever a cart item is removed from the cart
     setItemQuantity(quantity);
-    //eslint-disable-next-line
+  //eslint-disable-next-line
   });
 
   type Item = {
@@ -127,8 +123,8 @@ const CartItem = ({ item, cartItems, setCartItems }: any) => {
     router.push({
       pathname: '/details/product',
       query: { id: productId },
-    })
-  }
+    });
+  };
 
   return (
     <div className='flex flex-col px-4'>
@@ -142,7 +138,11 @@ const CartItem = ({ item, cartItems, setCartItems }: any) => {
           />
           <div className='ml-6 w-full'>
             <h3>{name}</h3>
-            <h4 className='mt-3 underline lg:cursor-pointer' onClick={navigateToDetails}>See Details</h4>
+            <h4
+              className='mt-3 underline lg:cursor-pointer'
+              onClick={navigateToDetails}>
+              See Details
+            </h4>
             <div
               className='mt-3 flex items-center justify-between text-xl w-full uppercase text-dark-red'
               onClick={removeItemFromCart}>
@@ -213,11 +213,35 @@ const Totals = ({ cartItems }: any) => {
 const Buttons = () => {
   const router = useRouter();
   return (
-    <section className='self-center mt-8'>
-      <button className='py-3 uppercase px-12 tracking-wider mr-3 bg-primary-2 border-primary-3 border text-primary-3' onClick={() => router.push('/menu')}>add more items</button>
-      <button className='py-3 uppercase px-12 tracking-wider'>checkout</button>
+    <section className='flex flex-col justify-center md:flex-row mt-12 w-full'>
+      <div>
+        <button
+          className='py-3 uppercase w-full md:w-[200px] lg:w-[250px]  tracking-wider mr-3 bg-primary-2 border-primary-3 border text-primary-3 hover:border-none'
+          onClick={() => router.push('/menu')}>
+          add more items
+        </button>
+        <button className='py-3 uppercase mt-6 md:mt-0 w-full md:w-[200px] lg:w-[250px] tracking-wider'>
+          checkout
+        </button>
+      </div>
     </section>
   );
-}
+};
+
+const WithoutCartItems = () => {
+  const router = useRouter();
+  return (
+    <section className='col-span-3 flex flex-col'>
+      <h2 className='text-center mb-24'>Your Cart is Empty</h2>
+      <div className='w-full md:w-[450px] mx-auto'>
+        <button
+          className='py-3 uppercase w-full  tracking-wider mr-3 bg-primary-2 border-primary-3 border text-primary-3'
+          onClick={() => router.push('/menu')}>
+          add items
+        </button>
+      </div>
+    </section>
+  );
+};
 
 export default Cart;

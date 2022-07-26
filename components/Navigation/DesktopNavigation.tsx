@@ -22,8 +22,7 @@ const DesktopNavigation = ({ totalQuantity }: any) => {
               Home
             </li>
           </Link>
-          <Link href='/menu'>
-            
+          <Link href='/menu'>      
             <li
               className={
                 pathname === '/menu'
