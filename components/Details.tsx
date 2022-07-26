@@ -75,7 +75,7 @@ const Details = () => {
     }
   }, [productId]);
 
-  console.log('choiceOfComponents', choiceOfComponents);
+  console.log('quantity', quantity);
 
   return (
     <section>
@@ -99,6 +99,14 @@ const Details = () => {
                 <AdditionalItems additionalItems={additionalItems} />
               </Zoom>
             ) : (<div></div>) }
+          <div className='flex items-center'>
+            <h4>number of items in cart :</h4>
+            <p className='font-medium ml-8'>{quantity}</p>
+          </div>
+          <div className='flex items-center'>
+            <h4>total price of all items :</h4>
+            <p className='font-medium ml-8'>{totalPrice}</p>
+          </div>
         </div>
       </div>
     </section>
@@ -148,7 +156,7 @@ const Accompaniment = ({ accompaniment }: any) => {
   return (
     <section className='flex py-2'>
       <p className='capitalize mr-5 font-semibold'>Accompaniment :</p>
-      <p className='capitalize'>{accompaniment}</p>
+      <p className='capitalize font-medium'>{accompaniment}</p>
     </section>
   );
 };
