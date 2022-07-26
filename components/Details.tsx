@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useState, useEffect, Component } from 'react';
+import { useState, useEffect } from 'react';
 import Zoom from 'react-reveal/Zoom';
 import Roll from 'react-reveal/Roll';
 
@@ -90,16 +90,24 @@ const Details = () => {
         </Zoom>
         <div className='mt-10 md:mt-0 md:pt-0 md:px-5'>
           <ProductInfo name={name} price={price} />
-            { choiceOfComponents.length >= 1 ? (<ChoiceOfComponents choiceOfComponents={choiceOfComponents} />) : (<div></div>) }
-            {accompaniment.length > 0 ? (
-              <Accompaniment accompaniment={accompaniment} />
-            ) : (<div></div>) }
-            { additionalItems.length > 0 ? (
-              <Zoom bottom>
-                <AdditionalItems additionalItems={additionalItems} />
-              </Zoom>
-            ) : (<div></div>) }
-          <div className='flex items-center'>
+          {choiceOfComponents.length >= 1 ? (
+            <ChoiceOfComponents choiceOfComponents={choiceOfComponents} />
+          ) : (
+            <div></div>
+          )}
+          {accompaniment.length > 0 ? (
+            <Accompaniment accompaniment={accompaniment} />
+          ) : (
+            <div></div>
+          )}
+          {additionalItems.length > 0 ? (
+            <Zoom bottom>
+              <AdditionalItems additionalItems={additionalItems} />
+            </Zoom>
+          ) : (
+            <div></div>
+          )}
+          <div className='flex items-center py-4'>
             <h4>number of items in cart :</h4>
             <p className='font-medium ml-8'>{quantity}</p>
           </div>
@@ -107,6 +115,7 @@ const Details = () => {
             <h4>total price of all items :</h4>
             <p className='font-medium ml-8'>{totalPrice}</p>
           </div>
+          <button className='mt-8 capitalize py-3 w-full' onClick={() => router.push('/user/cart')}>back to cart</button>
         </div>
       </div>
     </section>
@@ -133,7 +142,7 @@ const ProductInfo = ({ name, price }: { name: string; price: number }) => {
 const ChoiceOfComponents = ({ choiceOfComponents }: any) => {
   return (
     <section className='mt-4'>
-      <h3>Choice of Components</h3>
+      <h3 className='text-2xl'>Choice of Components</h3>
       {choiceOfComponents.map(
         (component: { option: string; component: string }) => {
           return (
@@ -141,7 +150,7 @@ const ChoiceOfComponents = ({ choiceOfComponents }: any) => {
               <p className='capitalize mr-5 font-semibold'>
                 {component.component} :{' '}
               </p>
-              <p className='capitalize'>{component.option}</p>
+              <p className='capitalize font-medium'>{component.option}</p>
             </div>
           );
         }
@@ -151,12 +160,10 @@ const ChoiceOfComponents = ({ choiceOfComponents }: any) => {
 };
 
 const Accompaniment = ({ accompaniment }: any) => {
-  console.log('accompaniment', accompaniment);
-
   return (
-    <section className='flex py-2'>
-      <p className='capitalize mr-5 font-semibold'>Accompaniment :</p>
-      <p className='capitalize font-medium'>{accompaniment}</p>
+    <section className='mt-4 mb-6'>
+      <h3 className='capitalize mr-5 text-2xl'>Accompaniment</h3>
+      <p className='capitalize font-medium my-1'>{accompaniment}</p>
     </section>
   );
 };
@@ -164,18 +171,18 @@ const Accompaniment = ({ accompaniment }: any) => {
 const AdditionalItems = ({ additionalItems }: any) => {
   return (
     <section>
-      <h3 className='uppercase md:text-xl mb-1 tracking-wider'>
+      <h3 className='capitalize text-2xl tracking-wider'>
         Additional Items
       </h3>
-      <div className='flex justify-between my-4'>
+      <div className=''>
         {additionalItems.map(
           (additionalItem: { name: string; price: number }) => {
             return (
-              <div className='flex py-2'>
+              <div className='flex mb-1'>
                 <p className='capitalize mr-5 font-semibold'>
                   {additionalItem.name} :{' '}
                 </p>
-                <p className='capitalize'>${additionalItem.price}</p>
+                <p className='capitalize font-medium'>${additionalItem.price}</p>
               </div>
             );
           }

@@ -30,14 +30,14 @@ const Cart = () => {
       ) : (
         <WithoutCartItems />
       )}
-      <Totals cartItems={cartItems} />
+     { cartItems.length > 0 ? (<Totals cartItems={cartItems} /> ) : (<div></div>)}
     </div>
   );
 };
 
 const WithCartItems = ({ cartItems, setCartItems }: any) => {
   return (
-    <div className='col-span-2 md:mt-[-24px]'>
+    <div className='col-span-2 md:mt-[-24px] flex flex-col'>
       {cartItems.map((item: any, index: any) => {
         return (
           <div key={index}>
@@ -49,6 +49,7 @@ const WithCartItems = ({ cartItems, setCartItems }: any) => {
           </div>
         );
       })}
+      <Buttons />
     </div>
   );
 };
@@ -208,5 +209,15 @@ const Totals = ({ cartItems }: any) => {
     </section>
   );
 };
+
+const Buttons = () => {
+  const router = useRouter();
+  return (
+    <section className='self-center mt-8'>
+      <button className='py-3 uppercase px-12 tracking-wider mr-3 bg-primary-2 border-primary-3 border text-primary-3' onClick={() => router.push('/menu')}>add more items</button>
+      <button className='py-3 uppercase px-12 tracking-wider'>checkout</button>
+    </section>
+  );
+}
 
 export default Cart;
