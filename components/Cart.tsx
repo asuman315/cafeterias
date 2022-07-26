@@ -24,13 +24,16 @@ const Cart = () => {
   }
 
   return (
-    <div className='px-5 py-12 mb-8 md:grid grid-cols-3 gap-4 max-w-6xl mx-auto '>
-      {cartItems.length > 0 ? (
-        <WithCartItems cartItems={cartItems} setCartItems={setCartItems} />
-      ) : (
-        <WithoutCartItems />
-      )}
-      {cartItems.length > 0 ? <Totals cartItems={cartItems} /> : <div></div>}
+    <div className='px-5 py-12 mb-8 max-w-6xl mx-auto'>
+      <div className=' md:grid grid-cols-3 gap-4'>
+        {cartItems.length > 0 ? (
+          <WithCartItems cartItems={cartItems} setCartItems={setCartItems} />
+        ) : (
+          <WithoutCartItems />
+        )}
+        {cartItems.length > 0 ? <Totals cartItems={cartItems} /> : <div></div>}
+      </div>
+      {cartItems.length > 0 ? <Buttons /> : <div></div>}
     </div>
   );
 };
@@ -49,7 +52,6 @@ const WithCartItems = ({ cartItems, setCartItems }: any) => {
           </div>
         );
       })}
-      <Buttons />
     </div>
   );
 };
@@ -69,7 +71,7 @@ const CartItem = ({ item, cartItems, setCartItems }: any) => {
     dispatch(cartActions.setTotalQuantity(totalQuantity));
     // update itemQuantity whenever a cart item is removed from the cart
     setItemQuantity(quantity);
-  //eslint-disable-next-line
+    //eslint-disable-next-line
   });
 
   type Item = {
