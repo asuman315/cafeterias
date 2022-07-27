@@ -4,8 +4,8 @@ import { useRouter } from 'next/router';
 import SVG from './SVG';
 import Alert from '../Alert';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import { authActions } from '../../store/authSlice';
+//import { useDispatch } from 'react-redux';
+//import { authActions } from '../../store/authSlice';
 
 function Login() {
   return <LoginForm />;
@@ -19,14 +19,14 @@ const LoginForm = () => {
 
   const [alert, setAlert] = useState({
     show: false,
-    type: 'danger',
+    status: '',
     msg: '',
   });
 
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
   const clientInfo = { email, password };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
       //post the client login info to the server
@@ -41,17 +41,19 @@ const LoginForm = () => {
 
       //Store userId in the redux store
       const userId = response.data.user.userId;
-      dispatch(authActions.setUserId(userId));
+      console.log('userId', userId);
+      
+     // dispatch(authActions.setUserId(userId));
 
-      setAlert({ show: true, type: 'success', msg: 'Login successfull!' });
+      setAlert({ show: true, status: 'error', msg: 'Login successfull!' });
 
       setEmail('');
       setPassword('');
 
       //Set logged-in status to true
-      sessionStorage.setItem('isloggedIn', true);
+      //sessionStorage.setItem('isloggedIn', true);
     } catch (error) {
-      setAlert({ show: true, type: 'danger', msg: error.response.data.msg });
+      setAlert({ show: true, status: 'danger', msg: error.response.data.msg });
     }
   };
 

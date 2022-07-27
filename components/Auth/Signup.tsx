@@ -3,8 +3,8 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import SVG from './SVG';
 import axios from 'axios';
 import Alert from './Alert';
-import { useSelector, useDispatch } from 'react-redux';
-import { authActions } from '../../store/authSlice';
+//import { useSelector, useDispatch } from 'react-redux';
+//import { authActions } from '../../store/authSlice';
 import { useRouter } from 'next/router';
 
 const Signup = () => {
@@ -16,7 +16,7 @@ const SignupForm = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [alert, setAlert] = useState({ show: false, type: '', msg: '' });
+  const [alert, setAlert] = useState({ show: false, status: '', msg: '' });
 
   const userInfo = {
     name,
@@ -25,10 +25,10 @@ const SignupForm = () => {
   };
 
   //grab the id of the clicked product
-  const dispatch = useDispatch();
+ // const dispatch = useDispatch();
   const router = useRouter();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
 
     try {
@@ -43,7 +43,7 @@ const SignupForm = () => {
 
       setAlert({
         show: true,
-        type: 'success',
+        status: 'success',
         msg: 'Account created successfully!',
       });
 
@@ -54,7 +54,7 @@ const SignupForm = () => {
       setName('');
 
       //Set logged-in status to true
-      sessionStorage.setItem('isloggedIn', true);
+    //  sessionStorage.setItem('isloggedIn', true);
       const cartItems = localStorage.getItem('cartItems');
       // Push the user to the checkout page if they have items in their cart
       if (cartItems) {
@@ -62,12 +62,14 @@ const SignupForm = () => {
       }
 
       //Store userId in the redux store
-      const userId = response.data.user.userId;
-      dispatch(authActions.setUserId(userId));
+     const userId = response.data.user.userId;
+     console.log('userId', userId);
+     
+      //dispatch(authActions.setUserId(userId));
     } catch (error) {
       console.log(error);
       if (error) {
-        setAlert({ show: true, type: 'danger', msg: error.response.data.msg });
+        setAlert({ show: true, status: 'error', msg: error.response.data.msg });
       }
     }
   };
