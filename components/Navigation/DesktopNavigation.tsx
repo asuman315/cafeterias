@@ -32,24 +32,24 @@ const DesktopNavigation = ({ totalQuantity }: any) => {
               Menu
             </li>
           </Link>
-          <Link href='/'>
+          <Link href='/auth/login'>
             <li
               className={
-                pathname === '/'
+                pathname === '/auth/login'
                   ? 'bg-primary-3 text-primary-1 h-full flex items-center justify-center xl:px-10 md:px-6 cursor-pointer'
                   : 'bg-transparent h-full flex items-center justify-center xl:px-10 md:px-6 cursor-pointer hover:text-primary-1 duration-300 ease-in'
               }>
-              Featured Products
+              Login
             </li>
           </Link>
-          <Link href='/deals'>
+          <Link href='/auth/signup'>
             <li
               className={
-                pathname === '/deals'
+                pathname === '/auth/signup'
                   ? 'bg-primary-3 text-primary-1 h-full flex items-center justify-center xl:px-10 md:px-6 cursor-pointer'
                   : 'bg-transparent h-full flex items-center justify-center xl:px-10 md:px-6 cursor-pointer hover:text-primary-1 duration-300 ease-in'
               }>
-              Deals
+              Sign up
             </li>
           </Link>
         </ul>

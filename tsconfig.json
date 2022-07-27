@@ -19,6 +19,6 @@
     "noUnusedLocals": true, //catch variables that are declared but not used
     "strictNullChecks": true, //catch nulls assigned to other varaibles like strings or numbers
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/Auth/SVG.js"],
   "exclude": ["node_modules"]
 }

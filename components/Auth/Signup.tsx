@@ -1,8 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import SVG from './SVG';
 import axios from 'axios';
-import Alert from './Alert';
+import Alert from '../Alert';
 //import { useSelector, useDispatch } from 'react-redux';
 //import { authActions } from '../../store/authSlice';
 import { useRouter } from 'next/router';
@@ -83,7 +82,6 @@ const SignupForm = () => {
   };
   return (
     <section className='pt-10 sm:flex flex-col items-start bg-primary-11 h-screen'>
-      <SVG />
       <div className='max-w-lg mx-auto w-[90vw] relative lg:top-0 shadow-md'>
         <form
           onSubmit={handleSubmit}
@@ -102,7 +100,7 @@ const SignupForm = () => {
               value={name}
               placeholder='Name'
               onChange={(e) => setName(e.target.value)}
-              className='pl-2 py-2 mt-1 rounded-sm bg-primary-12'
+              className='pl-3 py-3 font-medium mt-1 rounded-sm bg-primary-2'
             />
           </div>
           <div className='flex flex-col pt-4'>
@@ -115,7 +113,7 @@ const SignupForm = () => {
               value={email}
               placeholder='Email'
               onChange={(e) => setEmail(e.target.value)}
-              className='pl-2 py-2 mt-1 rounded-sm bg-primary-12'
+              className='pl-3 py-3 font-medium mt-1 rounded-sm bg-primary-2'
             />
           </div>
           <div className='flex flex-col pt-4'>
@@ -130,7 +128,7 @@ const SignupForm = () => {
                 id='password'
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
-                className='pl-2 py-2 rounded-sm bg-primary-12 w-full'
+                className='pl-3 py-3 font-medium rounded-sm bg-primary-2 w-full'
                 required
               />
               {showPassword ? (
@@ -148,17 +146,14 @@ const SignupForm = () => {
               )}
             </div>
           </div>
-          <button
-            type='submit'
-            className='bg-primary-11 my-8 w-full rounded-sm py-3'>
-            Sign up
+          <button className='capitalize bg-primary-3 w-full rounded py-3 my-6' type='submit'>
+            sign up
           </button>
         </form>
-        <p className='text-primary-10 text-sm py-3 tracking-normal rounded-b-lg px-6 bg-[#f0f9ff]'>
-          By clicking &#34;Sign Up&#34; button, I expressly agree to the Asuman
-          Sounds <span className='underline'> Terms of Service</span> and
+        <p className='text-primary-10 text-sm py-3 tracking-wide leading-7 rounded-b-lg px-6 bg-[#f0f9ff]'>
+          By clicking &#34;Sign Up&#34; button, I expressly agree to the Cafeteriase <span className='underline'> Terms of Service</span> and
           understand that my account information will be used according to
-          Asuman Sounds <span className='underline'>Privacy Policy</span>.
+          Cafeteriase <span className='underline'>Privacy Policy</span>.
         </p>
       </div>
     </section>
