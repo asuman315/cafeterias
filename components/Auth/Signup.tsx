@@ -65,7 +65,7 @@ const SignupForm = () => {
      console.log('userId', userId);
      
       //dispatch(authActions.setUserId(userId));
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
       if (error) {
         setAlert({ show: true, status: 'error', msg: error.response.data.msg });
