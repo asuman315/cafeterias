@@ -16,7 +16,7 @@ const Cart = () => {
       : [];
     setCartItems(myCartItems);
     //eslint-disable-next-line
-  }, [quantity]);
+  }, [cartActions]);
 
   if (cartItems.length === 0) {
     // set totalQuantity to 0 in redux store when cart remains empty after removing the last item
