@@ -11,9 +11,7 @@ const Cart = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const myCartItems = localStorage.getItem('userCart')
-      ? JSON.parse(localStorage.getItem('userCart')!)
-      : [];
+    const myCartItems = localStorage.getItem('userCart') ? JSON.parse(localStorage.getItem('userCart')!)  : [];
     setCartItems(myCartItems);
     //eslint-disable-next-line
     //eslint-disable-next-line
