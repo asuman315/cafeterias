@@ -52,7 +52,7 @@ const LoginForm = () => {
       //Set logged-in status to true
       //sessionStorage.setItem('isloggedIn', true);
     } catch (error) {
-      setAlert({ show: true, status: 'danger', msg: error.response.data.msg });
+      setAlert({ show: true, status: 'danger', msg: error?.response?.data?.msg ?? 'An error has occured' });
     }
   };
 
